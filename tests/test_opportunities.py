@@ -159,3 +159,21 @@ def test_patch_opportunity_invalid_stage_name(client):
     resp = client.patch(f"/opportunities/{created['id']}", json={"stage_name": "Bogus"})
     assert resp.status_code == 422
     assert resp.json()["error"] == "VALIDATION_ERROR"
+
+
+def test_delete_opportunity_success(client):
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    created = client.post(
+        "/opportunities",
+        json={"account_id": account["id"], "name": "Deal", "close_date": "2026-12-01"},
+    ).json()
+    resp = client.delete(f"/opportunities/{created['id']}")
+    assert resp.status_code == 204
+    assert client.get(f"/opportunities/{created['id']}").status_code == 404
+    assert client.get("/opportunities").json() == []
+
+
+def test_delete_opportunity_not_found(client):
+    resp = client.delete("/opportunities/999999")
+    assert resp.status_code == 404
+    assert resp.json()["error"] == "OPPORTUNITY_NOT_FOUND"

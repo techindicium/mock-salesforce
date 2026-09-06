@@ -139,3 +139,24 @@ def update_opportunity(opportunity_id: int, payload: OpportunityUpdate) -> Oppor
         return _to_opportunity_out(row)
     finally:
         conn.close()
+
+
+@router.delete("/opportunities/{opportunity_id}", status_code=204)
+def delete_opportunity(opportunity_id: int) -> None:
+    conn = get_connection()
+    try:
+        row = conn.execute(
+            "SELECT * FROM opportunities WHERE id = ?", (opportunity_id,)
+        ).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={
+                    "error": "OPPORTUNITY_NOT_FOUND",
+                    "message": f"No opportunity with id {opportunity_id}",
+                },
+            )
+        conn.execute("DELETE FROM opportunities WHERE id = ?", (opportunity_id,))
+        conn.commit()
+    finally:
+        conn.close()
