@@ -9,6 +9,7 @@ from mock_salesforce.errors import http_exception_handler, validation_exception_
 from mock_salesforce.health import router as health_router
 from mock_salesforce.opportunities import router as opportunities_router
 from mock_salesforce.seed import seed_if_empty
+from mock_salesforce.static import router as static_router
 
 app = FastAPI()
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
@@ -17,6 +18,7 @@ app.include_router(accounts_router)
 app.include_router(contacts_router)
 app.include_router(opportunities_router)
 app.include_router(health_router)
+app.include_router(static_router)
 
 
 @app.on_event("startup")
