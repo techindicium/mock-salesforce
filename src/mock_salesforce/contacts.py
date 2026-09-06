@@ -38,3 +38,34 @@ def create_contact(payload: ContactCreate) -> ContactOut:
         return ContactOut(**dict(row))
     finally:
         conn.close()
+
+
+@router.get("/contacts", response_model=list[ContactOut])
+def list_contacts(account_id: int | None = None) -> list[ContactOut]:
+    conn = get_connection()
+    try:
+        if account_id is not None:
+            rows = conn.execute(
+                "SELECT * FROM contacts WHERE account_id = ? ORDER BY created_at, id",
+                (account_id,),
+            ).fetchall()
+        else:
+            rows = conn.execute("SELECT * FROM contacts ORDER BY created_at, id").fetchall()
+        return [ContactOut(**dict(r)) for r in rows]
+    finally:
+        conn.close()
+
+
+@router.get("/contacts/{contact_id}", response_model=ContactOut)
+def get_contact(contact_id: int) -> ContactOut:
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT * FROM contacts WHERE id = ?", (contact_id,)).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={"error": "CONTACT_NOT_FOUND", "message": f"No contact with id {contact_id}"},
+            )
+        return ContactOut(**dict(row))
+    finally:
+        conn.close()
