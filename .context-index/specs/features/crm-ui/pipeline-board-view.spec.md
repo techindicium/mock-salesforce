@@ -1,14 +1,30 @@
 ---
-partial_schema: spec@1
+partial_schema: implement@1
 charter: crm-ui
-status: review-passed
+status: implemented
 risk_level: medium
 milestone: mvp
 revision: 1
 charter-revision: 2
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 kind: behavioral
+source-manifest:
+  sha: "17fdd1f"
+  files:
+    - static/css/board.css
+    - static/index.html
+    - static/js/api.js
+    - static/js/api.test.mjs
+    - static/js/board-state.js
+    - static/js/board-state.test.mjs
+    - static/js/board.js
+    - static/js/errors.js
+    - static/js/errors.test.mjs
+    - static/js/stages.js
+    - static/js/stages.test.mjs
+    - tests/test_ui_board_page.py
+  computed-at: "2026-09-06T22:35:03.765Z"
 depends-on:
   - .context-index/specs/features/crm-api/account-and-contact-management.spec.md
   - .context-index/specs/features/crm-api/opportunity-lifecycle.spec.md
@@ -91,11 +107,11 @@ depends-on:
 
 ## Acceptance Criteria
 
-- [ ] Board load fetches Accounts, defaults a filter, fetches and renders Opportunities (BEH-1)
-- [ ] Opportunities render into the correct one of ten fixed columns with the right card fields (BEH-2)
-- [ ] Switching the account filter fully replaces the board, never merges two sets (BEH-3)
-- [ ] Dragging a card to a new column calls PATCH and only moves on success (BEH-4)
-- [ ] Any API failure shows a visible message, never a silent failure or blank screen (BEH-5)
-- [ ] Zero matching Opportunities shows all columns empty, not an error (BEH-6)
-- [ ] All quality gates pass (tests, lint)
-- [ ] No constitutional violations introduced
+- [x] Board load fetches Accounts, defaults a filter, fetches and renders Opportunities (BEH-1)
+- [x] Opportunities render into the correct one of ten fixed columns with the right card fields (BEH-2)
+- [x] Switching the account filter fully replaces the board, never merges two sets (BEH-3)
+- [x] Dragging a card to a new column calls PATCH and only moves on success (BEH-4)
+- [x] Any API failure shows a visible message, never a silent failure or blank screen (BEH-5)
+- [x] Zero matching Opportunities shows all columns empty, not an error (BEH-6)
+- [x] All quality gates pass (tests, lint)
+- [x] No constitutional violations introduced

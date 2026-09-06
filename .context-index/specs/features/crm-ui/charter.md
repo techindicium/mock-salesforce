@@ -80,13 +80,13 @@ with no separate server, no CORS configuration, and no runtime base-URL configur
 
 | Capability | Description | Priority | Milestone | Status |
 |-----------|-------------|----------|-------|--------|
-| Render pipeline board | Fetch Opportunities (optionally filtered by Account), group into the ten stage columns | must-have | mvp | planned |
-| Move opportunity between stages | Change an Opportunity's `stage_name` via the board (drag-and-drop or equivalent control) | must-have | mvp | planned |
+| Render pipeline board | Fetch Opportunities (optionally filtered by Account), group into the ten stage columns | must-have | mvp | implemented |
+| Move opportunity between stages | Change an Opportunity's `stage_name` via the board (drag-and-drop or equivalent control) | must-have | mvp | implemented |
 | Deal detail page | Full Opportunity detail, related Account summary, related Contacts list, edit/delete actions | must-have | mvp | review-passed |
 | Create/edit/delete opportunity | Form/modal calling the API's Opportunity CRUD endpoints | must-have | mvp | review-passed |
 | Create/edit/delete account | Form/modal calling the API's Account CRUD endpoints | must-have | mvp | review-passed |
 | Create/edit/delete contact | Form/modal calling the API's Contact CRUD endpoints | must-have | mvp | review-passed |
-| Account switcher | List Accounts, select one to filter the board and detail views | should-have | mvp | planned |
+| Account switcher | List Accounts, select one to filter the board and detail views | should-have | mvp | implemented |
 
 ## Deferred Capabilities
 
