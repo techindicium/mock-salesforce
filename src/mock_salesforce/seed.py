@@ -1,9 +1,19 @@
 from datetime import datetime, timezone
 import sqlite3
 
+from pydantic import ValidationError
+
+from mock_salesforce.db import get_db_path
 from mock_salesforce.models import AccountCreate, ContactCreate, OpportunityCreate
 
 CLOSED_STAGES = {"Closed Won", "Closed Lost"}
+
+
+class SeedDataError(Exception):
+    def __init__(self, code: str, message: str):
+        self.code = code
+        self.message = message
+        super().__init__(f"{code}: {message}")
 
 SEED_ACCOUNTS: list[dict] = [
     {"name": "Nordkai Logistics", "account_type": "Customer",
@@ -95,7 +105,13 @@ SEED_OPPORTUNITIES: list[dict] = [
 
 
 def _insert_account(conn: sqlite3.Connection, row: dict, now: str) -> int:
-    payload = AccountCreate(**row)
+    try:
+        payload = AccountCreate(**row)
+    except ValidationError as exc:
+        raise SeedDataError(
+            "SEED_DATA_INVALID",
+            f"Account row '{row.get('name', '<unknown>')}' failed validation: {exc}",
+        ) from exc
     cur = conn.execute(
         """
         INSERT INTO accounts (
@@ -116,7 +132,13 @@ def _insert_account(conn: sqlite3.Connection, row: dict, now: str) -> int:
 
 def _insert_contact(conn: sqlite3.Connection, row: dict, account_id: int, now: str) -> int:
     fields = {k: v for k, v in row.items() if k != "account_name"}
-    payload = ContactCreate(account_id=account_id, **fields)
+    try:
+        payload = ContactCreate(account_id=account_id, **fields)
+    except ValidationError as exc:
+        raise SeedDataError(
+            "SEED_DATA_INVALID",
+            f"Contact row '{row.get('last_name', '<unknown>')}' failed validation: {exc}",
+        ) from exc
     cur = conn.execute(
         """
         INSERT INTO contacts (
@@ -133,7 +155,13 @@ def _insert_contact(conn: sqlite3.Connection, row: dict, account_id: int, now: s
 
 def _insert_opportunity(conn: sqlite3.Connection, row: dict, account_id: int, now: str) -> int:
     fields = {k: v for k, v in row.items() if k != "account_name"}
-    payload = OpportunityCreate(account_id=account_id, **fields)
+    try:
+        payload = OpportunityCreate(account_id=account_id, **fields)
+    except ValidationError as exc:
+        raise SeedDataError(
+            "SEED_DATA_INVALID",
+            f"Opportunity row '{row.get('name', '<unknown>')}' failed validation: {exc}",
+        ) from exc
     is_closed = payload.stage_name in CLOSED_STAGES
     is_won = payload.stage_name == "Closed Won"
     cur = conn.execute(
@@ -153,19 +181,29 @@ def _insert_opportunity(conn: sqlite3.Connection, row: dict, account_id: int, no
     return cur.lastrowid
 
 
-def seed_if_empty(conn: sqlite3.Connection) -> None:
+def seed_if_empty(
+    conn: sqlite3.Connection,
+    accounts: list[dict] | None = None,
+    contacts: list[dict] | None = None,
+    opportunities: list[dict] | None = None,
+) -> None:
     existing = conn.execute("SELECT COUNT(*) FROM accounts").fetchone()[0]
     if existing > 0:
         return
+    accounts = SEED_ACCOUNTS if accounts is None else accounts
+    contacts = SEED_CONTACTS if contacts is None else contacts
+    opportunities = SEED_OPPORTUNITIES if opportunities is None else opportunities
     now = datetime.now(timezone.utc).isoformat()
     account_ids: dict[str, int] = {}
-    for row in SEED_ACCOUNTS:
-        account_ids[row["name"]] = _insert_account(conn, row, now)
-
-    for row in SEED_CONTACTS:
-        _insert_contact(conn, row, account_ids[row["account_name"]], now)
-
-    for row in SEED_OPPORTUNITIES:
-        _insert_opportunity(conn, row, account_ids[row["account_name"]], now)
-
-    conn.commit()
+    try:
+        for row in accounts:
+            account_ids[row["name"]] = _insert_account(conn, row, now)
+        for row in contacts:
+            _insert_contact(conn, row, account_ids[row["account_name"]], now)
+        for row in opportunities:
+            _insert_opportunity(conn, row, account_ids[row["account_name"]], now)
+        conn.commit()
+    except sqlite3.OperationalError as exc:
+        raise SeedDataError(
+            "SEED_DB_NOT_WRITABLE", f"Database path '{get_db_path()}' is not writable: {exc}"
+        ) from exc
