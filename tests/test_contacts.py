@@ -33,7 +33,11 @@ def test_list_contacts_filtered_by_account(client):
     assert names == ["One"]
 
     resp_all = client.get("/contacts")
-    assert len(resp_all.json()) == 2
+    # A fresh database may already contain seeded fixture contacts (see seed.py), so
+    # scope the count to the two accounts this test created rather than assuming the
+    # unfiltered list is otherwise empty.
+    own = [c for c in resp_all.json() if c["account_id"] in (a1["id"], a2["id"])]
+    assert len(own) == 2
 
 
 def test_get_contact_by_id_success(client):

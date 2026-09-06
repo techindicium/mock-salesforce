@@ -35,7 +35,10 @@ def test_list_accounts_ordered_by_created_at(client):
     client.post("/accounts", json={"name": "Second"})
     resp = client.get("/accounts")
     assert resp.status_code == 200
-    names = [a["name"] for a in resp.json()]
+    # Filter to the accounts this test created — a fresh database may already contain
+    # seeded fixture accounts (see seed.py), so assert this test's own ordering rather
+    # than assuming the list is otherwise empty.
+    names = [a["name"] for a in resp.json() if a["name"] in ("First", "Second")]
     assert names == ["First", "Second"]
 
 

@@ -14,13 +14,17 @@ def test_create_opportunity_defaults_to_prospecting(client):
 
 
 def test_create_opportunity_unknown_account(client):
+    # A fresh database may already contain seeded fixture opportunities (see seed.py),
+    # so assert no NEW opportunity was created (delta against the baseline) rather than
+    # assuming the list is otherwise empty.
+    before = client.get("/opportunities").json()
     resp = client.post(
         "/opportunities",
         json={"account_id": 999999, "name": "Big Deal", "close_date": "2026-12-01"},
     )
     assert resp.status_code == 404
     assert resp.json()["error"] == "OPPORTUNITY_ACCOUNT_NOT_FOUND"
-    assert client.get("/opportunities").json() == []
+    assert client.get("/opportunities").json() == before
 
 
 def test_create_opportunity_missing_required_fields(client):
@@ -68,10 +72,17 @@ def test_list_opportunities_filters(client):
     assert [o["name"] for o in resp.json()] == ["Deal One"]
 
     resp = client.get("/opportunities", params={"stage_name": "Qualification"})
-    assert [o["name"] for o in resp.json()] == ["Deal One"]
+    # A fresh database may already contain seeded fixture opportunities in this same
+    # stage (see seed.py), so scope the check to this test's own accounts rather than
+    # assuming this test's opportunity is the only "Qualification" row globally.
+    own_qualification = [
+        o["name"] for o in resp.json() if o["account_id"] in (a1["id"], a2["id"])
+    ]
+    assert own_qualification == ["Deal One"]
 
     resp_all = client.get("/opportunities")
-    assert len(resp_all.json()) == 2
+    own_all = [o for o in resp_all.json() if o["account_id"] in (a1["id"], a2["id"])]
+    assert len(own_all) == 2
 
 
 def test_get_opportunity_by_id_success(client):
@@ -162,6 +173,10 @@ def test_patch_opportunity_invalid_stage_name(client):
 
 
 def test_delete_opportunity_success(client):
+    # A fresh database may already contain seeded fixture opportunities (see seed.py),
+    # so assert the list returns to its pre-test baseline rather than assuming it's
+    # empty after deleting this test's own opportunity.
+    before = client.get("/opportunities").json()
     account = client.post("/accounts", json={"name": "Acme"}).json()
     created = client.post(
         "/opportunities",
@@ -170,7 +185,7 @@ def test_delete_opportunity_success(client):
     resp = client.delete(f"/opportunities/{created['id']}")
     assert resp.status_code == 204
     assert client.get(f"/opportunities/{created['id']}").status_code == 404
-    assert client.get("/opportunities").json() == []
+    assert client.get("/opportunities").json() == before
 
 
 def test_delete_opportunity_not_found(client):
