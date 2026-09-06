@@ -36,3 +36,18 @@ class AccountUpdate(BaseModel):
     billing_state: Optional[str] = None
     billing_postal_code: Optional[str] = None
     billing_country: Optional[str] = None
+
+
+class ContactCreate(BaseModel):
+    account_id: int
+    first_name: Optional[str] = None
+    last_name: str
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    title: Optional[str] = None
+
+
+class ContactOut(ContactCreate):
+    id: int
+    created_at: datetime
+    updated_at: datetime
