@@ -24,3 +24,16 @@ def test_index_html_has_ten_stage_columns_and_account_switcher(tmp_path, monkeyp
         assert 'id="board"' in html
         assert 'class="cards"' in html
         assert 'type="module"' in html
+
+
+def test_board_css_is_served_with_css_content_type(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        response = client.get("/css/board.css")
+        assert response.status_code == 200
+        assert "css" in response.headers["content-type"]
