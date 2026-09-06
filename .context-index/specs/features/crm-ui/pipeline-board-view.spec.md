@@ -1,7 +1,7 @@
 ---
 partial_schema: implement@1
 charter: crm-ui
-status: implemented
+status: validated
 risk_level: medium
 milestone: mvp
 revision: 1
