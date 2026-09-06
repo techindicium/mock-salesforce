@@ -1,6 +1,7 @@
-import { fetchOpportunity, fetchAccount, fetchContacts } from './api.js';
+import { fetchOpportunity, fetchAccount, fetchContacts, updateOpportunity, deleteOpportunity } from './api.js';
 import { describeApiError } from './errors.js';
 import { setError, clearError, bannerMessage } from './error-state.js';
+import { inlineErrorMessage } from './form-errors.js';
 
 const errorBanner = document.getElementById('error-banner');
 const opportunityName = document.getElementById('opportunity-name');
@@ -99,5 +100,50 @@ async function loadDetail() {
     reportError('contacts', describeApiError('load contacts', err));
   }
 }
+
+const editBtn = document.getElementById('edit-opportunity-btn');
+const deleteBtn = document.getElementById('delete-opportunity-btn');
+const editForm = document.getElementById('edit-opportunity-form');
+const editError = document.getElementById('edit-opportunity-error');
+const cancelEditBtn = document.getElementById('cancel-edit-opportunity-btn');
+
+function openEditForm() {
+  if (!opportunity) return;
+  editForm.elements.name.value = opportunity.name;
+  editForm.elements.amount.value = opportunity.amount ?? '';
+  editForm.elements.close_date.value = opportunity.close_date;
+  editError.textContent = '';
+  editForm.hidden = false;
+}
+
+editBtn.addEventListener('click', openEditForm);
+cancelEditBtn.addEventListener('click', () => { editForm.hidden = true; });
+
+editForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const payload = {
+    name: editForm.elements.name.value,
+    amount: editForm.elements.amount.value === '' ? null : Number(editForm.elements.amount.value),
+    close_date: editForm.elements.close_date.value,
+  };
+  try {
+    opportunity = await updateOpportunity(opportunity.id, payload);
+    editForm.hidden = true;
+    reportSuccess('opportunity');
+    renderOpportunity();
+  } catch (err) {
+    editError.textContent = inlineErrorMessage(err);
+  }
+});
+
+deleteBtn.addEventListener('click', async () => {
+  if (!window.confirm('Delete this opportunity?')) return;
+  try {
+    await deleteOpportunity(opportunity.id);
+    window.location.href = 'index.html';
+  } catch (err) {
+    reportError('opportunity', describeApiError('delete opportunity', err));
+  }
+});
 
 loadDetail();

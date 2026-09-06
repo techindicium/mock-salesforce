@@ -14,6 +14,19 @@
     <section id="opportunity-section">
       <h1 id="opportunity-name"></h1>
       <dl id="opportunity-fields"></dl>
+      <button id="edit-opportunity-btn" type="button">Edit</button>
+      <button id="delete-opportunity-btn" type="button">Delete</button>
+      <form id="edit-opportunity-form" hidden>
+        <div id="edit-opportunity-error" class="form-error" role="alert"></div>
+        <label for="opp-name-input">Name</label>
+        <input id="opp-name-input" name="name" type="text" required />
+        <label for="opp-amount-input">Amount</label>
+        <input id="opp-amount-input" name="amount" type="number" step="0.01" />
+        <label for="opp-close-date-input">Close date</label>
+        <input id="opp-close-date-input" name="close_date" type="date" required />
+        <button type="submit">Save</button>
+        <button type="button" id="cancel-edit-opportunity-btn">Cancel</button>
+      </form>
     </section>
     <section id="account-summary">
       <h2>Account</h2>

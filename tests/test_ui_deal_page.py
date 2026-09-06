@@ -42,3 +42,22 @@ def test_deal_js_is_served_and_fetches_opportunity_account_and_contacts(tmp_path
         assert "fetchContacts" in js
         assert "from './error-state.js'" in js
         assert "from './errors.js'" in js
+
+
+def test_deal_js_wires_edit_and_delete_opportunity(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        html = client.get("/deal.html").text
+        assert 'id="edit-opportunity-form"' in html
+        assert 'id="delete-opportunity-btn"' in html
+
+        js = client.get("/js/deal.js").text
+        assert "updateOpportunity" in js
+        assert "deleteOpportunity" in js
+        assert "inlineErrorMessage" in js
+        assert "confirm(" in js
