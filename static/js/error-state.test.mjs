@@ -20,10 +20,6 @@ test('clearError on a source with no active error is a no-op', () => {
 });
 
 test('a later success for one source never clears a different, still-active source', () => {
-  // Reproduces the exact regression this module exists to prevent: accounts
-  // fails, then opportunities also fails (overwriting nothing, since each
-  // source is tracked independently), then opportunities succeeds — the
-  // accounts failure must still be visible in the banner.
   let state = new Map();
   state = setError(state, 'accounts', 'Failed to load accounts: HTTP 500');
   state = setError(state, 'opportunities', 'Failed to load opportunities: HTTP 500');

@@ -10,7 +10,7 @@ created: 2026-09-05
 updated: 2026-09-06
 kind: behavioral
 source-manifest:
-  sha: "17fdd1f"
+  sha: "7d18227"
   files:
     - static/css/board.css
     - static/index.html
@@ -19,16 +19,19 @@ source-manifest:
     - static/js/board-state.js
     - static/js/board-state.test.mjs
     - static/js/board.js
+    - static/js/error-state.js
+    - static/js/error-state.test.mjs
     - static/js/errors.js
     - static/js/errors.test.mjs
     - static/js/stages.js
     - static/js/stages.test.mjs
     - tests/test_ui_board_page.py
-  computed-at: "2026-09-06T22:35:03.765Z"
+  computed-at: "2026-09-06T22:37:16.363Z"
 depends-on:
   - .context-index/specs/features/crm-api/account-and-contact-management.spec.md
   - .context-index/specs/features/crm-api/opportunity-lifecycle.spec.md
   - .context-index/specs/features/crm-api/health-static-hosting-and-openapi.spec.md
+drift_detected: true
 ---
 
 # Live Spec: Pipeline board view, account switcher

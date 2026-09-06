@@ -12,11 +12,6 @@ let accounts = [];
 let opportunities = [];
 let selectedAccountId = null;
 let draggedId = null;
-// Tracks every currently-failing action independently (source -> message) via
-// the pure error-state.js reducer, so one action succeeding never hides an
-// unrelated action's still-active failure (BEH-5: the UI must never fail
-// silently). The banner stays visible as long as any source has an
-// outstanding error, and only clears once all of them do.
 let errorState = new Map();
 
 function renderErrorBanner() {
@@ -106,10 +101,6 @@ for (const column of board.querySelectorAll('.cards')) {
 }
 
 async function init() {
-  // Accounts must load first: render() resolves each card's account name via
-  // resolveAccountName(accounts, ...), so opportunities must not render before
-  // accounts has populated — otherwise every card would permanently show
-  // "Unknown account" with no later re-render to correct it.
   await loadAccounts();
   await loadOpportunities();
 }
