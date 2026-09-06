@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException
 
 from mock_salesforce.db import get_connection
-from mock_salesforce.models import ContactCreate, ContactOut
+from mock_salesforce.models import ContactCreate, ContactOut, ContactUpdate
 
 router = APIRouter()
 
@@ -66,6 +66,31 @@ def get_contact(contact_id: int) -> ContactOut:
                 status_code=404,
                 detail={"error": "CONTACT_NOT_FOUND", "message": f"No contact with id {contact_id}"},
             )
+        return ContactOut(**dict(row))
+    finally:
+        conn.close()
+
+
+@router.patch("/contacts/{contact_id}", response_model=ContactOut)
+def update_contact(contact_id: int, payload: ContactUpdate) -> ContactOut:
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT * FROM contacts WHERE id = ?", (contact_id,)).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={"error": "CONTACT_NOT_FOUND", "message": f"No contact with id {contact_id}"},
+            )
+        updates = payload.model_dump(exclude_unset=True)
+        if updates:
+            now = datetime.now(timezone.utc).isoformat()
+            set_clause = ", ".join(f"{field} = ?" for field in updates)
+            conn.execute(
+                f"UPDATE contacts SET {set_clause}, updated_at = ? WHERE id = ?",
+                (*updates.values(), now, contact_id),
+            )
+            conn.commit()
+        row = conn.execute("SELECT * FROM contacts WHERE id = ?", (contact_id,)).fetchone()
         return ContactOut(**dict(row))
     finally:
         conn.close()

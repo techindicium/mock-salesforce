@@ -50,3 +50,24 @@ def test_get_contact_by_id_not_found(client):
     resp = client.get("/contacts/999999")
     assert resp.status_code == 404
     assert resp.json()["error"] == "CONTACT_NOT_FOUND"
+
+
+def test_patch_contact_updates_fields(client):
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    created = client.post(
+        "/contacts", json={"account_id": account["id"], "last_name": "Doe"}
+    ).json()
+    resp = client.patch(f"/contacts/{created['id']}", json={"title": "VP Sales"})
+    assert resp.status_code == 200
+    assert resp.json()["title"] == "VP Sales"
+
+
+def test_patch_contact_ignores_account_id(client):
+    a1 = client.post("/accounts", json={"name": "A1"}).json()
+    a2 = client.post("/accounts", json={"name": "A2"}).json()
+    created = client.post(
+        "/contacts", json={"account_id": a1["id"], "last_name": "Doe"}
+    ).json()
+    resp = client.patch(f"/contacts/{created['id']}", json={"account_id": a2["id"]})
+    assert resp.status_code == 200
+    assert resp.json()["account_id"] == a1["id"]

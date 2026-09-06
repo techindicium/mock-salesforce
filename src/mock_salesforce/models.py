@@ -51,3 +51,11 @@ class ContactOut(ContactCreate):
     id: int
     created_at: datetime
     updated_at: datetime
+
+
+class ContactUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    title: Optional[str] = None
