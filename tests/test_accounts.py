@@ -28,3 +28,25 @@ def test_create_account_malformed_json(client):
     )
     assert resp.status_code == 400
     assert resp.json()["error"] == "MALFORMED_JSON"
+
+
+def test_list_accounts_ordered_by_created_at(client):
+    client.post("/accounts", json={"name": "First"})
+    client.post("/accounts", json={"name": "Second"})
+    resp = client.get("/accounts")
+    assert resp.status_code == 200
+    names = [a["name"] for a in resp.json()]
+    assert names == ["First", "Second"]
+
+
+def test_get_account_by_id_success(client):
+    created = client.post("/accounts", json={"name": "Acme"}).json()
+    resp = client.get(f"/accounts/{created['id']}")
+    assert resp.status_code == 200
+    assert resp.json()["name"] == "Acme"
+
+
+def test_get_account_by_id_not_found(client):
+    resp = client.get("/accounts/999999")
+    assert resp.status_code == 404
+    assert resp.json()["error"] == "ACCOUNT_NOT_FOUND"

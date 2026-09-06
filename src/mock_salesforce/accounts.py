@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 
 from mock_salesforce.db import get_connection
 from mock_salesforce.models import AccountCreate, AccountOut
@@ -30,6 +30,31 @@ def create_account(payload: AccountCreate) -> AccountOut:
         )
         conn.commit()
         row = conn.execute("SELECT * FROM accounts WHERE id = ?", (cur.lastrowid,)).fetchone()
+        return AccountOut(**dict(row))
+    finally:
+        conn.close()
+
+
+@router.get("/accounts", response_model=list[AccountOut])
+def list_accounts() -> list[AccountOut]:
+    conn = get_connection()
+    try:
+        rows = conn.execute("SELECT * FROM accounts ORDER BY created_at, id").fetchall()
+        return [AccountOut(**dict(r)) for r in rows]
+    finally:
+        conn.close()
+
+
+@router.get("/accounts/{account_id}", response_model=AccountOut)
+def get_account(account_id: int) -> AccountOut:
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT * FROM accounts WHERE id = ?", (account_id,)).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={"error": "ACCOUNT_NOT_FOUND", "message": f"No account with id {account_id}"},
+            )
         return AccountOut(**dict(row))
     finally:
         conn.close()
