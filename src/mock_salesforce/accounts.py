@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
 
-from mock_salesforce.db import get_connection
+from mock_salesforce.db import dependent_count, get_connection
 from mock_salesforce.models import AccountCreate, AccountOut, AccountUpdate
 
 router = APIRouter()
@@ -81,5 +81,30 @@ def update_account(account_id: int, payload: AccountUpdate) -> AccountOut:
             conn.commit()
         row = conn.execute("SELECT * FROM accounts WHERE id = ?", (account_id,)).fetchone()
         return AccountOut(**dict(row))
+    finally:
+        conn.close()
+
+
+@router.delete("/accounts/{account_id}", status_code=204)
+def delete_account(account_id: int) -> None:
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT * FROM accounts WHERE id = ?", (account_id,)).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={"error": "ACCOUNT_NOT_FOUND", "message": f"No account with id {account_id}"},
+            )
+        count = dependent_count(conn, account_id)
+        if count > 0:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "error": "ACCOUNT_HAS_DEPENDENTS",
+                    "message": f"Account {account_id} has {count} dependent record(s)",
+                },
+            )
+        conn.execute("DELETE FROM accounts WHERE id = ?", (account_id,))
+        conn.commit()
     finally:
         conn.close()

@@ -79,3 +79,29 @@ def test_patch_account_invalid_account_type(client):
     resp = client.patch(f"/accounts/{created['id']}", json={"account_type": "Bogus"})
     assert resp.status_code == 422
     assert resp.json()["error"] == "VALIDATION_ERROR"
+
+
+def test_delete_account_no_dependents(client):
+    created = client.post("/accounts", json={"name": "Acme"}).json()
+    resp = client.delete(f"/accounts/{created['id']}")
+    assert resp.status_code == 204
+    assert client.get(f"/accounts/{created['id']}").status_code == 404
+
+
+def test_delete_account_with_contact_returns_409(client):
+    from mock_salesforce.db import get_connection
+
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    conn = get_connection()
+    conn.execute(
+        "INSERT INTO contacts (account_id, last_name, created_at, updated_at) "
+        "VALUES (?, ?, datetime('now'), datetime('now'))",
+        (account["id"], "Doe"),
+    )
+    conn.commit()
+    conn.close()
+
+    resp = client.delete(f"/accounts/{account['id']}")
+    assert resp.status_code == 409
+    assert resp.json()["error"] == "ACCOUNT_HAS_DEPENDENTS"
+    assert client.get(f"/accounts/{account['id']}").status_code == 200

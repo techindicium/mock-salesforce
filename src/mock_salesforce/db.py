@@ -49,3 +49,17 @@ def init_db(conn: sqlite3.Connection) -> None:
         """
     )
     conn.commit()
+
+
+def dependent_count(conn: sqlite3.Connection, account_id: int) -> int:
+    count = conn.execute(
+        "SELECT COUNT(*) FROM contacts WHERE account_id = ?", (account_id,)
+    ).fetchone()[0]
+    opportunities_table_exists = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='opportunities'"
+    ).fetchone()
+    if opportunities_table_exists:
+        count += conn.execute(
+            "SELECT COUNT(*) FROM opportunities WHERE account_id = ?", (account_id,)
+        ).fetchone()[0]
+    return count
