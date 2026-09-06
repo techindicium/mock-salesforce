@@ -63,10 +63,41 @@ def create_opportunity(payload: OpportunityCreate) -> OpportunityOut:
 
 
 @router.get("/opportunities", response_model=list[OpportunityOut])
-def list_opportunities() -> list[OpportunityOut]:
+def list_opportunities(
+    account_id: int | None = None, stage_name: str | None = None
+) -> list[OpportunityOut]:
     conn = get_connection()
     try:
-        rows = conn.execute("SELECT * FROM opportunities ORDER BY created_at, id").fetchall()
-        return [_to_opportunity_out(row) for row in rows]
+        query = "SELECT * FROM opportunities WHERE 1=1"
+        params: list = []
+        if account_id is not None:
+            query += " AND account_id = ?"
+            params.append(account_id)
+        if stage_name is not None:
+            query += " AND stage_name = ?"
+            params.append(stage_name)
+        query += " ORDER BY created_at, id"
+        rows = conn.execute(query, params).fetchall()
+        return [_to_opportunity_out(r) for r in rows]
+    finally:
+        conn.close()
+
+
+@router.get("/opportunities/{opportunity_id}", response_model=OpportunityOut)
+def get_opportunity(opportunity_id: int) -> OpportunityOut:
+    conn = get_connection()
+    try:
+        row = conn.execute(
+            "SELECT * FROM opportunities WHERE id = ?", (opportunity_id,)
+        ).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={
+                    "error": "OPPORTUNITY_NOT_FOUND",
+                    "message": f"No opportunity with id {opportunity_id}",
+                },
+            )
+        return _to_opportunity_out(row)
     finally:
         conn.close()
