@@ -37,3 +37,55 @@ def test_board_css_is_served_with_css_content_type(tmp_path, monkeypatch):
         response = client.get("/css/board.css")
         assert response.status_code == 200
         assert "css" in response.headers["content-type"]
+
+
+def test_board_js_is_served_and_wires_the_pure_modules(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        response = client.get("/js/board.js")
+        assert response.status_code == 200
+        js = response.text
+        assert "from './stages.js'" in js
+        assert "from './api.js'" in js
+        assert "from './errors.js'" in js
+        assert "from './board-state.js'" in js
+        assert "dragstart" in js
+        assert "'drop'" in js or '"drop"' in js
+        assert "account-switcher" in js
+        assert "resolveAccountName" in js
+
+
+def test_board_js_wires_the_per_source_error_state_module(tmp_path, monkeypatch):
+    # Regression check (BEH-5): if one action fails (e.g. GET /accounts), the error
+    # banner must stay visible even after a later, unrelated action succeeds (e.g.
+    # GET /opportunities, or a stage-move PATCH) — that success doesn't mean the
+    # original failure is resolved. This is verified behaviorally (not just by
+    # string-matching board.js) in static/js/error-state.test.mjs, which exercises
+    # the actual per-source reducer via `node --test`; this pytest-side check only
+    # confirms board.js is wired to that module rather than reintroducing its own
+    # single-scalar error tracking.
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        response = client.get("/js/board.js")
+        assert response.status_code == 200
+        js = response.text
+        assert "from './error-state.js'" in js
+        assert "reportError" in js
+        assert "reportSuccess" in js
+
+    with TestClient(app) as client:
+        response = client.get("/js/error-state.js")
+        assert response.status_code == 200
+        assert "setError" in response.text
+        assert "clearError" in response.text
+        assert "bannerMessage" in response.text
