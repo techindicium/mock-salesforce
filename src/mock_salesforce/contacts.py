@@ -94,3 +94,19 @@ def update_contact(contact_id: int, payload: ContactUpdate) -> ContactOut:
         return ContactOut(**dict(row))
     finally:
         conn.close()
+
+
+@router.delete("/contacts/{contact_id}", status_code=204)
+def delete_contact(contact_id: int) -> None:
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT * FROM contacts WHERE id = ?", (contact_id,)).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={"error": "CONTACT_NOT_FOUND", "message": f"No contact with id {contact_id}"},
+            )
+        conn.execute("DELETE FROM contacts WHERE id = ?", (contact_id,))
+        conn.commit()
+    finally:
+        conn.close()

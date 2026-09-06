@@ -71,3 +71,19 @@ def test_patch_contact_ignores_account_id(client):
     resp = client.patch(f"/contacts/{created['id']}", json={"account_id": a2["id"]})
     assert resp.status_code == 200
     assert resp.json()["account_id"] == a1["id"]
+
+
+def test_delete_contact_success(client):
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    created = client.post(
+        "/contacts", json={"account_id": account["id"], "last_name": "Doe"}
+    ).json()
+    resp = client.delete(f"/contacts/{created['id']}")
+    assert resp.status_code == 204
+    assert client.get(f"/contacts/{created['id']}").status_code == 404
+
+
+def test_delete_contact_not_found(client):
+    resp = client.delete("/contacts/999999")
+    assert resp.status_code == 404
+    assert resp.json()["error"] == "CONTACT_NOT_FOUND"
