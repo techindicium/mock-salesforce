@@ -89,3 +89,73 @@ def test_get_opportunity_by_id_not_found(client):
     resp = client.get("/opportunities/999999")
     assert resp.status_code == 404
     assert resp.json()["error"] == "OPPORTUNITY_NOT_FOUND"
+
+
+def test_patch_opportunity_updates_fields(client):
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    created = client.post(
+        "/opportunities",
+        json={"account_id": account["id"], "name": "Deal", "close_date": "2026-12-01"},
+    ).json()
+    resp = client.patch(
+        f"/opportunities/{created['id']}",
+        json={"amount": 50000, "next_step": "Send proposal"},
+    )
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["amount"] == 50000
+    assert body["next_step"] == "Send proposal"
+    assert body["updated_at"] != created["updated_at"]
+
+
+def test_patch_opportunity_stage_recomputes_is_closed_is_won(client):
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    created = client.post(
+        "/opportunities",
+        json={"account_id": account["id"], "name": "Deal", "close_date": "2026-12-01"},
+    ).json()
+
+    won = client.patch(f"/opportunities/{created['id']}", json={"stage_name": "Closed Won"})
+    assert won.status_code == 200
+    assert won.json()["is_closed"] is True
+    assert won.json()["is_won"] is True
+
+    lost = client.patch(f"/opportunities/{created['id']}", json={"stage_name": "Closed Lost"})
+    assert lost.status_code == 200
+    assert lost.json()["is_closed"] is True
+    assert lost.json()["is_won"] is False
+
+
+def test_patch_opportunity_ignores_immutable_fields(client):
+    a1 = client.post("/accounts", json={"name": "A1"}).json()
+    a2 = client.post("/accounts", json={"name": "A2"}).json()
+    created = client.post(
+        "/opportunities",
+        json={"account_id": a1["id"], "name": "Deal", "close_date": "2026-12-01"},
+    ).json()
+    resp = client.patch(
+        f"/opportunities/{created['id']}",
+        json={
+            "id": 999999, "account_id": a2["id"], "is_closed": True, "is_won": True,
+            "created_at": "2000-01-01T00:00:00Z", "name": "Updated",
+        },
+    )
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["id"] == created["id"]
+    assert body["account_id"] == a1["id"]
+    assert body["created_at"] == created["created_at"]
+    assert body["is_closed"] is False
+    assert body["is_won"] is False
+    assert body["name"] == "Updated"
+
+
+def test_patch_opportunity_invalid_stage_name(client):
+    account = client.post("/accounts", json={"name": "Acme"}).json()
+    created = client.post(
+        "/opportunities",
+        json={"account_id": account["id"], "name": "Deal", "close_date": "2026-12-01"},
+    ).json()
+    resp = client.patch(f"/opportunities/{created['id']}", json={"stage_name": "Bogus"})
+    assert resp.status_code == 422
+    assert resp.json()["error"] == "VALIDATION_ERROR"

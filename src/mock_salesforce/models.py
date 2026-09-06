@@ -95,3 +95,14 @@ class OpportunityOut(OpportunityCreate):
     is_won: bool
     created_at: datetime
     updated_at: datetime
+
+
+class OpportunityUpdate(BaseModel):
+    name: Optional[str] = None
+    stage_name: Optional[StageName] = None
+    amount: Optional[float] = None
+    close_date: Optional[date] = None
+    probability: Optional[float] = None
+    opportunity_type: Optional[OpportunityType] = None
+    lead_source: Optional[LeadSource] = None
+    next_step: Optional[str] = None

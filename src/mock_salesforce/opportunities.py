@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException
 
 from mock_salesforce.db import get_connection
-from mock_salesforce.models import OpportunityCreate, OpportunityOut
+from mock_salesforce.models import OpportunityCreate, OpportunityOut, OpportunityUpdate
 
 router = APIRouter()
 
@@ -98,6 +98,44 @@ def get_opportunity(opportunity_id: int) -> OpportunityOut:
                     "message": f"No opportunity with id {opportunity_id}",
                 },
             )
+        return _to_opportunity_out(row)
+    finally:
+        conn.close()
+
+
+@router.patch("/opportunities/{opportunity_id}", response_model=OpportunityOut)
+def update_opportunity(opportunity_id: int, payload: OpportunityUpdate) -> OpportunityOut:
+    conn = get_connection()
+    try:
+        row = conn.execute(
+            "SELECT * FROM opportunities WHERE id = ?", (opportunity_id,)
+        ).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={
+                    "error": "OPPORTUNITY_NOT_FOUND",
+                    "message": f"No opportunity with id {opportunity_id}",
+                },
+            )
+        updates = payload.model_dump(exclude_unset=True)
+        if updates:
+            if updates.get("close_date") is not None:
+                updates["close_date"] = updates["close_date"].isoformat()
+            if "stage_name" in updates:
+                is_closed, is_won = _derive_closed_won(updates["stage_name"])
+                updates["is_closed"] = int(is_closed)
+                updates["is_won"] = int(is_won)
+            now = datetime.now(timezone.utc).isoformat()
+            set_clause = ", ".join(f"{field} = ?" for field in updates)
+            conn.execute(
+                f"UPDATE opportunities SET {set_clause}, updated_at = ? WHERE id = ?",
+                (*updates.values(), now, opportunity_id),
+            )
+            conn.commit()
+        row = conn.execute(
+            "SELECT * FROM opportunities WHERE id = ?", (opportunity_id,)
+        ).fetchone()
         return _to_opportunity_out(row)
     finally:
         conn.close()
