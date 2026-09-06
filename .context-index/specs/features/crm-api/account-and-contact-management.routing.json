@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "t1",
+      "selected_agent": "assisted-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 0.2,
+        "novelty": 0.8
+      },
+      "rationale": "Fully-specified scaffold with embedded code, but it creates the DB schema and picks the framework for the first time in this repo, so it forces the assisted-agent floor."
+    },
+    {
+      "task_id": "t2",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Standard CRUD create+validation endpoint with full test and implementation code given in the plan; touches 4 files in one module."
+    },
+    {
+      "task_id": "t3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Mechanical GET list/get-by-id extension of Task 2's router with direct in-repo precedent and minimal footprint."
+    },
+    {
+      "task_id": "t4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "PATCH endpoint mirrors the established CRUD pattern with exact code supplied; touches 3 files in one module."
+    },
+    {
+      "task_id": "t5",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Delete-with-dependent-guard logic is fully worked out in the plan, including the cross-spec sqlite_master check; low blast radius, minor implementer variation."
+    },
+    {
+      "task_id": "t6",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Mirrors Task 2's create+validation pattern for a new entity with an added FK existence check, fully coded in the plan."
+    },
+    {
+      "task_id": "t7",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Mechanical GET list/filter/get-by-id extension mirroring Task 3, minimal footprint."
+    },
+    {
+      "task_id": "t8",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "PATCH endpoint mirrors Task 4's immutable-field pattern exactly, fully coded in the plan."
+    },
+    {
+      "task_id": "t9",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Simplest task in the plan: mechanical delete-by-id with 404 handling, minimal footprint."
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{"event":"lifecycle_step","step":"specify","status":"started","ts":"2026-09-05T12:35:10.260Z"}
+{"event":"step_completed","step":"specify","verdict":"PASS","ts":"2026-09-05T12:35:10.370Z"}
+{"event":"lifecycle_step","step":"review","status":"started","revision":1,"ts":"2026-09-05T12:35:10.493Z"}
+{"event":"reviewer_report","step":"review","reviewer":"skipped-per-risk-policy","severity":"warning","verdict":"PASS","notes":"Review skipped per risk policy (require_review: false)","ts":"2026-09-05T12:35:29.416Z"}
+{"event":"step_completed","step":"review","verdict":"PASS","revision":1,"ts":"2026-09-05T12:35:29.525Z"}
+{"event":"lifecycle_step","step":"plan","status":"started","ts":"2026-09-06T20:49:03.554Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"1","status":"pending","notes":"GET /health route","ts":"2026-09-06T20:57:33.533Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","status":"pending","notes":"Conditional static asset hosting","ts":"2026-09-06T20:57:33.537Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","status":"pending","notes":"Confirm OpenAPI reflects all mounted routes","ts":"2026-09-06T20:57:33.538Z"}
+{"event":"step_completed","step":"plan","verdict":"PASS","ts":"2026-09-06T20:57:43.949Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-06T20:59:55.367Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"1","status":"in_progress","notes":null,"ts":"2026-09-06T21:01:28.762Z"}
+{"event":"review_depth_resolved","plan":"/Users/dpavancini/Development/adev-course/mock-salesforce/.context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"t1","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-06T21:01:44.923Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"t1","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-06T21:03:27.132Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"1","status":"done","notes":"GET /health, no DB dependency","ts":"2026-09-06T21:05:01.534Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"1","stage":"spec-compliance","cycles":1,"ts":"2026-09-06T21:05:01.605Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"1","stage":"code-quality","cycles":1,"ts":"2026-09-06T21:05:01.674Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","status":"in_progress","notes":null,"ts":"2026-09-06T21:05:19.170Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"t2","pass":"provisional","depth":"full","source":"predicate-denied","floor_applied":false,"floor_legs":[],"ts":"2026-09-06T21:05:19.258Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-06T21:14:06.614Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","status":"done","notes":"Static asset hosting, traversal-guard hardened after review cycle 2","ts":"2026-09-06T21:15:29.000Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","stage":"spec-compliance","cycles":1,"ts":"2026-09-06T21:15:29.077Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","stage":"code-quality","cycles":2,"findings":2,"ts":"2026-09-06T21:15:29.150Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","status":"in_progress","notes":null,"ts":"2026-09-06T21:15:36.617Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"t3","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-06T21:15:36.709Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"t3","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-06T21:16:57.886Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","status":"done","notes":"OpenAPI verification, test passed first write","ts":"2026-09-06T21:18:26.009Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","stage":"spec-compliance","cycles":1,"ts":"2026-09-06T21:18:26.090Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-06T21:18:26.161Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","stage":"spec-compliance","cycles":1,"ts":"2026-09-06T21:20:35.075Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-06T21:20:35.147Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"2","status":"done","notes":"Catch-all static route, path-traversal + NUL-byte guarded, reviewed clean","ts":"2026-09-06T21:20:49.627Z"}
+{"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-06T21:21:02.823Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","status":"in_progress","notes":null,"ts":"2026-09-06T21:21:03.854Z"}
+{"event":"lifecycle_step","step":"validate","status":"started","ts":"2026-09-06T21:21:58.306Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","stage":"spec-compliance","cycles":1,"ts":"2026-09-06T21:22:31.992Z"}
+{"event":"review_round","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-06T21:22:32.063Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md","task_id":"3","status":"done","notes":"OpenAPI verification test confirms all 7 routes incl /health; static catch-all excluded","ts":"2026-09-06T21:22:32.132Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1-quality-gates","severity":"error","verdict":"PASS","notes":"Fast tier: test (57 passed), lint (ruff clean). No integration/e2e gates configured.","gate_outcomes":[{"id":"test","verdict":"pass","tier":"fast","command_sha":"22c558be4a77b6dd61531053c7225bd05830d00bfaf46f14f430e2f0a6a0cb2b"},{"id":"lint","verdict":"pass","tier":"fast","command_sha":"91ede4a4ad8774e8660350d4580b9e41c235ea911f560571d82f5d4f81aba16d"}],"manifest_sha":"e500696","ts":"2026-09-06T21:23:03.275Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.5-source-manifest","severity":"warning","verdict":"PASS","notes":"Manifest sha e500696 matches; all 6 files committed to git.","ts":"2026-09-06T21:23:16.868Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-8-boundaries","severity":"error","verdict":"PASS","notes":"SKIP — no boundary rules declared (68 files checked).","ts":"2026-09-06T21:23:35.182Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-9-transition-gates","severity":"warning","verdict":"PASS","notes":"SKIP — no transitions configured for implement-to-validate.","ts":"2026-09-06T21:23:35.250Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"4 warnings, 0 errors: integration-test gate has no command (dropped from merged set), no CI config found, lint runner unrecognized for collection check.","ts":"2026-09-06T21:23:44.568Z"}
+{"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-06T21:25:57.877Z"}
+{"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-06T21:26:36.222Z"}

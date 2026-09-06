@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "t1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-1 fully specified with test code given verbatim; accounts.py's create_account insert shape is a direct precedent mirrored line-for-line; 2 files touched, mechanical."
+    },
+    {
+      "task_id": "t2",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-2 fully specified with test code given verbatim; contacts.py's create_contact column list is a direct precedent, built on Task 1's account_ids map; 2 files touched."
+    },
+    {
+      "task_id": "t3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-3 fully specified with test code given verbatim; opportunities.py's _derive_closed_won logic is a direct precedent re-derived locally; 2 files touched."
+    },
+    {
+      "task_id": "t4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-4 fully specified with test code given verbatim; app.py's existing on_startup handler is a direct precedent for adding one more call; 2 files touched."
+    },
+    {
+      "task_id": "t5",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 0.8
+      },
+      "rationale": "BEH-5 and both Error Cases rows fully specified with test code given verbatim; errors.py's error_body shape is a conceptual precedent; wraps three loops in one try/except plus a signature refactor."
+    }
+  ]
+}

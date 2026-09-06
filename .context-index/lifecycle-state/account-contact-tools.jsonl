@@ -1,0 +1,5 @@
+{"event":"lifecycle_step","step":"specify","status":"started","ts":"2026-09-05T12:32:52.354Z"}
+{"event":"step_completed","step":"specify","verdict":"PASS","ts":"2026-09-05T12:32:52.466Z"}
+{"event":"lifecycle_step","step":"review","status":"started","revision":1,"ts":"2026-09-05T12:34:09.013Z"}
+{"event":"reviewer_report","step":"review","reviewer":"skipped-per-risk-policy","severity":"warning","verdict":"PASS","notes":"Review skipped per risk policy (require_review: false)","ts":"2026-09-05T12:34:27.104Z"}
+{"event":"step_completed","step":"review","verdict":"PASS","revision":1,"ts":"2026-09-05T12:34:27.215Z"}

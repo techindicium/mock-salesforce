@@ -1,0 +1,53 @@
+{
+  "version": 2,
+  "seq": 6,
+  "epics": [
+    {
+      "id": "epic-mkfmyt",
+      "title": "Implementation Plan: Account and Contact Management",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-api/account-and-contact-management.plan.md",
+      "notes": "Stand up the Account and Contact CRUD HTTP surface -- the master-data foundation of mock-salesforce -- backed by a fresh SQLite schema, with full validation, error-shaping, and delete-guard behavior per the Live Spec.",
+      "created": "2026-09-06T17:22:54.083Z",
+      "updated": "2026-09-06T17:22:54.083Z"
+    },
+    {
+      "id": "epic-bf4wf2",
+      "title": "Implementation Plan: Opportunity Lifecycle CRUD",
+      "status": "closed",
+      "planRef": ".context-index/specs/features/crm-api/opportunity-lifecycle.plan.md",
+      "milestone": "mvp",
+      "notes": "Add the full Opportunity CRUD HTTP surface, including the stage-transition endpoint, on top of the existing Account/Contact scaffold.",
+      "created": "2026-09-06T18:51:31.331Z",
+      "updated": "2026-09-06T19:37:18.581Z"
+    },
+    {
+      "id": "epic-lrkcta",
+      "title": "Fixture Seed Data",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-api/fixture-seeding.plan.md",
+      "notes": "",
+      "created": "2026-09-06T20:11:43.565Z",
+      "updated": "2026-09-06T20:11:43.565Z"
+    },
+    {
+      "id": "epic-upap4u",
+      "title": "Health route, static asset hosting, and OpenAPI contract",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md",
+      "notes": "Add GET /health with no DB dependency, conditional static asset hosting for crm-ui's build output at GET /, and confirm GET /openapi.json reflects all mounted routes.",
+      "created": "2026-09-06T20:57:39.152Z",
+      "updated": "2026-09-06T20:57:39.152Z"
+    },
+    {
+      "id": "epic-8sx04x",
+      "title": "Pipeline board view, account switcher",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-ui/pipeline-board-view.plan.md",
+      "notes": "Ship a static HTML/CSS/JS pipeline board with ten fixed Opportunity stage columns, an account switcher, and drag-and-drop stage moves via PATCH /opportunities/{id}, served as-is by crm-api's existing static-file router.",
+      "created": "2026-09-06T21:48:06.415Z",
+      "updated": "2026-09-06T21:48:06.415Z"
+    }
+  ],
+  "issues": []
+}
