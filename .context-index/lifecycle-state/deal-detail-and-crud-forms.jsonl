@@ -3,3 +3,21 @@
 {"event":"lifecycle_step","step":"review","status":"started","revision":1,"ts":"2026-09-05T12:34:08.947Z"}
 {"event":"reviewer_report","step":"review","reviewer":"skipped-per-risk-policy","severity":"warning","verdict":"PASS","notes":"Review skipped per risk policy (require_review: false)","ts":"2026-09-05T12:34:26.929Z"}
 {"event":"step_completed","step":"review","verdict":"PASS","revision":1,"ts":"2026-09-05T12:34:27.042Z"}
+{"event":"lifecycle_step","step":"plan","status":"started","ts":"2026-09-06T22:58:36.805Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"1","status":"pending","notes":"Extend api.js with detail/CRUD fetch functions and ApiError","ts":"2026-09-06T23:17:13.867Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"2","status":"pending","notes":"Generic list-replace helper","ts":"2026-09-06T23:17:13.875Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"3","status":"pending","notes":"Inline form-error message helper","ts":"2026-09-06T23:17:13.878Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"4","status":"pending","notes":"Deal detail page shell (HTML)","ts":"2026-09-06T23:17:13.879Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"5","status":"pending","notes":"Deal detail fetch-and-render wiring","ts":"2026-09-06T23:17:13.882Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"6","status":"pending","notes":"Edit/delete opportunity forms","ts":"2026-09-06T23:17:13.883Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"7","status":"pending","notes":"Contact CRUD forms on the deal page","ts":"2026-09-06T23:17:13.887Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"8","status":"pending","notes":"Board navigation to deal page + create-opportunity form","ts":"2026-09-06T23:17:13.888Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"9","status":"pending","notes":"Accounts list page shell (HTML)","ts":"2026-09-06T23:17:13.889Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"10","status":"pending","notes":"Account CRUD forms (incl. 409 dependents)","ts":"2026-09-06T23:17:13.890Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"11","status":"pending","notes":"Create-opportunity + Contact CRUD from the Accounts page (2nd entry point)","ts":"2026-09-06T23:17:13.891Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"12","status":"pending","notes":"Cross-page navigation links","ts":"2026-09-06T23:17:13.892Z"}
+{"event":"step_completed","step":"plan","verdict":"PASS","ts":"2026-09-06T23:17:25.492Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-06T23:20:04.920Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"t1","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-06T23:25:17.574Z"}
+{"event":"plan_task","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"1","status":"in_progress","notes":null,"ts":"2026-09-06T23:25:48.322Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md","task_id":"t1","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-06T23:27:33.878Z"}

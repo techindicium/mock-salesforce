@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "seq": 8,
+  "seq": 10,
   "epics": [
     {
       "id": "epic-mkfmyt",
@@ -47,6 +47,24 @@
       "notes": "All 7 plan tasks implemented and reviewed; spec status implemented",
       "created": "2026-09-06T21:48:06.415Z",
       "updated": "2026-09-06T22:36:53.580Z"
+    },
+    {
+      "id": "epic-imv7ui",
+      "title": "Deal detail page and CRUD forms",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md",
+      "notes": "Ship a deal (Opportunity) detail page — full field detail, related Account summary, read-only related-Contacts list, edit/delete actions — plus create/edit/delete forms for Opportunity, Account, and Contact, all calling crm-api's existing CRUD endpoints.",
+      "created": "2026-09-06T23:17:20.064Z",
+      "updated": "2026-09-06T23:17:20.064Z"
+    },
+    {
+      "id": "epic-ampz2r",
+      "title": "Deal detail page and CRUD forms",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md",
+      "notes": "",
+      "created": "2026-09-06T23:22:33.002Z",
+      "updated": "2026-09-06T23:22:33.002Z"
     }
   ],
   "issues": []
