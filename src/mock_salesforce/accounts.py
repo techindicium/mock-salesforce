@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter, HTTPException
 
 from mock_salesforce.db import get_connection
-from mock_salesforce.models import AccountCreate, AccountOut
+from mock_salesforce.models import AccountCreate, AccountOut, AccountUpdate
 
 router = APIRouter()
 
@@ -55,6 +55,31 @@ def get_account(account_id: int) -> AccountOut:
                 status_code=404,
                 detail={"error": "ACCOUNT_NOT_FOUND", "message": f"No account with id {account_id}"},
             )
+        return AccountOut(**dict(row))
+    finally:
+        conn.close()
+
+
+@router.patch("/accounts/{account_id}", response_model=AccountOut)
+def update_account(account_id: int, payload: AccountUpdate) -> AccountOut:
+    conn = get_connection()
+    try:
+        row = conn.execute("SELECT * FROM accounts WHERE id = ?", (account_id,)).fetchone()
+        if row is None:
+            raise HTTPException(
+                status_code=404,
+                detail={"error": "ACCOUNT_NOT_FOUND", "message": f"No account with id {account_id}"},
+            )
+        updates = payload.model_dump(exclude_unset=True)
+        if updates:
+            now = datetime.now(timezone.utc).isoformat()
+            set_clause = ", ".join(f"{field} = ?" for field in updates)
+            conn.execute(
+                f"UPDATE accounts SET {set_clause}, updated_at = ? WHERE id = ?",
+                (*updates.values(), now, account_id),
+            )
+            conn.commit()
+        row = conn.execute("SELECT * FROM accounts WHERE id = ?", (account_id,)).fetchone()
         return AccountOut(**dict(row))
     finally:
         conn.close()
