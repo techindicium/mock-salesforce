@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "seq": 6,
+  "seq": 8,
   "epics": [
     {
       "id": "epic-mkfmyt",
@@ -42,11 +42,11 @@
     {
       "id": "epic-8sx04x",
       "title": "Pipeline board view, account switcher",
-      "status": "open",
+      "status": "closed",
       "planRef": ".context-index/specs/features/crm-ui/pipeline-board-view.plan.md",
-      "notes": "Ship a static HTML/CSS/JS pipeline board with ten fixed Opportunity stage columns, an account switcher, and drag-and-drop stage moves via PATCH /opportunities/{id}, served as-is by crm-api's existing static-file router.",
+      "notes": "All 7 plan tasks implemented and reviewed; spec status implemented",
       "created": "2026-09-06T21:48:06.415Z",
-      "updated": "2026-09-06T21:48:06.415Z"
+      "updated": "2026-09-06T22:36:53.580Z"
     }
   ],
   "issues": []
