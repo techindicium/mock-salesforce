@@ -24,3 +24,21 @@ def test_deal_html_has_the_detail_dom_contract(tmp_path, monkeypatch):
         assert 'id="error-banner"' in html
         assert 'type="module"' in html
         assert 'js/deal.js' in html
+
+
+def test_deal_js_is_served_and_fetches_opportunity_account_and_contacts(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        response = client.get("/js/deal.js")
+        assert response.status_code == 200
+        js = response.text
+        assert "fetchOpportunity" in js
+        assert "fetchAccount" in js
+        assert "fetchContacts" in js
+        assert "from './error-state.js'" in js
+        assert "from './errors.js'" in js
