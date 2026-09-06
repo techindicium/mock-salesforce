@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import Literal, Optional
 
 from pydantic import BaseModel
@@ -59,3 +59,39 @@ class ContactUpdate(BaseModel):
     email: Optional[str] = None
     phone: Optional[str] = None
     title: Optional[str] = None
+
+
+StageName = Literal[
+    "Prospecting",
+    "Qualification",
+    "Needs Analysis",
+    "Value Proposition",
+    "Id. Decision Makers",
+    "Perception Analysis",
+    "Proposal/Price Quote",
+    "Negotiation/Review",
+    "Closed Won",
+    "Closed Lost",
+]
+OpportunityType = Literal["New Business", "Existing Business"]
+LeadSource = Literal["Web", "Phone Inquiry", "Partner Referral", "Other"]
+
+
+class OpportunityCreate(BaseModel):
+    account_id: int
+    name: str
+    stage_name: StageName = "Prospecting"
+    amount: Optional[float] = None
+    close_date: date
+    probability: Optional[float] = None
+    opportunity_type: Optional[OpportunityType] = None
+    lead_source: Optional[LeadSource] = None
+    next_step: Optional[str] = None
+
+
+class OpportunityOut(OpportunityCreate):
+    id: int
+    is_closed: bool
+    is_won: bool
+    created_at: datetime
+    updated_at: datetime
