@@ -1,7 +1,7 @@
 ---
-partial_schema: spec@1
+partial_schema: implement@1
 charter: mcp-server
-status: review-passed
+status: implemented
 risk_level: low
 milestone: mvp
 revision: 1
@@ -11,6 +11,23 @@ updated: 2026-09-05
 kind: behavioral
 depends-on:
   - .context-index/specs/features/crm-api/account-and-contact-management.spec.md
+source-manifest:
+  sha: "b8e1843"
+  files:
+    - mcp_server/__init__.py
+    - mcp_server/app.py
+    - mcp_server/client.py
+    - mcp_server/errors.py
+    - mcp_server/requirements.txt
+    - mcp_server/tools/__init__.py
+    - mcp_server/tools/accounts.py
+    - mcp_server/tools/contacts.py
+    - pyproject.toml
+    - tests/mcp_server/test_account_tools.py
+    - tests/mcp_server/test_connection_handling.py
+    - tests/mcp_server/test_contact_tools.py
+    - tests/mcp_server/test_input_validation.py
+  computed-at: "2026-09-07T01:46:15.261Z"
 ---
 
 # Live Spec: Account and Contact MCP tools
@@ -89,14 +106,14 @@ depends-on:
 
 ## Acceptance Criteria
 
-- [ ] `list_accounts` returns the API's account list unmodified (BEH-1)
-- [ ] `get_account` returns the Account for a valid id (BEH-2)
-- [ ] `create_account` creates and returns an Account on valid input (BEH-3)
-- [ ] `update_account` updates and returns the Account (BEH-4)
-- [ ] `delete_account` deletes, or errors with 409/ACCOUNT_HAS_DEPENDENTS verbatim (BEH-5)
-- [ ] `list_contacts` supports the `account_id` filter (BEH-6)
-- [ ] `get_contact`/`create_contact`/`update_contact`/`delete_contact` call the matching endpoint (BEH-7)
-- [ ] Schema-invalid input errors before any HTTP request (BEH-8)
-- [ ] An unreachable API produces a clear connection-error message (BEH-9)
-- [ ] All quality gates pass (tests, lint)
-- [ ] No constitutional violations introduced
+- [x] `list_accounts` returns the API's account list unmodified (BEH-1)
+- [x] `get_account` returns the Account for a valid id (BEH-2)
+- [x] `create_account` creates and returns an Account on valid input (BEH-3)
+- [x] `update_account` updates and returns the Account (BEH-4)
+- [x] `delete_account` deletes, or errors with 409/ACCOUNT_HAS_DEPENDENTS verbatim (BEH-5)
+- [x] `list_contacts` supports the `account_id` filter (BEH-6)
+- [x] `get_contact`/`create_contact`/`update_contact`/`delete_contact` call the matching endpoint (BEH-7)
+- [x] Schema-invalid input errors before any HTTP request (BEH-8)
+- [x] An unreachable API produces a clear connection-error message (BEH-9)
+- [x] All quality gates pass (tests, lint)
+- [x] No constitutional violations introduced
