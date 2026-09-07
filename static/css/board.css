@@ -121,3 +121,74 @@ select {
   border-radius: 2px;
   padding: 0.4rem 0.5rem;
 }
+
+#deal-detail {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#opportunity-section,
+#account-summary,
+#contacts-section {
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+#opportunity-section h1,
+#account-summary h2,
+#contacts-section h2 {
+  margin: 0 0 0.5rem;
+  color: var(--ink-text-on-paper);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+dt {
+  font-weight: 600;
+  color: var(--ink-line);
+}
+
+dd {
+  margin: 0;
+}
+
+#contacts-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#contacts-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--paper-dim);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+}
+
+#edit-opportunity-form,
+#contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
