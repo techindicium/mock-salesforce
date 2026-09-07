@@ -26,6 +26,31 @@
       <button type="submit">Save account</button>
       <button type="button" id="cancel-account-form-btn">Cancel</button>
     </form>
+    <form id="account-new-opportunity-form" hidden>
+      <input type="hidden" id="new-opp-for-account-id" />
+      <div id="account-new-opportunity-error" class="form-error" role="alert"></div>
+      <label for="account-new-opp-name-input">Name</label>
+      <input id="account-new-opp-name-input" name="name" type="text" required />
+      <label for="account-new-opp-close-date-input">Close date</label>
+      <input id="account-new-opp-close-date-input" name="close_date" type="date" required />
+      <button type="submit">Create opportunity</button>
+      <button type="button" id="cancel-account-new-opportunity-btn">Cancel</button>
+    </form>
+    <form id="account-contact-form" hidden>
+      <input type="hidden" id="account-contact-id-input" />
+      <input type="hidden" id="account-contact-account-id-input" />
+      <div id="account-contact-form-error" class="form-error" role="alert"></div>
+      <label for="account-contact-first-name-input">First name</label>
+      <input id="account-contact-first-name-input" name="first_name" type="text" />
+      <label for="account-contact-last-name-input">Last name</label>
+      <input id="account-contact-last-name-input" name="last_name" type="text" required />
+      <label for="account-contact-email-input">Email</label>
+      <input id="account-contact-email-input" name="email" type="email" />
+      <label for="account-contact-title-input">Title</label>
+      <input id="account-contact-title-input" name="title" type="text" />
+      <button type="submit">Save contact</button>
+      <button type="button" id="cancel-account-contact-form-btn">Cancel</button>
+    </form>
   </main>
   <script type="module" src="js/accounts.js"></script>
 </body>
