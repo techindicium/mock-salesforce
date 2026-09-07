@@ -35,6 +35,21 @@
     <section id="contacts-section">
       <h2>Contacts</h2>
       <ul id="contacts-list"></ul>
+      <button id="new-contact-btn" type="button">New contact</button>
+      <form id="contact-form" hidden>
+        <input type="hidden" id="contact-id-input" />
+        <div id="contact-form-error" class="form-error" role="alert"></div>
+        <label for="contact-first-name-input">First name</label>
+        <input id="contact-first-name-input" name="first_name" type="text" />
+        <label for="contact-last-name-input">Last name</label>
+        <input id="contact-last-name-input" name="last_name" type="text" required />
+        <label for="contact-email-input">Email</label>
+        <input id="contact-email-input" name="email" type="email" />
+        <label for="contact-title-input">Title</label>
+        <input id="contact-title-input" name="title" type="text" />
+        <button type="submit">Save contact</button>
+        <button type="button" id="cancel-contact-form-btn">Cancel</button>
+      </form>
     </section>
   </main>
   <script type="module" src="js/deal.js"></script>

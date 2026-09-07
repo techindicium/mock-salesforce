@@ -1,7 +1,8 @@
-import { fetchOpportunity, fetchAccount, fetchContacts, updateOpportunity, deleteOpportunity } from './api.js';
+import { fetchOpportunity, fetchAccount, fetchContacts, updateOpportunity, deleteOpportunity, createContact, updateContact, deleteContact } from './api.js';
 import { describeApiError } from './errors.js';
 import { setError, clearError, bannerMessage } from './error-state.js';
 import { inlineErrorMessage } from './form-errors.js';
+import { replaceList } from './list-state.js';
 
 const errorBanner = document.getElementById('error-banner');
 const opportunityName = document.getElementById('opportunity-name');
@@ -30,6 +31,7 @@ function reportSuccess(source) {
   renderErrorBanner();
 }
 
+// --- Opportunity load & render (Task 5) ---
 function field(dl, label, value) {
   const dt = document.createElement('dt');
   dt.textContent = label;
@@ -66,7 +68,19 @@ function renderContacts() {
     const li = document.createElement('li');
     li.dataset.contactId = contact.id;
     const name = [contact.first_name, contact.last_name].filter(Boolean).join(' ');
-    li.textContent = `${name} — ${contact.title ?? ''} — ${contact.email ?? ''}`;
+    const summary = document.createElement('span');
+    summary.textContent = `${name} — ${contact.title ?? ''} — ${contact.email ?? ''}`;
+    const editBtn = document.createElement('button');
+    editBtn.type = 'button';
+    editBtn.className = 'edit-contact-btn';
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => openContactForm(contact));
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.className = 'delete-contact-btn';
+    removeBtn.textContent = 'Delete';
+    removeBtn.addEventListener('click', () => removeContact(contact.id));
+    li.append(summary, editBtn, removeBtn);
     contactsList.appendChild(li);
   }
 }
@@ -101,6 +115,7 @@ async function loadDetail() {
   }
 }
 
+// --- Opportunity edit/delete (Task 6) ---
 const editBtn = document.getElementById('edit-opportunity-btn');
 const deleteBtn = document.getElementById('delete-opportunity-btn');
 const editForm = document.getElementById('edit-opportunity-form');
@@ -145,5 +160,69 @@ deleteBtn.addEventListener('click', async () => {
     reportError('opportunity', describeApiError('delete opportunity', err));
   }
 });
+
+// --- Contact CRUD (Task 7) ---
+const newContactBtn = document.getElementById('new-contact-btn');
+const contactForm = document.getElementById('contact-form');
+const contactFormError = document.getElementById('contact-form-error');
+const contactIdInput = document.getElementById('contact-id-input');
+const cancelContactBtn = document.getElementById('cancel-contact-form-btn');
+
+function openContactForm(contact) {
+  contactIdInput.value = contact ? contact.id : '';
+  contactForm.elements.first_name.value = contact?.first_name ?? '';
+  contactForm.elements.last_name.value = contact?.last_name ?? '';
+  contactForm.elements.email.value = contact?.email ?? '';
+  contactForm.elements.title.value = contact?.title ?? '';
+  contactFormError.textContent = '';
+  contactForm.hidden = false;
+}
+
+newContactBtn.addEventListener('click', () => openContactForm(null));
+cancelContactBtn.addEventListener('click', () => { contactForm.hidden = true; });
+
+async function refreshContacts() {
+  contacts = replaceList(contacts, await fetchContacts(opportunity.account_id));
+  renderContacts();
+}
+
+contactForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const payload = {
+    account_id: opportunity.account_id,
+    first_name: contactForm.elements.first_name.value || null,
+    last_name: contactForm.elements.last_name.value,
+    email: contactForm.elements.email.value || null,
+    title: contactForm.elements.title.value || null,
+  };
+  try {
+    if (contactIdInput.value) {
+      await updateContact(contactIdInput.value, payload);
+    } else {
+      await createContact(payload);
+    }
+  } catch (err) {
+    contactFormError.textContent = inlineErrorMessage(err);
+    return;
+  }
+  contactForm.hidden = true;
+  try {
+    await refreshContacts();
+    reportSuccess('contacts');
+  } catch (err) {
+    reportError('contacts', describeApiError('refresh contacts', err));
+  }
+});
+
+async function removeContact(id) {
+  if (!window.confirm('Delete this contact?')) return;
+  try {
+    await deleteContact(id);
+    await refreshContacts();
+    reportSuccess('contacts');
+  } catch (err) {
+    reportError('contacts', describeApiError('delete contact', err));
+  }
+}
 
 loadDetail();

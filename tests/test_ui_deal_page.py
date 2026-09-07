@@ -61,3 +61,23 @@ def test_deal_js_wires_edit_and_delete_opportunity(tmp_path, monkeypatch):
         assert "deleteOpportunity" in js
         assert "inlineErrorMessage" in js
         assert "confirm(" in js
+
+
+def test_deal_js_wires_contact_crud_and_list_refresh(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        html = client.get("/deal.html").text
+        assert 'id="contact-form"' in html
+        assert 'id="new-contact-btn"' in html
+
+        js = client.get("/js/deal.js").text
+        assert "createContact" in js
+        assert "updateContact" in js
+        assert "deleteContact" in js
+        assert "from './list-state.js'" in js
+        assert "replaceList" in js
