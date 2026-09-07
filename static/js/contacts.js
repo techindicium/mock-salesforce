@@ -66,18 +66,15 @@ function renderContacts() {
     deleteBtn.className = 'delete-contact-btn';
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', async () => {
+      if (!window.confirm('Delete this contact?')) return;
       try {
         await deleteContact(contact.id);
       } catch (err) {
         reportError('delete', describeApiError('delete contact', err));
         return;
       }
-      try {
-        await loadContacts();
-        reportSuccess('delete');
-      } catch (err) {
-        reportError('contacts', describeApiError('load contacts', err));
-      }
+      await loadContacts();
+      reportSuccess('delete');
     });
     li.append(summary, editBtn, deleteBtn);
     listEl.appendChild(li);

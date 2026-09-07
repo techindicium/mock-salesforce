@@ -32,3 +32,7 @@ def test_contacts_html_has_edit_and_delete_buttons_per_row(tmp_path, monkeypatch
     contacts_js = (STATIC_DIR / "js" / "contacts.js").read_text()
     assert "edit-contact-btn" in contacts_js
     assert "delete-contact-btn" in contacts_js
+    assert "createContact" in contacts_js
+    assert "updateContact" in contacts_js
+    assert "deleteContact" in contacts_js
+    assert "confirm(" in contacts_js
