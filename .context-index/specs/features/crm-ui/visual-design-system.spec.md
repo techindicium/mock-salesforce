@@ -16,6 +16,7 @@ source-manifest:
     - tests/test_css_component_coverage.py
     - tests/test_css_design_tokens.py
   computed-at: "2026-09-07T14:10:21.374Z"
+drift_detected: true
 ---
 
 # Refactoring Spec: Port mock-jira's visual design system to crm-ui
