@@ -66,3 +66,7 @@
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:58:11.741Z"}
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:58:11.823Z"}
 {"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","status":"done","notes":"verified PORT/MCP_PORT env overrides remap published host ports independently","ts":"2026-09-07T04:58:11.896Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","status":"in_progress","notes":null,"ts":"2026-09-07T04:58:19.240Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:58:56.334Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:58:56.417Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","status":"done","notes":"verified docker compose logs combines output from both crm-api and mcp-server","ts":"2026-09-07T04:58:56.493Z"}
