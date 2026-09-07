@@ -1,7 +1,7 @@
 ---
 partial_schema: spec@1
 charter: crm-ui
-status: review-passed
+status: implemented
 kind: behavioral
 charter-extension: true
 milestone: mvp
@@ -9,6 +9,23 @@ revision: 1
 charter-revision: 12
 created: 2026-09-07
 updated: 2026-09-07
+source-manifest:
+  sha: "9ebbbdf"
+  files:
+    - static/accounts.html
+    - static/contacts.html
+    - static/css/board.css
+    - static/deal.html
+    - static/index.html
+    - static/js/api.js
+    - static/js/api.test.mjs
+    - static/js/contacts.js
+    - tests/test_css_component_coverage.py
+    - tests/test_ui_accounts_page.py
+    - tests/test_ui_board_page.py
+    - tests/test_ui_contacts_page.py
+    - tests/test_ui_deal_page.py
+  computed-at: "2026-09-07T15:29:44.381Z"
 ---
 
 # Live Spec: Sidebar navigation and standalone Contacts view
