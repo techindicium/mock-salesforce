@@ -1,7 +1,7 @@
 ---
 partial_schema: implement@1
 charter: mcp-server
-status: implemented
+status: validated
 risk_level: low
 milestone: mvp
 revision: 1
