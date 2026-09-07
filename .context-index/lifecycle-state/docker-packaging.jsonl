@@ -74,3 +74,7 @@
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:59:32.301Z"}
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:59:32.383Z"}
 {"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","status":"done","notes":"README documents docker compose up/down/logs, PORT/MCP_PORT overrides, localhost scoping","ts":"2026-09-07T04:59:32.457Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","status":"in_progress","notes":null,"ts":"2026-09-07T04:59:40.905Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T05:01:33.697Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","stage":"code-quality","cycles":1,"ts":"2026-09-07T05:01:33.779Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","status":"done","notes":"clean-checkout sweep passes; full docker suite (9 tests) + fast gate (111) + lint all green","ts":"2026-09-07T05:01:33.854Z"}
