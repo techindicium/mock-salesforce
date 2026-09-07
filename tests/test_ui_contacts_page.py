@@ -22,3 +22,13 @@ def test_contacts_html_has_sidebar_and_list_container(tmp_path, monkeypatch):
         select_start = html.index('id="contact-account-select"')
         select_tag_end = html.index('>', select_start)
         assert 'required' in html[select_start:select_tag_end]
+
+
+def test_contacts_html_has_edit_and_delete_buttons_per_row(tmp_path, monkeypatch):
+    # This is a structural smoke test only — the per-row edit/delete buttons are
+    # rendered by contacts.js at runtime (dataset-driven, like accounts.js's
+    # edit-account-btn/delete-account-btn), so this test asserts the JS file
+    # references the expected class hooks rather than asserting on static HTML.
+    contacts_js = (STATIC_DIR / "js" / "contacts.js").read_text()
+    assert "edit-contact-btn" in contacts_js
+    assert "delete-contact-btn" in contacts_js
