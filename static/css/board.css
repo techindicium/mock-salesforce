@@ -122,10 +122,14 @@ select {
   padding: 0.4rem 0.5rem;
 }
 
-#deal-detail {
+#deal-detail,
+#accounts-page {
   max-width: 760px;
   margin: 0 auto;
   padding: 1rem;
+}
+
+#deal-detail {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -174,7 +178,8 @@ dd {
   gap: 0.5rem;
 }
 
-#contacts-list li {
+#contacts-list li,
+#accounts-list li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -186,17 +191,14 @@ dd {
 }
 
 #edit-opportunity-form,
-#contact-form {
+#contact-form,
+#account-form,
+#account-new-opportunity-form,
+#account-contact-form {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   margin-top: 0.75rem;
-}
-
-#accounts-page {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 1rem;
 }
 
 #accounts-list {
@@ -206,17 +208,6 @@ dd {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-#accounts-list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  background: var(--paper-dim);
-  border: 1px solid var(--ink-line);
-  border-radius: 2px;
-  padding: 0.5rem 0.75rem;
 }
 
 #accounts-list li button {
@@ -260,13 +251,4 @@ summary {
   border: 1px solid var(--ink-line);
   border-radius: 2px;
   padding: 0.4rem 0.6rem;
-}
-
-#account-form,
-#account-new-opportunity-form,
-#account-contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
 }
