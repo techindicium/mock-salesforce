@@ -106,3 +106,42 @@ def test_create_opportunity_invalid_stage_name_passes_through_422_verbatim():
         )
     assert exc_info.value.status_code == 422
     assert exc_info.value.error_code == "VALIDATION_ERROR"
+
+
+def test_update_opportunity_patches_and_returns_updated():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.method == "PATCH"
+        assert request.url.path == "/opportunities/1"
+        return httpx.Response(200, json={"id": 1, "amount": 50000})
+
+    client = make_client(handler)
+    result = opportunities.update_opportunity(client, 1, amount=50000)
+    assert result == {"id": 1, "amount": 50000}
+
+
+def test_update_opportunity_stage_name_transition():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.method == "PATCH"
+        assert request.url.path == "/opportunities/1"
+        return httpx.Response(200, json={"id": 1, "stage_name": "Closed Won"})
+
+    client = make_client(handler)
+    result = opportunities.update_opportunity(client, 1, stage_name="Closed Won")
+    assert result == {"id": 1, "stage_name": "Closed Won"}
+
+
+def test_update_opportunity_invalid_stage_name_passes_through_422_verbatim():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            422,
+            json={
+                "error": "VALIDATION_ERROR",
+                "message": "stage_name must be one of the ten fixed values",
+            },
+        )
+
+    client = make_client(handler)
+    with pytest.raises(McpUpstreamError) as exc_info:
+        opportunities.update_opportunity(client, 1, stage_name="Bogus Stage")
+    assert exc_info.value.status_code == 422
+    assert exc_info.value.error_code == "VALIDATION_ERROR"

@@ -44,3 +44,8 @@ def create_opportunity(
     }
     payload = {k: v for k, v in payload.items() if v is not None}
     return client.request("POST", "/opportunities", json=payload)
+
+
+def update_opportunity(client: CrmApiClient, id: int, **fields) -> dict:
+    payload = {k: v for k, v in fields.items() if v is not None}
+    return client.request("PATCH", f"/opportunities/{id}", json=payload)

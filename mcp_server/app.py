@@ -190,6 +190,33 @@ def create_opportunity(
     )
 
 
+@mcp.tool()
+def update_opportunity(
+    id: int,
+    name: str | None = None,
+    stage_name: str | None = None,
+    amount: float | None = None,
+    close_date: str | None = None,
+    probability: float | None = None,
+    opportunity_type: str | None = None,
+    lead_source: str | None = None,
+    next_step: str | None = None,
+) -> dict:
+    """Update one or more mutable Opportunity fields, including `stage_name` transitions."""
+    return opportunities.update_opportunity(
+        client,
+        id,
+        name=name,
+        stage_name=stage_name,
+        amount=amount,
+        close_date=close_date,
+        probability=probability,
+        opportunity_type=opportunity_type,
+        lead_source=lead_source,
+        next_step=next_step,
+    )
+
+
 def main() -> None:
     mcp.run(transport="streamable-http")
 
