@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "t1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "BEH-1 fully specified with test given in plan; mirrors accounts.py router shape; 3 files in one module; mechanical addition."
+    },
+    {
+      "task_id": "t2",
+      "selected_agent": "assisted-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.4,
+        "blast_radius": 1,
+        "novelty": 0.6
+      },
+      "rationale": "BEH-2/3 and error case fully specified, but the catch-all route plus path-traversal guard has no codebase precedent beyond the env-var and error_body helpers it reuses."
+    },
+    {
+      "task_id": "t3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-4 verification-only test, single file, no source change expected, mirrors existing test suites' request/assert pattern."
+    }
+  ]
+}

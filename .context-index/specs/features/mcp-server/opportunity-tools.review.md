@@ -1,0 +1,40 @@
+---
+last-reviewed-revision: 1
+file-sha: 0e3e0725f7cff57107934e7ac0daf11f078f60c93a4791dfb2ab98250a519930
+rigor-tier: skipped
+---
+
+# Architecture Review: opportunity-tools
+
+> **Date:** 2026-09-05
+> **Spec:** .context-index/specs/features/mcp-server/opportunity-tools.spec.md
+> **Charter:** .context-index/specs/features/mcp-server/charter.md
+> **Verdict:** PASS
+
+## Rigor Tier
+
+Resolved: **skipped** (source: risk policy — `risk_level: low` frontmatter maps to
+`policies.low.require_review: false` in `.context-index/governance/risk-policies.yaml`).
+Per Step 2 of `/adev:review-specs`, when the governing risk policy sets `require_review: false`
+for the spec's risk level, review is skipped entirely rather than dispatching any reviewer —
+this project's deliberate governance posture, applied uniformly across all three risk tiers.
+
+## Reviewers Dispatched
+
+None — review skipped per risk policy.
+
+## Disabled Reviewers
+
+| ID | Reason |
+|----|--------|
+| structural-architect | no reason given |
+| security-reviewer | no reason given |
+| consistency-analyzer | no reason given |
+
+---
+
+## Summary
+
+**Total findings:** 0 (0 blockers, 0 warnings, 0 suggestions)
+**Action required:** None. Review skipped per risk policy — the spec is ready for planning. Run
+`/adev:plan --spec <path>` to proceed.

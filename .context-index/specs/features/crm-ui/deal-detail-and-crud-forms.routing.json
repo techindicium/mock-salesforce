@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "t1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "api.js extension with explicit error-envelope contract (ApiError), full test/implementation dictated by spec; single-module 2-file change, mechanical pattern application."
+    },
+    {
+      "task_id": "t10",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Account CRUD wiring covering BEH-7 in full including the 409 ACCOUNT_HAS_DEPENDENTS inline case, following the same error-state/list-state/form-errors reuse pattern as Task 6/7."
+    },
+    {
+      "task_id": "t11",
+      "selected_agent": "assisted-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.6,
+        "novelty": 0.6
+      },
+      "rationale": "Second entry point combining create-opportunity, per-account Contacts sub-list, and lazy-loaded accordion UI in one task -- more moving parts and composition than prior tasks; recommend a checkpoint."
+    },
+    {
+      "task_id": "t12",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Pure navigation-link plumbing across index.html/deal.html closing the loop to accounts.html; mechanical, low risk, no boundary crossings."
+    },
+    {
+      "task_id": "t2",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Pure full-replace helper mirroring board-state.js's existing replaceOpportunities precedent; tiny, isolated, mechanical."
+    },
+    {
+      "task_id": "t3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Pure function directly covering the spec's Error Cases table (422/409 inline messages); no dependencies, isolated, mechanical."
+    },
+    {
+      "task_id": "t4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Static HTML shell mirroring index.html's page-shell convention; structural DOM contract asserted by new pytest suite, low blast radius."
+    },
+    {
+      "task_id": "t5",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Fetch-and-render wiring for BEH-1/BEH-2 mirroring board.js's reportError/reportSuccess pattern and reusing error-state.js/errors.js unmodified."
+    },
+    {
+      "task_id": "t6",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Edit/delete-opportunity form wiring for BEH-3/BEH-4 with inline error via form-errors.js; extends Task 5's established module, moderate file count."
+    },
+    {
+      "task_id": "t7",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Contact CRUD + list-refresh wiring for BEH-6 using replaceList/inlineErrorMessage helpers already built in Tasks 2-3; extends established deal.js module."
+    },
+    {
+      "task_id": "t8",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Board card-click navigation plus create-opportunity form for BEH-1/BEH-5, extending the existing board.js/index.html precedent from pipeline-board-view."
+    },
+    {
+      "task_id": "t9",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Accounts page HTML shell mirroring deal.html's page-shell convention; structural DOM contract only, low blast radius."
+    }
+  ]
+}

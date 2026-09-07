@@ -1,0 +1,308 @@
+:root {
+  --ink: #16261f;
+  --rail: #2f4a3e;
+  --paper: #f1ecdd;
+  --stamp-red: #a3402f;
+  --stamp-gold: #b98a2e;
+  --stamp-green: #4c7a5e;
+  --ink-line: #55483a;
+
+  --rail-light: #3c5c4e;
+  --paper-dim: #e7e1cf;
+  --ink-text-on-paper: #201a12;
+  --paper-text-on-rail: #f1ecdd;
+  --stamp-gold-dim: rgba(185, 138, 46, 0.35);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, "Segoe UI", "Inter", system-ui, sans-serif;
+  color: var(--paper-text-on-rail);
+  background: var(--ink);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ink-line);
+}
+
+#error-banner,
+.form-error {
+  background: var(--paper);
+  color: var(--stamp-red);
+  border: 1px solid var(--stamp-red);
+  border-left: 4px solid var(--stamp-red);
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+#error-banner[hidden] {
+  display: none;
+}
+
+#board {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 1rem;
+  align-items: flex-start;
+}
+
+.stage-column {
+  flex: 0 0 220px;
+  background: var(--rail);
+  border: 1px solid var(--ink-line);
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+.stage-column h2 {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+  color: var(--paper);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 40px;
+}
+
+.opportunity-card {
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: grab;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+  overflow-wrap: anywhere;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 2px;
+  border: 1px solid var(--ink-line);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+button:hover {
+  background: var(--paper-dim);
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-text-on-paper);
+  background: var(--paper-dim);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.4rem 0.5rem;
+}
+
+#deal-detail,
+#accounts-page,
+#contacts-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#deal-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#opportunity-section,
+#account-summary,
+#contacts-section {
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+#opportunity-section h1,
+#account-summary h2,
+#contacts-section h2 {
+  margin: 0 0 0.5rem;
+  color: var(--ink-text-on-paper);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+dt {
+  font-weight: 600;
+  color: var(--ink-line);
+}
+
+dd {
+  margin: 0;
+}
+
+#contacts-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#contacts-list li,
+#accounts-list li,
+#all-contacts-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--paper-dim);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+}
+
+#edit-opportunity-form,
+#contact-form,
+#account-form,
+#account-new-opportunity-form,
+#account-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+
+#accounts-list,
+#all-contacts-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#accounts-list li button {
+  margin-left: 0.5rem;
+}
+
+.account-delete-error {
+  color: var(--stamp-red);
+  font-weight: 600;
+}
+
+details {
+  background: var(--paper-dim);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.5rem;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink-text-on-paper);
+}
+
+.account-contacts-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.account-contacts-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.4rem 0.6rem;
+}
+
+.app-shell {
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.sidebar {
+  flex: 0 0 168px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1rem 0;
+  background: var(--rail);
+  border-right: 1px solid var(--ink-line);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.nav-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--paper-text-on-rail);
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+.nav-item:hover {
+  background: var(--rail-light);
+}
+
+.nav-item.active {
+  background: var(--rail-light);
+  border-left-color: var(--stamp-gold);
+  color: var(--paper);
+}
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 1.5rem;
+}

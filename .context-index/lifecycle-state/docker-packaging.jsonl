@@ -1,0 +1,99 @@
+{"event":"lifecycle_step","step":"specify","status":"started","ts":"2026-09-05T12:32:52.706Z"}
+{"event":"step_completed","step":"specify","verdict":"PASS","ts":"2026-09-05T12:32:52.817Z"}
+{"event":"lifecycle_step","step":"review","status":"started","revision":1,"ts":"2026-09-05T12:34:09.144Z"}
+{"event":"reviewer_report","step":"review","reviewer":"skipped-per-risk-policy","severity":"warning","verdict":"PASS","notes":"Review skipped per risk policy (require_review: false)","ts":"2026-09-05T12:34:27.449Z"}
+{"event":"step_completed","step":"review","verdict":"PASS","revision":1,"ts":"2026-09-05T12:34:27.558Z"}
+{"event":"lifecycle_step","step":"plan","status":"started","ts":"2026-09-07T03:27:41.421Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-1","status":"pending","notes":null,"ts":"2026-09-07T03:46:49.706Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-2","status":"pending","notes":null,"ts":"2026-09-07T03:46:49.786Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-3","status":"pending","notes":null,"ts":"2026-09-07T03:46:49.860Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-4","status":"pending","notes":null,"ts":"2026-09-07T03:46:49.935Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-5","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.011Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-6","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.086Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-7","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.159Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-8","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.232Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-9","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.305Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-10","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.381Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"task-11","status":"pending","notes":null,"ts":"2026-09-07T03:46:50.455Z"}
+{"event":"step_completed","step":"plan","verdict":"PASS","ts":"2026-09-07T03:47:00.982Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-07T03:47:46.035Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:38.581Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:53.401Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","pass":"provisional","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["sensitive-path"],"ts":"2026-09-07T03:48:53.490Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:53.573Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:53.663Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t6","pass":"provisional","depth":"full","source":"predicate-denied","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:53.746Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t7","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:53.831Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:53.913Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:54.006Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:54.090Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:54.178Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","status":"in_progress","notes":"null","ts":"2026-09-07T03:49:54.166Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-07T03:53:05.837Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T03:59:27.270Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","stage":"code-quality","cycles":2,"findings":2,"ts":"2026-09-07T03:59:27.356Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","status":"done","notes":"DEPLOY_VOLUME_NOT_WRITABLE guard added, 2 review cycles (code-quality fix)","ts":"2026-09-07T03:59:35.660Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","status":"in_progress","notes":"null","ts":"2026-09-07T03:59:52.944Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-07T04:01:42.271Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:02:57.759Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:02:57.840Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","status":"done","notes":"HOST env + GET /health added to mcp-server, both review stages passed cycle 1","ts":"2026-09-07T04:02:57.915Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","status":"in_progress","notes":"null","ts":"2026-09-07T04:03:10.201Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["sensitive-path","scope-mismatch"],"ts":"2026-09-07T04:04:15.931Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:05:40.206Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:05:40.290Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","status":"done","notes":"integration-test gate wired to tests/docker; both review stages passed cycle 1","ts":"2026-09-07T04:05:40.366Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","status":"in_progress","notes":"null","ts":"2026-09-07T04:05:53.787Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","pass":"final","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T04:08:10.090Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-07T04:29:46.462Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-07T04:52:01.549Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:52:43.850Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:52:43.931Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","status":"done","notes":"crm-api Dockerfile + .dockerignore added, bundles crm-ui static assets","ts":"2026-09-07T04:52:44.006Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","status":"in_progress","notes":null,"ts":"2026-09-07T04:53:44.397Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:55:05.246Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:55:05.328Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","status":"done","notes":"mcp-server Dockerfile added; image builds, serves /health, no crash-loop on bad API_BASE_URL","ts":"2026-09-07T04:55:05.403Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t6","status":"in_progress","notes":null,"ts":"2026-09-07T04:55:18.109Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t6","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:56:36.938Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t6","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:56:37.021Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t6","status":"done","notes":"docker-compose.yml wires both images; build produces exactly 2 services, crm-api healthy before mcp-server starts","ts":"2026-09-07T04:56:37.097Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t7","status":"in_progress","notes":null,"ts":"2026-09-07T04:56:47.740Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t7","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:57:29.861Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t7","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:57:29.944Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t7","status":"done","notes":"verified named volume persists SQLite data across compose down/up without -v","ts":"2026-09-07T04:57:30.018Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","status":"in_progress","notes":null,"ts":"2026-09-07T04:57:36.528Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:58:11.741Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:58:11.823Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t8","status":"done","notes":"verified PORT/MCP_PORT env overrides remap published host ports independently","ts":"2026-09-07T04:58:11.896Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","status":"in_progress","notes":null,"ts":"2026-09-07T04:58:19.240Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:58:56.334Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:58:56.417Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","status":"done","notes":"verified docker compose logs combines output from both crm-api and mcp-server","ts":"2026-09-07T04:58:56.493Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","status":"in_progress","notes":null,"ts":"2026-09-07T04:59:02.237Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:59:32.301Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:59:32.383Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","status":"done","notes":"README documents docker compose up/down/logs, PORT/MCP_PORT overrides, localhost scoping","ts":"2026-09-07T04:59:32.457Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","status":"in_progress","notes":null,"ts":"2026-09-07T04:59:40.905Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T05:01:33.697Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","stage":"code-quality","cycles":1,"ts":"2026-09-07T05:01:33.779Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","status":"done","notes":"clean-checkout sweep passes; full docker suite (9 tests) + fast gate (111) + lint all green","ts":"2026-09-07T05:01:33.854Z"}
+{"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-07T05:03:38.045Z"}
+{"event":"lifecycle_step","step":"validate","status":"started","ts":"2026-09-07T05:04:09.575Z"}
+{"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-07T05:04:38.931Z"}
+{"event":"lifecycle_step","step":"validate","status":"started","ts":"2026-09-07T05:31:41.543Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.5-source-manifest","severity":"warning","verdict":"PASS","notes":"Manifest matches sha c8730d1; all 20 files git-tracked.","ts":"2026-09-07T05:40:45.745Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.6-code-drift","severity":"warning","verdict":"PASS","notes":"No code drift detected.","ts":"2026-09-07T05:40:45.831Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-8-boundaries","severity":"error","verdict":"PASS","notes":"SKIP: no boundary rules declared.","ts":"2026-09-07T05:40:45.911Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-9-transition-gates","severity":"warning","verdict":"PASS","notes":"SKIP: no transitions configured.","ts":"2026-09-07T05:40:45.986Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"2 warnings: no CI config; lint runner unidentifiable for collection check. 0 errors.","ts":"2026-09-07T05:40:46.061Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1-quality-gates","severity":"error","verdict":"PASS","notes":"Fast tier: test 111 passed, lint clean. Integration tier: tests/docker 9 passed (PORT=8100/MCP_PORT=8101).","gate_outcomes":[{"id":"test","verdict":"pass","tier":"fast","command_sha":"22c558be4a77b6dd61531053c7225bd05830d00bfaf46f14f430e2f0a6a0cb2b"},{"id":"lint","verdict":"pass","tier":"fast","command_sha":"91ede4a4ad8774e8660350d4580b9e41c235ea911f560571d82f5d4f81aba16d"},{"id":"integration-test","verdict":"pass","tier":"integration","command_sha":"a81d581c3ac04516e7dcaf0457dc0ccf826f33723a7fb0984183f4d1fe2c512a"}],"manifest_sha":"c8730d1","ts":"2026-09-07T05:41:00.976Z"}
+{"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-07T05:41:59.316Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1-quality-gates","severity":"error","verdict":"PASS","notes":"fast+integration tiers pass (111 tests, ruff clean); e2e tier not configured.","gate_outcomes":[{"id":"test","verdict":"pass","tier":"fast","command_sha":"22c558be4a77b6dd61531053c7225bd05830d00bfaf46f14f430e2f0a6a0cb2b"},{"id":"lint","verdict":"pass","tier":"fast","command_sha":"91ede4a4ad8774e8660350d4580b9e41c235ea911f560571d82f5d4f81aba16d"},{"id":"integration-test","verdict":"pass","tier":"integration","command_sha":"a81d581c3ac04516e7dcaf0457dc0ccf826f33723a7fb0984183f4d1fe2c512a"}],"manifest_sha":"c8730d1","ts":"2026-09-07T11:11:32.527Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.5-source-manifest","severity":"warning","verdict":"PASS","notes":"Manifest matches sha c8730d1; all 20 files git-tracked.","ts":"2026-09-07T11:13:41.061Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.6-code-drift","severity":"warning","verdict":"PASS","notes":"No code drift detected.","ts":"2026-09-07T11:13:41.194Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-8-boundaries","severity":"error","verdict":"PASS","notes":"SKIP: no boundary rules declared.","ts":"2026-09-07T11:13:41.317Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-9-transition-gates","severity":"warning","verdict":"PASS","notes":"SKIP: no transitions configured.","ts":"2026-09-07T11:13:41.440Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"2 warnings: no CI config; lint runner unidentifiable for collection check. 0 errors.","ts":"2026-09-07T11:13:41.560Z"}
+{"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-07T11:13:45.645Z"}
+{"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-07T12:20:32.258Z"}

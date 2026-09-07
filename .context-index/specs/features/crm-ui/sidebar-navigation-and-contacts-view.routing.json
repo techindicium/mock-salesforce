@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Verbatim CSS port from mock-jira with exact values given in the plan; single file, additive only."
+    },
+    {
+      "task_id": "2",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Mechanical wrap of 3 existing pages with an exact markup template given; must preserve every existing element, some care required but well-specified."
+    },
+    {
+      "task_id": "3",
+      "selected_agent": "assisted-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.8,
+        "blast_radius": 0.6,
+        "novelty": 0.6
+      },
+      "rationale": "New page + new module; mirrors accounts.js closely but is the largest, newest surface in the plan (4 files, first standalone Contacts view) — checkpoint after RED phase."
+    },
+    {
+      "task_id": "4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.8,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "CRUD wiring mirrors accounts.js's established Account CRUD pattern almost exactly."
+    }
+  ]
+}

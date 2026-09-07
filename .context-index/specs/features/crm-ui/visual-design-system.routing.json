@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Verbatim port of mock-jira's :root tokens and [hidden] guard into one file; exact values given in the plan."
+    },
+    {
+      "task_id": "2",
+      "selected_agent": "assisted-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 0.6
+      },
+      "rationale": "Adapts mock-jira's component treatment to different selectors with no golden sample; some design judgment required on exact rule values."
+    },
+    {
+      "task_id": "3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 0.8
+      },
+      "rationale": "Reuses Task 2's established global rules; adds page-specific selectors from an explicit list in deal.html."
+    },
+    {
+      "task_id": "4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 0.8
+      },
+      "rationale": "Reuses Task 2/3's established global and list-row rules; adds page-specific selectors from an explicit list in accounts.html."
+    }
+  ]
+}

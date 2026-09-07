@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "seq": 17,
+  "epics": [
+    {
+      "id": "epic-mkfmyt",
+      "title": "Implementation Plan: Account and Contact Management",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-api/account-and-contact-management.plan.md",
+      "notes": "Stand up the Account and Contact CRUD HTTP surface -- the master-data foundation of mock-salesforce -- backed by a fresh SQLite schema, with full validation, error-shaping, and delete-guard behavior per the Live Spec.",
+      "created": "2026-09-06T17:22:54.083Z",
+      "updated": "2026-09-06T17:22:54.083Z"
+    },
+    {
+      "id": "epic-bf4wf2",
+      "title": "Implementation Plan: Opportunity Lifecycle CRUD",
+      "status": "closed",
+      "planRef": ".context-index/specs/features/crm-api/opportunity-lifecycle.plan.md",
+      "milestone": "mvp",
+      "notes": "Add the full Opportunity CRUD HTTP surface, including the stage-transition endpoint, on top of the existing Account/Contact scaffold.",
+      "created": "2026-09-06T18:51:31.331Z",
+      "updated": "2026-09-06T19:37:18.581Z"
+    },
+    {
+      "id": "epic-lrkcta",
+      "title": "Fixture Seed Data",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-api/fixture-seeding.plan.md",
+      "notes": "",
+      "created": "2026-09-06T20:11:43.565Z",
+      "updated": "2026-09-07T01:48:31.508Z",
+      "next_action": ""
+    },
+    {
+      "id": "epic-upap4u",
+      "title": "Health route, static asset hosting, and OpenAPI contract",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-api/health-static-hosting-and-openapi.plan.md",
+      "notes": "Add GET /health with no DB dependency, conditional static asset hosting for crm-ui's build output at GET /, and confirm GET /openapi.json reflects all mounted routes.",
+      "created": "2026-09-06T20:57:39.152Z",
+      "updated": "2026-09-06T20:57:39.152Z"
+    },
+    {
+      "id": "epic-8sx04x",
+      "title": "Pipeline board view, account switcher",
+      "status": "closed",
+      "planRef": ".context-index/specs/features/crm-ui/pipeline-board-view.plan.md",
+      "notes": "All 7 plan tasks implemented and reviewed; spec status implemented",
+      "created": "2026-09-06T21:48:06.415Z",
+      "updated": "2026-09-06T22:36:53.580Z"
+    },
+    {
+      "id": "epic-imv7ui",
+      "title": "Deal detail page and CRUD forms",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md",
+      "notes": "All 12 plan tasks implemented and reviewed",
+      "created": "2026-09-06T23:17:20.064Z",
+      "updated": "2026-09-07T00:34:07.688Z"
+    },
+    {
+      "id": "epic-ampz2r",
+      "title": "Deal detail page and CRUD forms",
+      "status": "open",
+      "planRef": ".context-index/specs/features/crm-ui/deal-detail-and-crud-forms.plan.md",
+      "notes": "",
+      "created": "2026-09-06T23:22:33.002Z",
+      "updated": "2026-09-06T23:22:33.002Z"
+    },
+    {
+      "id": "epic-czwp1s",
+      "title": "Account and Contact MCP tools",
+      "status": "open",
+      "planRef": ".context-index/specs/features/mcp-server/account-contact-tools.plan.md",
+      "notes": "Stand up the mcp-server module exposing all 10 Account/Contact CRUD operations as MCP tools over Streamable HTTP transport, wrapping crm-api's HTTP endpoints with schema validation, verbatim error passthrough, and clear connection-error handling.",
+      "created": "2026-09-07T01:10:06.278Z",
+      "updated": "2026-09-07T01:10:06.278Z"
+    },
+    {
+      "id": "epic-jl2913",
+      "title": "Account and Contact MCP tools",
+      "status": "open",
+      "planRef": ".context-index/specs/features/mcp-server/account-contact-tools.plan.md",
+      "notes": "",
+      "created": "2026-09-07T01:15:17.200Z",
+      "updated": "2026-09-07T01:15:17.200Z"
+    },
+    {
+      "id": "epic-2ak8b9",
+      "title": "Implementation Plan: Opportunity MCP tools",
+      "status": "open",
+      "planRef": ".context-index/specs/features/mcp-server/opportunity-tools.plan.md",
+      "notes": "Add the 5 Opportunity MCP tools (list/get/create/update/delete_opportunity) to the mcp-server module, wrapping crm-api's Opportunity endpoints including stage_name transitions and account_id/stage_name list filters.",
+      "created": "2026-09-07T02:09:58.772Z",
+      "updated": "2026-09-07T02:09:58.772Z"
+    },
+    {
+      "id": "epic-c68yrl",
+      "title": "Docker packaging and run instructions",
+      "status": "open",
+      "planRef": ".context-index/specs/cross-cutting/docker-packaging.plan.md",
+      "notes": "Package crm-api (bundling crm-ui's static assets) and mcp-server into two Docker images wired by docker-compose.yml, with a named volume for SQLite, PORT-driven remapping, and written run instructions.",
+      "created": "2026-09-07T03:46:56.321Z",
+      "updated": "2026-09-07T03:46:56.321Z"
+    }
+  ],
+  "issues": []
+}

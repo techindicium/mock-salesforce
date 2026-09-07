@@ -1,0 +1,43 @@
+# risk-policies.yaml — Risk level to gate escalation mapping
+# This file lives at .context-index/governance/risk-policies.yaml
+# Specs declare risk_level in frontmatter (high | medium | low).
+# If not declared, default is "medium".
+#
+# review_mode / validate_mode set the GRADUATED RIGOR TIER for the two gate
+# skills (full | quick). `quick` does NOT skip the gate — /adev:review-specs runs
+# a single synthesized reviewer and /adev:validate runs quality gates + one
+# synthesized compliance check, still emitting their lifecycle events so the
+# strict gate chain stays satisfied. Absent → full. An explicit `--tier` or a
+# routing "easy" signal overrides these. See
+# .context-index/specs/cross-cutting/graduated-rigor-tiers.spec.md.
+#
+# Deliberate departure from mock-jira's posture: mock-jira still carves out
+# `high` risk for full rigor + HITL. This repo runs every tier — high, medium,
+# and low — fully agentic: quick mode, no review gate, no human-in-the-loop
+# approval. No carve-out.
+
+policies:
+  high:
+    require_review: false
+    require_hitl_approval: false
+    review_mode: quick
+    validate_mode: quick
+    implement_mode: quick
+    test_depth: minimal
+    additional_gates: []           # gate IDs from gates.yaml
+  medium:
+    require_review: false
+    require_hitl_approval: false
+    review_mode: quick
+    validate_mode: quick
+    implement_mode: quick
+    test_depth: minimal
+    additional_gates: []
+  low:
+    require_review: false
+    require_hitl_approval: false
+    review_mode: quick
+    validate_mode: quick
+    implement_mode: quick
+    test_depth: minimal
+    additional_gates: []

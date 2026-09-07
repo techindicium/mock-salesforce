@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Accounts</title>
+  <link rel="stylesheet" href="css/board.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar" aria-label="Main navigation">
+      <a class="nav-item" href="index.html">Opportunities</a>
+      <a class="nav-item active" href="accounts.html" aria-current="page">Accounts</a>
+      <a class="nav-item" href="contacts.html">Contacts</a>
+    </nav>
+    <div class="app-main">
+      <div id="error-banner" role="alert" hidden></div>
+      <main id="accounts-page">
+        <h1>Accounts</h1>
+        <ul id="accounts-list"></ul>
+        <button id="new-account-btn" type="button">New account</button>
+        <form id="account-form" hidden>
+          <input type="hidden" id="account-id-input" />
+          <div id="account-form-error" class="form-error" role="alert"></div>
+          <label for="account-name-input">Name</label>
+          <input id="account-name-input" name="name" type="text" required />
+          <label for="account-industry-input">Industry</label>
+          <input id="account-industry-input" name="industry" type="text" />
+          <label for="account-phone-input">Phone</label>
+          <input id="account-phone-input" name="phone" type="text" />
+          <button type="submit">Save account</button>
+          <button type="button" id="cancel-account-form-btn">Cancel</button>
+        </form>
+        <form id="account-new-opportunity-form" hidden>
+          <input type="hidden" id="new-opp-for-account-id" />
+          <div id="account-new-opportunity-error" class="form-error" role="alert"></div>
+          <label for="account-new-opp-name-input">Name</label>
+          <input id="account-new-opp-name-input" name="name" type="text" required />
+          <label for="account-new-opp-close-date-input">Close date</label>
+          <input id="account-new-opp-close-date-input" name="close_date" type="date" required />
+          <button type="submit">Create opportunity</button>
+          <button type="button" id="cancel-account-new-opportunity-btn">Cancel</button>
+        </form>
+        <form id="account-contact-form" hidden>
+          <input type="hidden" id="account-contact-id-input" />
+          <input type="hidden" id="account-contact-account-id-input" />
+          <div id="account-contact-form-error" class="form-error" role="alert"></div>
+          <label for="account-contact-first-name-input">First name</label>
+          <input id="account-contact-first-name-input" name="first_name" type="text" />
+          <label for="account-contact-last-name-input">Last name</label>
+          <input id="account-contact-last-name-input" name="last_name" type="text" required />
+          <label for="account-contact-email-input">Email</label>
+          <input id="account-contact-email-input" name="email" type="email" />
+          <label for="account-contact-title-input">Title</label>
+          <input id="account-contact-title-input" name="title" type="text" />
+          <button type="submit">Save contact</button>
+          <button type="button" id="cancel-account-contact-form-btn">Cancel</button>
+        </form>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="js/accounts.js"></script>
+</body>
+</html>

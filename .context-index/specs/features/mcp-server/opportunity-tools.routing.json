@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "t1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Read-tool wrappers (list/get) fully coded in the plan, mirroring accounts.py/contacts.py's identical list/get functions exactly; 3 files in one module."
+    },
+    {
+      "task_id": "t2",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Create-tool with default-stage passthrough and 404/422 verbatim passthrough, fully coded, mirroring create_account's established payload-filtering pattern exactly; 4 files in one module."
+    },
+    {
+      "task_id": "t3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Update-tool mirroring update_account's **fields pattern verbatim; stage_name transition logic is crm-api's responsibility, not replicated here; 3 files in one module."
+    },
+    {
+      "task_id": "t4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 1,
+        "blast_radius": 0.8,
+        "novelty": 0.8
+      },
+      "rationale": "Delete-tool mirrors delete_account exactly; folds in a cross-cutting full-15-tool-surface BEH-9 check, a small step beyond pure single-tool mechanics; 4 files in one module."
+    }
+  ]
+}
