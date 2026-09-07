@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "seq": 13,
+  "seq": 15,
   "epics": [
     {
       "id": "epic-mkfmyt",
@@ -28,7 +28,8 @@
       "planRef": ".context-index/specs/features/crm-api/fixture-seeding.plan.md",
       "notes": "",
       "created": "2026-09-06T20:11:43.565Z",
-      "updated": "2026-09-06T20:11:43.565Z"
+      "updated": "2026-09-07T01:48:31.508Z",
+      "next_action": ""
     },
     {
       "id": "epic-upap4u",
