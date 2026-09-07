@@ -22,6 +22,7 @@ source-manifest:
     - tests/mcp_server/test_input_validation.py
     - tests/mcp_server/test_opportunity_tools.py
   computed-at: "2026-09-07T03:14:21.751Z"
+drift_detected: true
 ---
 
 # Live Spec: Opportunity MCP tools

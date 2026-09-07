@@ -47,3 +47,4 @@
 {"event":"validator_report","step":"validate","validator":"validate.check-9-transition-gates","severity":"warning","verdict":"PASS","notes":"SKIP — no transitions configured (implement-to-validate not declared).","ts":"2026-09-07T03:24:12.568Z"}
 {"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"4 warnings (gate-set-divergence, ci-config-missing, runner-unknown for lint, empty-command for integration-test), 0 errors.","ts":"2026-09-07T03:24:12.644Z"}
 {"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-07T03:25:01.886Z"}
+{"event":"code_drift_detected","drift_source":"mcp_server/app.py","drift_at":"2026-09-07T04:00:35.048Z","ts":"2026-09-07T04:00:35.048Z"}
