@@ -30,3 +30,9 @@
 {"event":"review_round","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t3","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T01:35:59.911Z"}
 {"event":"review_round","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t3","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-07T01:35:59.992Z"}
 {"event":"plan_task","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t3","status":"done","notes":"create/update/delete_account tools added, 81 tests pass","ts":"2026-09-07T01:36:00.074Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t4","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T01:36:07.332Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t4","status":"in_progress","notes":null,"ts":"2026-09-07T01:36:07.407Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t4","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-07T01:37:18.825Z"}
+{"event":"review_round","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t4","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T01:38:53.458Z"}
+{"event":"review_round","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t4","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-07T01:38:53.540Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t4","status":"done","notes":"list_contacts/get_contact tools added, 84 tests pass","ts":"2026-09-07T01:38:53.617Z"}
