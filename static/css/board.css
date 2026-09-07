@@ -192,3 +192,81 @@ dd {
   gap: 0.4rem;
   margin-top: 0.75rem;
 }
+
+#accounts-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+#accounts-list {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#accounts-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--paper-dim);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+}
+
+#accounts-list li button {
+  margin-left: 0.5rem;
+}
+
+.account-delete-error {
+  color: var(--stamp-red);
+  font-weight: 600;
+}
+
+details {
+  background: var(--paper-dim);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.5rem;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--ink-text-on-paper);
+}
+
+.account-contacts-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.account-contacts-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  background: var(--paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.4rem 0.6rem;
+}
+
+#account-form,
+#account-new-opportunity-form,
+#account-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}

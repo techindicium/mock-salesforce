@@ -57,3 +57,17 @@ def test_board_css_covers_deal_page_elements(tmp_path, monkeypatch):
 
     for selector in ("#deal-detail", "#contacts-list", "#edit-opportunity-form", "#contact-form"):
         assert selector in css
+
+
+def test_board_css_covers_accounts_page_elements(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    for selector in ("#accounts-list", ".account-delete-error", "#account-form", "#account-new-opportunity-form", "#account-contact-form"):
+        assert selector in css
