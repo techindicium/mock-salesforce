@@ -32,6 +32,7 @@ source-manifest:
     - tests/test_ui_board_page.py
     - tests/test_ui_deal_page.py
   computed-at: "2026-09-07T00:32:49.365Z"
+drift_detected: true
 ---
 
 # Live Spec: Deal detail page and CRUD forms
