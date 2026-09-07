@@ -20,3 +20,9 @@
 {"event":"review_round","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"1","stage":"spec-compliance","cycles":2,"ts":"2026-09-07T03:03:37.231Z"}
 {"event":"review_round","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"1","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-07T03:03:37.313Z"}
 {"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"1","status":"done","notes":"list_opportunities/get_opportunity (backfilled from prior session)","ts":"2026-09-07T03:03:37.387Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"t2","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:04:03.340Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"2","status":"in_progress","notes":null,"ts":"2026-09-07T03:04:09.072Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"t2","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-07T03:06:25.313Z"}
+{"event":"review_round","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"2","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T03:07:46.973Z"}
+{"event":"review_round","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"2","stage":"code-quality","cycles":1,"findings":0,"ts":"2026-09-07T03:07:47.054Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"2","status":"done","notes":"create_opportunity tool added","ts":"2026-09-07T03:07:47.130Z"}
