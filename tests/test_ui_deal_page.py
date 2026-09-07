@@ -107,4 +107,4 @@ def test_deal_html_has_sidebar_with_three_nav_items(tmp_path, monkeypatch):
 
     assert 'class="sidebar"' in html
     assert html.count('class="nav-item') == 3
-    assert 'class="nav-item active"' in html
+    assert html.count('class="nav-item active"') == 1
