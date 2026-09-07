@@ -126,6 +126,14 @@ def test_board_css_covers_contacts_page_elements(tmp_path, monkeypatch):
     assert "#contacts-page" in css
     assert "#all-contacts-list" in css
 
+    page_rule_start = css.index("#deal-detail,")
+    page_rule_end = css.index("}", page_rule_start)
+    page_rule = css[page_rule_start:page_rule_end]
+    assert "#contacts-page" in page_rule, (
+        "#contacts-page must share the page-container rule with "
+        "#deal-detail/#accounts-page, not duplicate the rule body"
+    )
+
     rule_start = css.index("#contacts-list li,")
     rule_end = css.index("}", rule_start)
     rule = css[rule_start:rule_end]
