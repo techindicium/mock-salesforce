@@ -107,3 +107,15 @@ def test_board_js_wires_create_opportunity_and_card_navigation(tmp_path, monkeyp
         assert "createOpportunity" in js
         assert "deal.html?id=" in js
         assert "from './form-errors.js'" in js
+
+
+def test_board_page_links_to_accounts_page(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        html = client.get("/").text
+        assert 'href="accounts.html"' in html

@@ -81,3 +81,15 @@ def test_deal_js_wires_contact_crud_and_list_refresh(tmp_path, monkeypatch):
         assert "deleteContact" in js
         assert "from './list-state.js'" in js
         assert "replaceList" in js
+
+
+def test_deal_page_links_to_accounts_page(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        html = client.get("/deal.html").text
+        assert 'href="accounts.html"' in html
