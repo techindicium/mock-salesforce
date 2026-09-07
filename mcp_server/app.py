@@ -100,6 +100,54 @@ def get_contact(id: int) -> dict:
     return contacts.get_contact(client, id)
 
 
+@mcp.tool()
+def create_contact(
+    account_id: int,
+    last_name: str,
+    first_name: str | None = None,
+    email: str | None = None,
+    phone: str | None = None,
+    title: str | None = None,
+) -> dict:
+    """Create a Contact under an Account. `account_id` and `last_name` are required."""
+    return contacts.create_contact(
+        client,
+        account_id=account_id,
+        last_name=last_name,
+        first_name=first_name,
+        email=email,
+        phone=phone,
+        title=title,
+    )
+
+
+@mcp.tool()
+def update_contact(
+    id: int,
+    first_name: str | None = None,
+    last_name: str | None = None,
+    email: str | None = None,
+    phone: str | None = None,
+    title: str | None = None,
+) -> dict:
+    """Update one or more mutable Contact fields."""
+    return contacts.update_contact(
+        client,
+        id,
+        first_name=first_name,
+        last_name=last_name,
+        email=email,
+        phone=phone,
+        title=title,
+    )
+
+
+@mcp.tool()
+def delete_contact(id: int) -> dict:
+    """Delete a Contact."""
+    return contacts.delete_contact(client, id)
+
+
 def main() -> None:
     mcp.run(transport="streamable-http")
 

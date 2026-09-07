@@ -2,7 +2,7 @@ import inspect
 
 import pytest
 
-from mcp_server.app import create_account
+from mcp_server.app import create_account, create_contact
 
 
 def test_create_account_missing_name_errors_before_any_http_call():
@@ -16,3 +16,13 @@ def test_create_account_missing_name_errors_before_any_http_call():
 def test_create_account_name_is_required_in_signature():
     sig = inspect.signature(create_account)
     assert sig.parameters["name"].default is inspect.Parameter.empty
+
+
+def test_create_contact_missing_account_id_errors_before_any_http_call():
+    with pytest.raises(TypeError):
+        create_contact(last_name="Doe")
+
+
+def test_create_contact_missing_last_name_errors_before_any_http_call():
+    with pytest.raises(TypeError):
+        create_contact(account_id=7)
