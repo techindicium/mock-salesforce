@@ -93,3 +93,18 @@ def test_deal_page_links_to_accounts_page(tmp_path, monkeypatch):
     with TestClient(app) as client:
         html = client.get("/deal.html").text
         assert 'href="accounts.html"' in html
+
+
+def test_deal_html_has_sidebar_with_three_nav_items(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        html = client.get("/deal.html").text
+
+    assert 'class="sidebar"' in html
+    assert html.count('class="nav-item') == 3
+    assert 'class="nav-item active"' in html

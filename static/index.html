@@ -6,39 +6,47 @@
   <link rel="stylesheet" href="css/board.css" />
 </head>
 <body>
-  <header>
-    <label for="account-switcher">Account</label>
-    <select id="account-switcher">
-      <option value="">All accounts</option>
-    </select>
-    <button id="new-opportunity-btn" type="button">+ New opportunity</button>
-    <a href="accounts.html">Accounts</a>
-  </header>
-  <form id="create-opportunity-form" hidden>
-    <div id="create-opportunity-error" class="form-error" role="alert"></div>
-    <label for="new-opp-account-select">Account</label>
-    <select id="new-opp-account-select" name="account_id" required></select>
-    <label for="new-opp-name-input">Name</label>
-    <input id="new-opp-name-input" name="name" type="text" required />
-    <label for="new-opp-close-date-input">Close date</label>
-    <input id="new-opp-close-date-input" name="close_date" type="date" required />
-    <button type="submit">Create</button>
-    <button type="button" id="cancel-create-opportunity-btn">Cancel</button>
-  </form>
-  <div id="error-banner" role="alert" hidden></div>
-  <main id="board">
-    <!-- One column per fixed stage_name, in STAGE_ORDER's order (see static/js/stages.js) -->
-    <section class="stage-column" data-stage-column="Prospecting"><h2>Prospecting</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Qualification"><h2>Qualification</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Needs Analysis"><h2>Needs Analysis</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Value Proposition"><h2>Value Proposition</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Id. Decision Makers"><h2>Id. Decision Makers</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Perception Analysis"><h2>Perception Analysis</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Proposal/Price Quote"><h2>Proposal/Price Quote</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Negotiation/Review"><h2>Negotiation/Review</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Closed Won"><h2>Closed Won</h2><div class="cards"></div></section>
-    <section class="stage-column" data-stage-column="Closed Lost"><h2>Closed Lost</h2><div class="cards"></div></section>
-  </main>
+  <div class="app-shell">
+    <nav class="sidebar" aria-label="Main navigation">
+      <a class="nav-item active" href="index.html" aria-current="page">Opportunities</a>
+      <a class="nav-item" href="accounts.html">Accounts</a>
+      <a class="nav-item" href="contacts.html">Contacts</a>
+    </nav>
+    <div class="app-main">
+      <header>
+        <label for="account-switcher">Account</label>
+        <select id="account-switcher">
+          <option value="">All accounts</option>
+        </select>
+        <button id="new-opportunity-btn" type="button">+ New opportunity</button>
+      </header>
+      <form id="create-opportunity-form" hidden>
+        <div id="create-opportunity-error" class="form-error" role="alert"></div>
+        <label for="new-opp-account-select">Account</label>
+        <select id="new-opp-account-select" name="account_id" required></select>
+        <label for="new-opp-name-input">Name</label>
+        <input id="new-opp-name-input" name="name" type="text" required />
+        <label for="new-opp-close-date-input">Close date</label>
+        <input id="new-opp-close-date-input" name="close_date" type="date" required />
+        <button type="submit">Create</button>
+        <button type="button" id="cancel-create-opportunity-btn">Cancel</button>
+      </form>
+      <div id="error-banner" role="alert" hidden></div>
+      <main id="board">
+        <!-- One column per fixed stage_name, in STAGE_ORDER's order (see static/js/stages.js) -->
+        <section class="stage-column" data-stage-column="Prospecting"><h2>Prospecting</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Qualification"><h2>Qualification</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Needs Analysis"><h2>Needs Analysis</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Value Proposition"><h2>Value Proposition</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Id. Decision Makers"><h2>Id. Decision Makers</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Perception Analysis"><h2>Perception Analysis</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Proposal/Price Quote"><h2>Proposal/Price Quote</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Negotiation/Review"><h2>Negotiation/Review</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Closed Won"><h2>Closed Won</h2><div class="cards"></div></section>
+        <section class="stage-column" data-stage-column="Closed Lost"><h2>Closed Lost</h2><div class="cards"></div></section>
+      </main>
+    </div>
+  </div>
   <script type="module" src="js/board.js"></script>
 </body>
 </html>
