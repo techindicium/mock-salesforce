@@ -97,3 +97,17 @@ def test_list_row_rule_sets_explicit_text_color(tmp_path, monkeypatch):
         "#contacts-list li / #accounts-list li must declare an explicit text "
         "color — do not rely on ancestor inheritance for contrast"
     )
+
+
+def test_board_css_defines_sidebar_shell(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    for selector in (".app-shell", ".sidebar", ".nav-item", ".nav-item:hover", ".nav-item.active", ".app-main"):
+        assert selector in css
