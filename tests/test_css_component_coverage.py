@@ -71,3 +71,29 @@ def test_board_css_covers_accounts_page_elements(tmp_path, monkeypatch):
 
     for selector in ("#accounts-list", ".account-delete-error", "#account-form", "#account-new-opportunity-form", "#account-contact-form"):
         assert selector in css
+
+
+def test_list_row_rule_sets_explicit_text_color(tmp_path, monkeypatch):
+    """#contacts-list li / #accounts-list li set a paper-dim background but must
+    also set their own text color rather than relying on ancestor inheritance —
+    on deal.html the row inherits dark text from its #contacts-section ancestor
+    (which does set color), but #accounts-list li has no such ancestor, so
+    without an explicit color it inherits body's light --paper-text-on-rail
+    (meant for text on the dark page background) onto a light paper-dim row,
+    producing near-invisible low-contrast text."""
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    rule_start = css.index("#contacts-list li,")
+    rule_end = css.index("}", rule_start)
+    rule = css[rule_start:rule_end]
+    assert "color:" in rule, (
+        "#contacts-list li / #accounts-list li must declare an explicit text "
+        "color — do not rely on ancestor inheritance for contrast"
+    )

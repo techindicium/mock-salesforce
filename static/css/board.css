@@ -185,6 +185,7 @@ dd {
   justify-content: space-between;
   gap: 0.5rem;
   background: var(--paper-dim);
+  color: var(--ink-text-on-paper);
   border: 1px solid var(--ink-line);
   border-radius: 2px;
   padding: 0.5rem 0.75rem;
@@ -221,6 +222,7 @@ dd {
 
 details {
   background: var(--paper-dim);
+  color: var(--ink-text-on-paper);
   border: 1px solid var(--ink-line);
   border-radius: 2px;
   padding: 0.4rem 0.6rem;
@@ -248,6 +250,7 @@ summary {
   justify-content: space-between;
   gap: 0.5rem;
   background: var(--paper);
+  color: var(--ink-text-on-paper);
   border: 1px solid var(--ink-line);
   border-radius: 2px;
   padding: 0.4rem 0.6rem;
