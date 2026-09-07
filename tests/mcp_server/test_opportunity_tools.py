@@ -1,6 +1,8 @@
 import httpx
+import pytest
 
 from mcp_server.client import CrmApiClient
+from mcp_server.errors import McpUpstreamError
 from mcp_server.tools import opportunities
 
 
@@ -44,3 +46,63 @@ def test_get_opportunity_calls_get_opportunities_id():
     client = make_client(handler)
     result = opportunities.get_opportunity(client, 9)
     assert result == {"id": 9, "name": "Deal"}
+
+
+def test_create_opportunity_posts_and_defaults_stage():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.method == "POST"
+        assert request.url.path == "/opportunities"
+        return httpx.Response(
+            201,
+            json={
+                "id": 1, "account_id": 7, "name": "Big Deal", "stage_name": "Prospecting",
+            },
+        )
+
+    client = make_client(handler)
+    result = opportunities.create_opportunity(
+        client, account_id=7, name="Big Deal", close_date="2026-12-01"
+    )
+    assert result == {
+        "id": 1, "account_id": 7, "name": "Big Deal", "stage_name": "Prospecting",
+    }
+
+
+def test_create_opportunity_passes_through_404_verbatim():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            404,
+            json={
+                "error": "OPPORTUNITY_ACCOUNT_NOT_FOUND",
+                "message": "No account with id 999999",
+            },
+        )
+
+    client = make_client(handler)
+    with pytest.raises(McpUpstreamError) as exc_info:
+        opportunities.create_opportunity(
+            client, account_id=999999, name="Big Deal", close_date="2026-12-01"
+        )
+    assert exc_info.value.status_code == 404
+    assert exc_info.value.error_code == "OPPORTUNITY_ACCOUNT_NOT_FOUND"
+    assert exc_info.value.message == "No account with id 999999"
+
+
+def test_create_opportunity_invalid_stage_name_passes_through_422_verbatim():
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            422,
+            json={
+                "error": "VALIDATION_ERROR",
+                "message": "stage_name must be one of the ten fixed values",
+            },
+        )
+
+    client = make_client(handler)
+    with pytest.raises(McpUpstreamError) as exc_info:
+        opportunities.create_opportunity(
+            client, account_id=1, name="Big Deal", close_date="2026-12-01",
+            stage_name="Bogus Stage",
+        )
+    assert exc_info.value.status_code == 422
+    assert exc_info.value.error_code == "VALIDATION_ERROR"

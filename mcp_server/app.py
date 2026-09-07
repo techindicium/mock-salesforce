@@ -162,6 +162,34 @@ def get_opportunity(id: int) -> dict:
     return opportunities.get_opportunity(client, id)
 
 
+@mcp.tool()
+def create_opportunity(
+    account_id: int,
+    name: str,
+    close_date: str,
+    stage_name: str | None = None,
+    amount: float | None = None,
+    probability: float | None = None,
+    opportunity_type: str | None = None,
+    lead_source: str | None = None,
+    next_step: str | None = None,
+) -> dict:
+    """Create an Opportunity under an Account. `account_id`, `name`, and
+    `close_date` are required; `stage_name` defaults to Prospecting."""
+    return opportunities.create_opportunity(
+        client,
+        account_id=account_id,
+        name=name,
+        close_date=close_date,
+        stage_name=stage_name,
+        amount=amount,
+        probability=probability,
+        opportunity_type=opportunity_type,
+        lead_source=lead_source,
+        next_step=next_step,
+    )
+
+
 def main() -> None:
     mcp.run(transport="streamable-http")
 
