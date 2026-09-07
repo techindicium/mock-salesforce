@@ -30,3 +30,6 @@
 {"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t11","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T03:48:54.178Z"}
 {"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","status":"in_progress","notes":"null","ts":"2026-09-07T03:49:54.166Z"}
 {"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-07T03:53:05.837Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T03:59:27.270Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","stage":"code-quality","cycles":2,"findings":2,"ts":"2026-09-07T03:59:27.356Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t1","status":"done","notes":"DEPLOY_VOLUME_NOT_WRITABLE guard added, 2 review cycles (code-quality fix)","ts":"2026-09-07T03:59:35.660Z"}
