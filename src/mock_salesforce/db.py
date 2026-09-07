@@ -10,7 +10,13 @@ def get_db_path() -> str:
 def get_connection() -> sqlite3.Connection:
     db_path = get_db_path()
     parent = Path(db_path).parent
-    if str(parent) and parent.exists() and not os.access(parent, os.W_OK):
+    # NOTE: os.access(parent, os.W_OK) is best-effort only. On Linux, a process
+    # running as root bypasses the permission bits entirely, so this check
+    # always reports "writable" for a root-run process regardless of the
+    # directory's actual mode. That is the default for the Docker images this
+    # feature packages (no non-root USER is set), so this guard does not
+    # protect against permission problems in that environment.
+    if str(parent) and (not parent.exists() or not os.access(parent, os.W_OK)):
         raise RuntimeError(
             f"[DEPLOY_VOLUME_NOT_WRITABLE] Cannot write to directory '{parent}' for "
             f"DB_PATH='{db_path}'. Check the volume mount is writable."
