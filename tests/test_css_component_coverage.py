@@ -15,7 +15,18 @@ def test_board_css_styles_buttons_and_form_error(tmp_path, monkeypatch):
 
     assert "button {" in css or "button{" in css
     assert ".form-error" in css
-    assert "var(--stamp-gold)" in css or "var(--ink-line)" in css
+
+    button_start = css.index("button {") if "button {" in css else css.index("button{")
+    button_end = css.index("}", button_start)
+    button_rule = css[button_start:button_end]
+    assert "var(--" in button_rule, "button rule must use a design token, not a hardcoded color"
+
+    form_error_start = css.index(".form-error")
+    form_error_end = css.index("}", form_error_start)
+    form_error_rule = css[form_error_start:form_error_end]
+    assert "var(--" in form_error_rule, (
+        ".form-error rule must use a design token, not a hardcoded color"
+    )
 
 
 def test_board_css_restyles_columns_and_cards(tmp_path, monkeypatch):
