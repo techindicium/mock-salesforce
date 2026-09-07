@@ -79,7 +79,7 @@ database directly.
 | list_accounts / create_account / update_account / delete_account tools | Wrap the Account CRUD endpoints | must-have | mvp | validated |
 | get_account tool | Wraps `GET /accounts/{id}` | must-have | mvp | validated |
 | list_contacts / get_contact / create_contact / update_contact / delete_contact tools | Wrap the Contact CRUD endpoints, with `account_id` filtering on list | must-have | mvp | validated |
-| list_opportunities / get_opportunity / create_opportunity / update_opportunity / delete_opportunity tools | Wrap the Opportunity CRUD endpoints, including stage transitions, with `account_id`/`stage_name` filtering on list | must-have | mvp | implementing |
+| list_opportunities / get_opportunity / create_opportunity / update_opportunity / delete_opportunity tools | Wrap the Opportunity CRUD endpoints, including stage transitions, with `account_id`/`stage_name` filtering on list | must-have | mvp | implemented |
 
 ## Deferred Capabilities
 

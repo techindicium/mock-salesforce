@@ -1,18 +1,27 @@
 ---
-partial_schema: spec@1
+partial_schema: implement@1
 charter: mcp-server
-status: review-passed
+status: implemented
 risk_level: low
 milestone: mvp
 revision: 1
 charter-revision: 2
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-07
 kind: behavioral
 depends-on:
   - .context-index/specs/features/crm-api/account-and-contact-management.spec.md
   - .context-index/specs/features/crm-api/opportunity-lifecycle.spec.md
   - .context-index/specs/features/mcp-server/account-contact-tools.spec.md
+source-manifest:
+  sha: "dbfb39b"
+  files:
+    - mcp_server/app.py
+    - mcp_server/tools/opportunities.py
+    - tests/mcp_server/test_connection_handling.py
+    - tests/mcp_server/test_input_validation.py
+    - tests/mcp_server/test_opportunity_tools.py
+  computed-at: "2026-09-07T03:14:21.751Z"
 ---
 
 # Live Spec: Opportunity MCP tools
