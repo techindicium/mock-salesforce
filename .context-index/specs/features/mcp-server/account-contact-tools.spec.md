@@ -1,13 +1,13 @@
 ---
 partial_schema: implement@1
 charter: mcp-server
-status: implemented
+status: validated
 risk_level: low
 milestone: mvp
 revision: 1
 charter-revision: 2
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-06
 kind: behavioral
 depends-on:
   - .context-index/specs/features/crm-api/account-and-contact-management.spec.md

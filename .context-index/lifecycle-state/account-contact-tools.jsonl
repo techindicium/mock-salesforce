@@ -44,3 +44,11 @@
 {"event":"plan_task","plan":".context-index/specs/features/mcp-server/account-contact-tools.plan.md","task_id":"t5","status":"done","notes":"create/update/delete_contact + full-surface BEH-9 check added, 92 tests pass","ts":"2026-09-07T01:44:24.656Z"}
 {"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-07T01:47:37.229Z"}
 {"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-07T01:48:13.690Z"}
+{"event":"lifecycle_step","step":"validate","status":"started","ts":"2026-09-07T01:58:00.490Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.5-source-manifest","severity":"warning","verdict":"PASS","notes":"manifest sha b8e1843 matches; all 13 files committed","ts":"2026-09-07T02:00:04.683Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1.6-code-drift","severity":"warning","verdict":"PASS","notes":"drift_detected=false","ts":"2026-09-07T02:00:04.769Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-8-boundaries","severity":"error","verdict":"PASS","notes":"SKIP: no boundary rules declared","ts":"2026-09-07T02:00:04.846Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-9-transition-gates","severity":"warning","verdict":"PASS","notes":"SKIP: no transitions configured","ts":"2026-09-07T02:00:04.925Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"4 warnings: gate-set-divergence, ci-config-missing, runner-unknown(lint), empty-command(integration-test); 0 errors","ts":"2026-09-07T02:00:05.001Z"}
+{"event":"validator_report","step":"validate","validator":"validate.check-1-quality-gates","severity":"error","verdict":"PASS","notes":"test (pytest): 92 passed; lint (ruff): clean","gate_outcomes":[{"id":"test","verdict":"pass","tier":"fast","command_sha":"22c558be4a77b6dd61531053c7225bd05830d00bfaf46f14f430e2f0a6a0cb2b"},{"id":"lint","verdict":"pass","tier":"fast","command_sha":"91ede4a4ad8774e8660350d4580b9e41c235ea911f560571d82f5d4f81aba16d"}],"manifest_sha":"b8e1843","ts":"2026-09-07T02:00:19.212Z"}
+{"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-07T02:01:00.410Z"}
