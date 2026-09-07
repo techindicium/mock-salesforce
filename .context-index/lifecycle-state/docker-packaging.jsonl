@@ -70,3 +70,7 @@
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:58:56.334Z"}
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:58:56.417Z"}
 {"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t9","status":"done","notes":"verified docker compose logs combines output from both crm-api and mcp-server","ts":"2026-09-07T04:58:56.493Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","status":"in_progress","notes":null,"ts":"2026-09-07T04:59:02.237Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:59:32.301Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:59:32.383Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t10","status":"done","notes":"README documents docker compose up/down/logs, PORT/MCP_PORT overrides, localhost scoping","ts":"2026-09-07T04:59:32.457Z"}
