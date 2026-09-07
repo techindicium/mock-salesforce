@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Accounts</title>
+  <link rel="stylesheet" href="css/board.css" />
+</head>
+<body>
+  <header>
+    <a href="index.html">&larr; Back to board</a>
+  </header>
+  <div id="error-banner" role="alert" hidden></div>
+  <main id="accounts-page">
+    <h1>Accounts</h1>
+    <ul id="accounts-list"></ul>
+    <button id="new-account-btn" type="button">New account</button>
+    <form id="account-form" hidden>
+      <input type="hidden" id="account-id-input" />
+      <div id="account-form-error" class="form-error" role="alert"></div>
+      <label for="account-name-input">Name</label>
+      <input id="account-name-input" name="name" type="text" required />
+      <label for="account-industry-input">Industry</label>
+      <input id="account-industry-input" name="industry" type="text" />
+      <label for="account-phone-input">Phone</label>
+      <input id="account-phone-input" name="phone" type="text" />
+      <button type="submit">Save account</button>
+      <button type="button" id="cancel-account-form-btn">Cancel</button>
+    </form>
+  </main>
+  <script type="module" src="js/accounts.js"></script>
+</body>
+</html>
