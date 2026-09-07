@@ -38,3 +38,8 @@
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:02:57.759Z"}
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:02:57.840Z"}
 {"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t2","status":"done","notes":"HOST env + GET /health added to mcp-server, both review stages passed cycle 1","ts":"2026-09-07T04:02:57.915Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","status":"in_progress","notes":"null","ts":"2026-09-07T04:03:10.201Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["sensitive-path","scope-mismatch"],"ts":"2026-09-07T04:04:15.931Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:05:40.206Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:05:40.290Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","status":"done","notes":"integration-test gate wired to tests/docker; both review stages passed cycle 1","ts":"2026-09-07T04:05:40.366Z"}
