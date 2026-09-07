@@ -1,18 +1,37 @@
 ---
-partial_schema: spec@1
+partial_schema: implement@1
 charter: crm-ui
-status: review-passed
+status: implemented
 risk_level: medium
 milestone: mvp
 revision: 1
 charter-revision: 2
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-07
 kind: behavioral
 depends-on:
   - .context-index/specs/features/crm-api/account-and-contact-management.spec.md
   - .context-index/specs/features/crm-api/opportunity-lifecycle.spec.md
   - .context-index/specs/features/crm-ui/pipeline-board-view.spec.md
+source-manifest:
+  sha: "6a4c2f4"
+  files:
+    - static/accounts.html
+    - static/deal.html
+    - static/index.html
+    - static/js/accounts.js
+    - static/js/api.js
+    - static/js/api.test.mjs
+    - static/js/board.js
+    - static/js/deal.js
+    - static/js/form-errors.js
+    - static/js/form-errors.test.mjs
+    - static/js/list-state.js
+    - static/js/list-state.test.mjs
+    - tests/test_ui_accounts_page.py
+    - tests/test_ui_board_page.py
+    - tests/test_ui_deal_page.py
+  computed-at: "2026-09-07T00:32:49.365Z"
 ---
 
 # Live Spec: Deal detail page and CRUD forms
@@ -100,13 +119,13 @@ depends-on:
 
 ## Acceptance Criteria
 
-- [ ] Opening a card renders the deal detail page with Opportunity + Account summary (BEH-1)
-- [ ] Deal detail page shows the related Account's Contacts as a read-only list (BEH-2)
-- [ ] Edit-opportunity form calls PATCH and re-renders with updated data (BEH-3)
-- [ ] Delete-opportunity calls DELETE and navigates back to the board (BEH-4)
-- [ ] Create-opportunity form calls POST and navigates to the new detail page (BEH-5)
-- [ ] Contact CRUD forms call the matching endpoint and refresh the related list (BEH-6)
-- [ ] Account CRUD forms call the matching endpoint, surfacing 409/ACCOUNT_HAS_DEPENDENTS inline (BEH-7)
-- [ ] Any API failure shows a visible message, never a silent failure or blank screen (BEH-8)
-- [ ] All quality gates pass (tests, lint)
-- [ ] No constitutional violations introduced
+- [x] Opening a card renders the deal detail page with Opportunity + Account summary (BEH-1)
+- [x] Deal detail page shows the related Account's Contacts as a read-only list (BEH-2)
+- [x] Edit-opportunity form calls PATCH and re-renders with updated data (BEH-3)
+- [x] Delete-opportunity calls DELETE and navigates back to the board (BEH-4)
+- [x] Create-opportunity form calls POST and navigates to the new detail page (BEH-5)
+- [x] Contact CRUD forms call the matching endpoint and refresh the related list (BEH-6)
+- [x] Account CRUD forms call the matching endpoint, surfacing 409/ACCOUNT_HAS_DEPENDENTS inline (BEH-7)
+- [x] Any API failure shows a visible message, never a silent failure or blank screen (BEH-8)
+- [x] All quality gates pass (tests, lint)
+- [x] No constitutional violations introduced

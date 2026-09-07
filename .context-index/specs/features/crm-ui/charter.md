@@ -82,10 +82,10 @@ with no separate server, no CORS configuration, and no runtime base-URL configur
 |-----------|-------------|----------|-------|--------|
 | Render pipeline board | Fetch Opportunities (optionally filtered by Account), group into the ten stage columns | must-have | mvp | validated |
 | Move opportunity between stages | Change an Opportunity's `stage_name` via the board (drag-and-drop or equivalent control) | must-have | mvp | validated |
-| Deal detail page | Full Opportunity detail, related Account summary, related Contacts list, edit/delete actions | must-have | mvp | implementing |
-| Create/edit/delete opportunity | Form/modal calling the API's Opportunity CRUD endpoints | must-have | mvp | implementing |
-| Create/edit/delete account | Form/modal calling the API's Account CRUD endpoints | must-have | mvp | implementing |
-| Create/edit/delete contact | Form/modal calling the API's Contact CRUD endpoints | must-have | mvp | implementing |
+| Deal detail page | Full Opportunity detail, related Account summary, related Contacts list, edit/delete actions | must-have | mvp | implemented |
+| Create/edit/delete opportunity | Form/modal calling the API's Opportunity CRUD endpoints | must-have | mvp | implemented |
+| Create/edit/delete account | Form/modal calling the API's Account CRUD endpoints | must-have | mvp | implemented |
+| Create/edit/delete contact | Form/modal calling the API's Contact CRUD endpoints | must-have | mvp | implemented |
 | Account switcher | List Accounts, select one to filter the board and detail views | should-have | mvp | validated |
 
 ## Deferred Capabilities
