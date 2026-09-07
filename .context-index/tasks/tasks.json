@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "seq": 16,
+  "seq": 17,
   "epics": [
     {
       "id": "epic-mkfmyt",
@@ -93,6 +93,15 @@
       "notes": "Add the 5 Opportunity MCP tools (list/get/create/update/delete_opportunity) to the mcp-server module, wrapping crm-api's Opportunity endpoints including stage_name transitions and account_id/stage_name list filters.",
       "created": "2026-09-07T02:09:58.772Z",
       "updated": "2026-09-07T02:09:58.772Z"
+    },
+    {
+      "id": "epic-c68yrl",
+      "title": "Docker packaging and run instructions",
+      "status": "open",
+      "planRef": ".context-index/specs/cross-cutting/docker-packaging.plan.md",
+      "notes": "Package crm-api (bundling crm-ui's static assets) and mcp-server into two Docker images wired by docker-compose.yml, with a named volume for SQLite, PORT-driven remapping, and written run instructions.",
+      "created": "2026-09-07T03:46:56.321Z",
+      "updated": "2026-09-07T03:46:56.321Z"
     }
   ],
   "issues": []

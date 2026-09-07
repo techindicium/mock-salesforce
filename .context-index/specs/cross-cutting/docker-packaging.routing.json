@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "_generated_by": "/adev:route — do not hand-edit; re-run instead.",
+  "entries": [
+    {
+      "task_id": "t1",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "DEPLOY_VOLUME_NOT_WRITABLE fully specified with test/impl given verbatim; follows existing errors.py convention; 1 file modified, mechanical."
+    },
+    {
+      "task_id": "t10",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "Charter Scope explicit, exact test assertions and content outline given; sibling README is style reference only; 1 modify + 1 new test file."
+    },
+    {
+      "task_id": "t11",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 0.6,
+        "novelty": 1
+      },
+      "rationale": "Postconditions fully specified with test given verbatim, no production code change; capstone sweep validates cross-module behavior spanning crm-api and mcp-server."
+    },
+    {
+      "task_id": "t2",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-6 fully specified with test/impl given verbatim; FastMCP custom_route docstring example is a direct precedent; 1 file modified."
+    },
+    {
+      "task_id": "t3",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 0.8,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.8,
+        "novelty": 1
+      },
+      "rationale": "Config wiring with exact toml/yaml snippets given; pre-scaffolded gates.yaml entry is direct precedent; 3 files touched, mechanical."
+    },
+    {
+      "task_id": "t4",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 0.8
+      },
+      "rationale": "BEH-1 partial fully specified with Dockerfile content given verbatim; sibling mock-jira Dockerfile is adapted precedent (not a curated in-repo sample); 3 new files, single module."
+    },
+    {
+      "task_id": "t5",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 1,
+        "novelty": 0.8
+      },
+      "rationale": "BEH-1/BEH-6/upstream-unreachable fully specified with Dockerfile content given verbatim; sibling mock-jira Dockerfile is adapted precedent; 2 new files, single module."
+    },
+    {
+      "task_id": "t6",
+      "selected_agent": "assisted-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.6,
+        "blast_radius": 0.6,
+        "novelty": 0.6
+      },
+      "rationale": "BEH-1/BEH-2 fully specified with compose YAML given verbatim, but orchestrates across both crm-api and mcp-server modules, combining healthcheck/depends_on/volume/port patterns in a new composition."
+    },
+    {
+      "task_id": "t7",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-3 fully specified with test given verbatim, no production code change; follows Task 6's compose-test pattern; 1 new file."
+    },
+    {
+      "task_id": "t8",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-4 fully specified with test given verbatim, no production code change; follows Task 6's compose-test pattern; 1 new file."
+    },
+    {
+      "task_id": "t9",
+      "selected_agent": "auto-agent",
+      "scores": {
+        "spec_completeness": 1,
+        "pattern_coverage": 0.8,
+        "blast_radius": 1,
+        "novelty": 1
+      },
+      "rationale": "BEH-5 fully specified with test given verbatim, no production code change; follows Task 6's compose-test pattern; 1 new file."
+    }
+  ]
+}
