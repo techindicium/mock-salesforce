@@ -217,6 +217,12 @@ def update_opportunity(
     )
 
 
+@mcp.tool()
+def delete_opportunity(id: int) -> dict:
+    """Delete an Opportunity."""
+    return opportunities.delete_opportunity(client, id)
+
+
 def main() -> None:
     mcp.run(transport="streamable-http")
 

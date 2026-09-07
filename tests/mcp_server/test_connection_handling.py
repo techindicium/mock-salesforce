@@ -49,6 +49,16 @@ ACCOUNT_AND_CONTACT_TOOL_CALLS = [
     lambda: app_module.delete_contact(id=1),
 ]
 
+OPPORTUNITY_TOOL_CALLS = [
+    lambda: app_module.list_opportunities(),
+    lambda: app_module.get_opportunity(id=1),
+    lambda: app_module.create_opportunity(
+        account_id=1, name="Deal", close_date="2026-12-01"
+    ),
+    lambda: app_module.update_opportunity(id=1, name="Deal"),
+    lambda: app_module.delete_opportunity(id=1),
+]
+
 
 def test_every_tool_surfaces_a_clear_connection_error(monkeypatch):
     def handler(request: httpx.Request) -> httpx.Response:
@@ -59,17 +69,18 @@ def test_every_tool_surfaces_a_clear_connection_error(monkeypatch):
     )
     monkeypatch.setattr(app_module, "client", unreachable_client)
 
-    for call in ACCOUNT_AND_CONTACT_TOOL_CALLS:
+    for call in ACCOUNT_AND_CONTACT_TOOL_CALLS + OPPORTUNITY_TOOL_CALLS:
         with pytest.raises(McpUpstreamUnreachableError):
             call()
 
 
-def test_all_ten_account_and_contact_tools_registered():
+def test_all_fifteen_tools_registered():
     tool_names = {t.name for t in app_module.mcp._tool_manager.list_tools()}
     expected = {
         "list_accounts", "get_account", "create_account", "update_account", "delete_account",
         "list_contacts", "get_contact", "create_contact", "update_contact", "delete_contact",
         "list_opportunities", "get_opportunity", "create_opportunity", "update_opportunity",
+        "delete_opportunity",
     }
     assert tool_names == expected
     # NOTE: if `mcp._tool_manager.list_tools()` doesn't match the installed

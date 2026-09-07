@@ -145,3 +145,14 @@ def test_update_opportunity_invalid_stage_name_passes_through_422_verbatim():
         opportunities.update_opportunity(client, 1, stage_name="Bogus Stage")
     assert exc_info.value.status_code == 422
     assert exc_info.value.error_code == "VALIDATION_ERROR"
+
+
+def test_delete_opportunity_confirms_success():
+    def handler(request: httpx.Request) -> httpx.Response:
+        assert request.method == "DELETE"
+        assert request.url.path == "/opportunities/1"
+        return httpx.Response(204)
+
+    client = make_client(handler)
+    result = opportunities.delete_opportunity(client, 1)
+    assert result == {"deleted": True, "id": 1}
