@@ -3,7 +3,7 @@ import os
 from mcp.server.fastmcp import FastMCP
 
 from mcp_server.client import CrmApiClient
-from mcp_server.tools import accounts
+from mcp_server.tools import accounts, contacts
 
 mcp = FastMCP("mock-salesforce-crm", port=int(os.environ.get("PORT", "8000")))
 client = CrmApiClient()
@@ -86,6 +86,18 @@ def delete_account(id: int) -> dict:
     """Delete an Account. Errors verbatim with 409/ACCOUNT_HAS_DEPENDENTS if it
     still has Contacts or Opportunities."""
     return accounts.delete_account(client, id)
+
+
+@mcp.tool()
+def list_contacts(account_id: int | None = None) -> list[dict]:
+    """List Contacts, optionally filtered by `account_id`."""
+    return contacts.list_contacts(client, account_id)
+
+
+@mcp.tool()
+def get_contact(id: int) -> dict:
+    """Fetch one Contact by id."""
+    return contacts.get_contact(client, id)
 
 
 def main() -> None:
