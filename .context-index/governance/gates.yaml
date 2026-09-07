@@ -41,7 +41,7 @@ gates:
     name: Integration Tests
     kind: deterministic
     tier: integration
-    command: ""                 # unwired — no integration-test suite yet; seed once one exists
+    command: [python3, -m, pytest, -q, tests/docker]
     scope: project
     required: true
     severity: error
