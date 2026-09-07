@@ -218,10 +218,15 @@ async function removeContact(id) {
   if (!window.confirm('Delete this contact?')) return;
   try {
     await deleteContact(id);
+  } catch (err) {
+    reportError('contacts', describeApiError('delete contact', err));
+    return;
+  }
+  try {
     await refreshContacts();
     reportSuccess('contacts');
   } catch (err) {
-    reportError('contacts', describeApiError('delete contact', err));
+    reportError('contacts', describeApiError('refresh contacts', err));
   }
 }
 

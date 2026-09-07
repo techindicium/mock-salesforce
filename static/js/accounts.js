@@ -232,6 +232,7 @@ async function renderAccountContacts(accountId, listEl) {
       }
       try {
         await renderAccountContacts(accountId, listEl);
+        reportSuccess('contacts');
       } catch (err) {
         reportError('contacts', describeApiError('refresh contacts', err));
       }
@@ -266,6 +267,7 @@ accountContactForm.addEventListener('submit', async (event) => {
   if (listEl) {
     try {
       await renderAccountContacts(accountId, listEl);
+      reportSuccess('contacts');
     } catch (err) {
       reportError('contacts', describeApiError('refresh contacts', err));
     }
