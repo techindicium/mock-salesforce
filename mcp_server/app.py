@@ -1,12 +1,23 @@
 import os
 
 from mcp.server.fastmcp import FastMCP
+from starlette.requests import Request
+from starlette.responses import JSONResponse
 
 from mcp_server.client import CrmApiClient
 from mcp_server.tools import accounts, contacts, opportunities
 
-mcp = FastMCP("mock-salesforce-crm", port=int(os.environ.get("PORT", "8000")))
+mcp = FastMCP(
+    "mock-salesforce-crm",
+    host=os.environ.get("HOST", "127.0.0.1"),
+    port=int(os.environ.get("PORT", "8000")),
+)
 client = CrmApiClient()
+
+
+@mcp.custom_route("/health", methods=["GET"])
+async def health_check(request: Request) -> JSONResponse:
+    return JSONResponse({"status": "ok"})
 
 
 @mcp.tool()
