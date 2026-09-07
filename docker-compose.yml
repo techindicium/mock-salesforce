@@ -1,0 +1,31 @@
+services:
+  crm-api:
+    build:
+      context: .
+      dockerfile: docker/crm-api/Dockerfile
+    ports:
+      - "127.0.0.1:${PORT:-8000}:${PORT:-8000}"
+    environment:
+      PORT: ${PORT:-8000}
+      DB_PATH: /data/mock_salesforce.db
+    volumes:
+      - mock_salesforce_db:/data
+
+  mcp-server:
+    build:
+      context: .
+      dockerfile: docker/mcp-server/Dockerfile
+    ports:
+      - "127.0.0.1:${MCP_PORT:-8001}:${MCP_PORT:-8001}"
+    environment:
+      # Same PORT convention as crm-api, but a separate host-level override
+      # variable (MCP_PORT) so remapping one service's published port never
+      # collides with the other's.
+      PORT: ${MCP_PORT:-8001}
+      API_BASE_URL: http://crm-api:${PORT:-8000}
+    depends_on:
+      crm-api:
+        condition: service_healthy
+
+volumes:
+  mock_salesforce_db:
