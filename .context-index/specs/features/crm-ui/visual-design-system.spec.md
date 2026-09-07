@@ -1,7 +1,7 @@
 ---
 partial_schema: spec@1
 charter: crm-ui
-status: review-passed
+status: implemented
 mode: refactor
 kind: refactor
 milestone: mvp
@@ -9,6 +9,13 @@ revision: 1
 charter-revision: 12
 created: 2026-09-07
 updated: 2026-09-07
+source-manifest:
+  sha: "40fb1c6"
+  files:
+    - static/css/board.css
+    - tests/test_css_component_coverage.py
+    - tests/test_css_design_tokens.py
+  computed-at: "2026-09-07T13:34:48.551Z"
 ---
 
 # Refactoring Spec: Port mock-jira's visual design system to crm-ui
