@@ -111,3 +111,25 @@ def test_board_css_defines_sidebar_shell(tmp_path, monkeypatch):
 
     for selector in (".app-shell", ".sidebar", ".nav-item", ".nav-item:hover", ".nav-item.active", ".app-main"):
         assert selector in css
+
+
+def test_board_css_covers_contacts_page_elements(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    assert "#contacts-page" in css
+    assert "#all-contacts-list" in css
+
+    rule_start = css.index("#contacts-list li,")
+    rule_end = css.index("}", rule_start)
+    rule = css[rule_start:rule_end]
+    assert "#all-contacts-list li" in rule, (
+        "#all-contacts-list li must share the same list-row treatment as "
+        "#contacts-list li / #accounts-list li, not render as a bare bullet list"
+    )
