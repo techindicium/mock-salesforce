@@ -89,3 +89,21 @@ def test_board_js_wires_the_per_source_error_state_module(tmp_path, monkeypatch)
         assert "setError" in response.text
         assert "clearError" in response.text
         assert "bannerMessage" in response.text
+
+
+def test_board_js_wires_create_opportunity_and_card_navigation(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        html = client.get("/").text
+        assert 'id="new-opportunity-btn"' in html
+        assert 'id="create-opportunity-form"' in html
+
+        js = client.get("/js/board.js").text
+        assert "createOpportunity" in js
+        assert "deal.html?id=" in js
+        assert "from './form-errors.js'" in js
