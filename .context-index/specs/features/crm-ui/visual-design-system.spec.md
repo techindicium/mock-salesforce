@@ -10,12 +10,12 @@ charter-revision: 12
 created: 2026-09-07
 updated: 2026-09-07
 source-manifest:
-  sha: "40fb1c6"
+  sha: "009ccc7"
   files:
     - static/css/board.css
     - tests/test_css_component_coverage.py
     - tests/test_css_design_tokens.py
-  computed-at: "2026-09-07T13:34:48.551Z"
+  computed-at: "2026-09-07T14:10:21.374Z"
 ---
 
 # Refactoring Spec: Port mock-jira's visual design system to crm-ui

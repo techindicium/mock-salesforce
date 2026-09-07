@@ -57,3 +57,15 @@ tier: quick
 ---
 
 > **Note for users comparing with historic reports:** Checks 3, 5, 6, 7, 10, 12, and 13 have been relocated by `check-set-restructure.spec.md`. See `/adev:review-specs`, `/adev:hygiene` Audit Pass 20, `/adev:reconcile`, and the post-validate heuristics hook.
+
+---
+
+## Addendum (2026-09-07, post-validation): real visual defect found and fixed
+
+The claim above under Check 11 — that headless DOM-structure checks and served-CSS-content checks during implementation substituted adequately for visual verification — was **incomplete**. Those checks confirm a selector exists and references a token; they cannot detect a *rendered contrast* defect, which is exactly the class of bug Check 11 exists to catch.
+
+Taking actual browser screenshots of the running app (`google-chrome --headless=new --screenshot`) after this report's PASS surfaced a real, user-visible bug: `#accounts-list li` and `.account-contacts-list li` set a light `paper-dim`/`paper` background but never set their own `color`, so they inherited `body`'s light `--paper-text-on-rail` (intended for text directly on the dark page background) — producing near-invisible, low-contrast account names on the Accounts page. The identical rule worked correctly on `deal.html` only by accident, because `#contacts-list li` there sits inside `#contacts-section`, which *does* set an explicit paper-text color, and CSS inheritance papered over the missing declaration.
+
+**Fixed in commit `8ec5942`:** explicit `color: var(--ink-text-on-paper)` added to `#contacts-list li, #accounts-list li`, `.account-contacts-list li`, and `details` (defensive, for future content). Added `tests/test_css_component_coverage.py::test_list_row_rule_sets_explicit_text_color`, which isolates the rule and asserts it declares `color:` explicitly rather than relying on ancestor inheritance — this is the kind of check that generalizes; it would have caught this class of bug pre-merge. Re-verified: 118/118 pytest, 46/46 node, ruff clean. Source manifest re-stamped to `sha: 009ccc7`.
+
+**Standing gap, not fixed here:** `governance/validate.yaml`'s `validate.check-11-visual-verification` is still `enabled: false` with a stale comment ("no UI — mock-salesforce is a headless HTTP API") that predates crm-ui's build. This gap is exactly why this defect reached a "validated" spec undetected by the automated pipeline. Recommend a follow-up: re-enable Check 11 now that crm-ui exists, once a Playwright MCP server is available in this environment (it was not available during this session — connection closed).
