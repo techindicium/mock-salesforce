@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "seq": 11,
+  "seq": 13,
   "epics": [
     {
       "id": "epic-mkfmyt",
@@ -65,6 +65,24 @@
       "notes": "",
       "created": "2026-09-06T23:22:33.002Z",
       "updated": "2026-09-06T23:22:33.002Z"
+    },
+    {
+      "id": "epic-czwp1s",
+      "title": "Account and Contact MCP tools",
+      "status": "open",
+      "planRef": ".context-index/specs/features/mcp-server/account-contact-tools.plan.md",
+      "notes": "Stand up the mcp-server module exposing all 10 Account/Contact CRUD operations as MCP tools over Streamable HTTP transport, wrapping crm-api's HTTP endpoints with schema validation, verbatim error passthrough, and clear connection-error handling.",
+      "created": "2026-09-07T01:10:06.278Z",
+      "updated": "2026-09-07T01:10:06.278Z"
+    },
+    {
+      "id": "epic-jl2913",
+      "title": "Account and Contact MCP tools",
+      "status": "open",
+      "planRef": ".context-index/specs/features/mcp-server/account-contact-tools.plan.md",
+      "notes": "",
+      "created": "2026-09-07T01:15:17.200Z",
+      "updated": "2026-09-07T01:15:17.200Z"
     }
   ],
   "issues": []

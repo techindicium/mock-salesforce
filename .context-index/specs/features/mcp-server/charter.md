@@ -76,9 +76,9 @@ database directly.
 
 | Capability | Description | Priority | Milestone | Status |
 |-----------|-------------|----------|-------|--------|
-| list_accounts / create_account / update_account / delete_account tools | Wrap the Account CRUD endpoints | must-have | mvp | review-passed |
-| get_account tool | Wraps `GET /accounts/{id}` | must-have | mvp | review-passed |
-| list_contacts / get_contact / create_contact / update_contact / delete_contact tools | Wrap the Contact CRUD endpoints, with `account_id` filtering on list | must-have | mvp | review-passed |
+| list_accounts / create_account / update_account / delete_account tools | Wrap the Account CRUD endpoints | must-have | mvp | planned |
+| get_account tool | Wraps `GET /accounts/{id}` | must-have | mvp | planned |
+| list_contacts / get_contact / create_contact / update_contact / delete_contact tools | Wrap the Contact CRUD endpoints, with `account_id` filtering on list | must-have | mvp | planned |
 | list_opportunities / get_opportunity / create_opportunity / update_opportunity / delete_opportunity tools | Wrap the Opportunity CRUD endpoints, including stage transitions, with `account_id`/`stage_name` filtering on list | must-have | mvp | review-passed |
 
 ## Deferred Capabilities
