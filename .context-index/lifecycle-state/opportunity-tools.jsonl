@@ -3,3 +3,16 @@
 {"event":"lifecycle_step","step":"review","status":"started","revision":1,"ts":"2026-09-05T12:34:09.079Z"}
 {"event":"reviewer_report","step":"review","reviewer":"skipped-per-risk-policy","severity":"warning","verdict":"PASS","notes":"Review skipped per risk policy (require_review: false)","ts":"2026-09-05T12:34:27.279Z"}
 {"event":"step_completed","step":"review","verdict":"PASS","revision":1,"ts":"2026-09-05T12:34:27.387Z"}
+{"event":"lifecycle_step","step":"plan","status":"started","ts":"2026-09-07T02:03:02.450Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":1,"status":"pending","notes":null,"ts":"2026-09-07T02:09:53.776Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":2,"status":"pending","notes":null,"ts":"2026-09-07T02:09:53.783Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":3,"status":"pending","notes":null,"ts":"2026-09-07T02:09:53.784Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":4,"status":"pending","notes":null,"ts":"2026-09-07T02:09:53.784Z"}
+{"event":"step_completed","step":"plan","verdict":"PASS","ts":"2026-09-07T02:10:03.359Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":1,"status":"pending","notes":"Opportunity read tools (list_opportunities, get_opportunity)","ts":"2026-09-07T02:10:43.787Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":2,"status":"pending","notes":"create_opportunity (default stage, 404/422 passthrough, schema validation)","ts":"2026-09-07T02:10:43.793Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":3,"status":"pending","notes":"update_opportunity (stage_name transitions, 422 passthrough)","ts":"2026-09-07T02:10:43.794Z"}
+{"event":"plan_task","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":4,"status":"pending","notes":"delete_opportunity + full-surface BEH-9/tool-count check","ts":"2026-09-07T02:10:43.794Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-07T02:13:06.755Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"t1","pass":"provisional","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T02:15:12.353Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/features/mcp-server/opportunity-tools.plan.md","task_id":"t1","pass":"final","depth":"full","source":"predicate-grant","floor_applied":true,"floor_legs":["scope-mismatch"],"ts":"2026-09-07T02:17:23.408Z"}

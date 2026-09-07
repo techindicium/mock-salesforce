@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "seq": 15,
+  "seq": 16,
   "epics": [
     {
       "id": "epic-mkfmyt",
@@ -84,6 +84,15 @@
       "notes": "",
       "created": "2026-09-07T01:15:17.200Z",
       "updated": "2026-09-07T01:15:17.200Z"
+    },
+    {
+      "id": "epic-2ak8b9",
+      "title": "Implementation Plan: Opportunity MCP tools",
+      "status": "open",
+      "planRef": ".context-index/specs/features/mcp-server/opportunity-tools.plan.md",
+      "notes": "Add the 5 Opportunity MCP tools (list/get/create/update/delete_opportunity) to the mcp-server module, wrapping crm-api's Opportunity endpoints including stage_name transitions and account_id/stage_name list filters.",
+      "created": "2026-09-07T02:09:58.772Z",
+      "updated": "2026-09-07T02:09:58.772Z"
     }
   ],
   "issues": []

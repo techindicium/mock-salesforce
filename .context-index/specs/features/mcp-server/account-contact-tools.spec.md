@@ -28,6 +28,7 @@ source-manifest:
     - tests/mcp_server/test_contact_tools.py
     - tests/mcp_server/test_input_validation.py
   computed-at: "2026-09-07T01:46:15.261Z"
+drift_detected: true
 ---
 
 # Live Spec: Account and Contact MCP tools
