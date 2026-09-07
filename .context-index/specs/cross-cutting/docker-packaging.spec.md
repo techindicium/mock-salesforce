@@ -1,13 +1,13 @@
 ---
-partial_schema: spec@1
+partial_schema: implement@1
 affects: [crm-api, crm-ui, mcp-server]
-status: review-passed
+status: implemented
 risk_level: low
 milestone: mvp
 revision: 1
 charter-revision: 2
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-07
 kind: behavioral
 mode: cross-cutting
 depends-on:
@@ -19,6 +19,30 @@ depends-on:
   - .context-index/specs/features/crm-ui/deal-detail-and-crud-forms.spec.md
   - .context-index/specs/features/mcp-server/account-contact-tools.spec.md
   - .context-index/specs/features/mcp-server/opportunity-tools.spec.md
+source-manifest:
+  sha: "c8730d1"
+  files:
+    - .context-index/governance/gates.yaml
+    - .dockerignore
+    - README.md
+    - docker-compose.yml
+    - docker/crm-api/Dockerfile
+    - docker/mcp-server/Dockerfile
+    - mcp_server/app.py
+    - pyproject.toml
+    - src/mock_salesforce/db.py
+    - tests/docker/test_clean_checkout_smoke.py
+    - tests/docker/test_combined_logs.py
+    - tests/docker/test_compose_build_and_startup.py
+    - tests/docker/test_crm_api_image.py
+    - tests/docker/test_gate_wiring.py
+    - tests/docker/test_mcp_server_image.py
+    - tests/docker/test_port_override.py
+    - tests/docker/test_volume_persistence.py
+    - tests/mcp_server/test_health_route.py
+    - tests/test_db_path_not_writable.py
+    - tests/test_readme_docker_instructions.py
+  computed-at: "2026-09-07T05:02:00.076Z"
 ---
 
 # Live Spec: Docker packaging and run instructions
@@ -100,12 +124,12 @@ depends-on:
 
 ## Acceptance Criteria
 
-- [ ] `docker compose build` produces exactly two images (BEH-1)
-- [ ] `docker compose up` starts crm-api first, then mcp-server once healthy (BEH-2)
-- [ ] The SQLite file survives a `docker compose down`/`up` cycle (BEH-3)
-- [ ] `PORT` overrides remap host ports with no code change (BEH-4)
-- [ ] `docker compose logs` shows both containers' combined output (BEH-5)
-- [ ] `mcp-server` exposes its own health route on its own port (BEH-6)
-- [ ] No port is exposed beyond localhost by default
-- [ ] All quality gates pass (tests, lint)
-- [ ] No constitutional violations introduced
+- [x] `docker compose build` produces exactly two images (BEH-1)
+- [x] `docker compose up` starts crm-api first, then mcp-server once healthy (BEH-2)
+- [x] The SQLite file survives a `docker compose down`/`up` cycle (BEH-3)
+- [x] `PORT` overrides remap host ports with no code change (BEH-4)
+- [x] `docker compose logs` shows both containers' combined output (BEH-5)
+- [x] `mcp-server` exposes its own health route on its own port (BEH-6)
+- [x] No port is exposed beyond localhost by default
+- [x] All quality gates pass (tests, lint)
+- [x] No constitutional violations introduced
