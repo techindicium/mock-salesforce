@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Contacts</title>
+  <link rel="stylesheet" href="css/board.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="sidebar" aria-label="Main navigation">
+      <a class="nav-item" href="index.html">Opportunities</a>
+      <a class="nav-item" href="accounts.html">Accounts</a>
+      <a class="nav-item active" href="contacts.html" aria-current="page">Contacts</a>
+    </nav>
+    <div class="app-main">
+      <div id="error-banner" role="alert" hidden></div>
+      <main id="contacts-page">
+        <h1>Contacts</h1>
+        <ul id="all-contacts-list"></ul>
+        <p id="contacts-empty-state" hidden>No contacts yet.</p>
+        <button id="new-contact-btn" type="button">New contact</button>
+        <form id="contact-form" hidden>
+          <input type="hidden" id="contact-id-input" />
+          <div id="contact-form-error" class="form-error" role="alert"></div>
+          <label for="contact-account-select">Account</label>
+          <select id="contact-account-select" name="account_id" required></select>
+          <label for="contact-first-name-input">First name</label>
+          <input id="contact-first-name-input" name="first_name" type="text" />
+          <label for="contact-last-name-input">Last name</label>
+          <input id="contact-last-name-input" name="last_name" type="text" required />
+          <label for="contact-email-input">Email</label>
+          <input id="contact-email-input" name="email" type="email" />
+          <label for="contact-title-input">Title</label>
+          <input id="contact-title-input" name="title" type="text" />
+          <button type="submit">Save contact</button>
+          <button type="button" id="cancel-contact-form-btn">Cancel</button>
+        </form>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="js/contacts.js"></script>
+</body>
+</html>

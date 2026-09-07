@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { buildOpportunitiesUrl, fetchAccounts, fetchOpportunities, resolveAccountName, ApiError, fetchOpportunity, fetchAccount, fetchContacts, createOpportunity,
+import { buildOpportunitiesUrl, buildContactsUrl, fetchAccounts, fetchOpportunities, resolveAccountName, ApiError, fetchOpportunity, fetchAccount, fetchContacts, createOpportunity,
   updateOpportunity, deleteOpportunity, deleteAccount, createContact, createAccount, updateAccount, updateContact, deleteContact } from './api.js';
 
 test('buildOpportunitiesUrl omits account_id when unset ("all accounts")', () => {
@@ -9,6 +9,14 @@ test('buildOpportunitiesUrl omits account_id when unset ("all accounts")', () =>
 
 test('buildOpportunitiesUrl includes account_id when set', () => {
   assert.equal(buildOpportunitiesUrl(42), '/opportunities?account_id=42');
+});
+
+test('buildContactsUrl omits account_id when unset ("all contacts")', () => {
+  assert.equal(buildContactsUrl(null), '/contacts');
+});
+
+test('buildContactsUrl includes account_id when set', () => {
+  assert.equal(buildContactsUrl(2), '/contacts?account_id=2');
 });
 
 test('fetchAccounts calls GET /accounts and returns the parsed JSON list', async (t) => {

@@ -2,6 +2,10 @@ export function buildOpportunitiesUrl(accountId) {
   return accountId == null ? '/opportunities' : `/opportunities?account_id=${accountId}`;
 }
 
+export function buildContactsUrl(accountId) {
+  return accountId == null ? '/contacts' : `/contacts?account_id=${accountId}`;
+}
+
 async function fetchJson(url, action) {
   let response;
   try {
@@ -97,7 +101,7 @@ export function fetchAccount(id) {
 }
 
 export function fetchContacts(accountId) {
-  return request(`/contacts?account_id=${accountId}`, undefined, 'load contacts');
+  return request(buildContactsUrl(accountId), undefined, 'load contacts');
 }
 
 export function createOpportunity(payload) {
