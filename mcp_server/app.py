@@ -3,7 +3,7 @@ import os
 from mcp.server.fastmcp import FastMCP
 
 from mcp_server.client import CrmApiClient
-from mcp_server.tools import accounts, contacts
+from mcp_server.tools import accounts, contacts, opportunities
 
 mcp = FastMCP("mock-salesforce-crm", port=int(os.environ.get("PORT", "8000")))
 client = CrmApiClient()
@@ -146,6 +146,20 @@ def update_contact(
 def delete_contact(id: int) -> dict:
     """Delete a Contact."""
     return contacts.delete_contact(client, id)
+
+
+@mcp.tool()
+def list_opportunities(
+    account_id: int | None = None, stage_name: str | None = None
+) -> list[dict]:
+    """List Opportunities, optionally filtered by `account_id` and/or `stage_name`."""
+    return opportunities.list_opportunities(client, account_id, stage_name)
+
+
+@mcp.tool()
+def get_opportunity(id: int) -> dict:
+    """Fetch one Opportunity by id."""
+    return opportunities.get_opportunity(client, id)
 
 
 def main() -> None:
