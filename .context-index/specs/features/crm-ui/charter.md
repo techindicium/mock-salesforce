@@ -1,8 +1,8 @@
 ---
 status: approved
 kind: feature
-revision: 12
-updated: 2026-09-06
+revision: 13
+updated: 2026-09-07
 ---
 
 # Feature Charter: crm-ui
@@ -87,6 +87,8 @@ with no separate server, no CORS configuration, and no runtime base-URL configur
 | Create/edit/delete account | Form/modal calling the API's Account CRUD endpoints | must-have | mvp | validated |
 | Create/edit/delete contact | Form/modal calling the API's Contact CRUD endpoints | must-have | mvp | validated |
 | Account switcher | List Accounts, select one to filter the board and detail views | should-have | mvp | validated |
+| Persistent sidebar navigation | Cross-page sidebar (Opportunities/Accounts/Contacts) present on all crm-ui pages, current page marked active | should-have | mvp | validated |
+| Standalone Contacts view | List every Contact across all Accounts with owning-Account name, full CRUD | should-have | mvp | validated |
 
 ## Deferred Capabilities
 

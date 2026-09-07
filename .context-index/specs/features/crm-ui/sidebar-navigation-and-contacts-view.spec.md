@@ -1,7 +1,7 @@
 ---
 partial_schema: spec@1
 charter: crm-ui
-status: implemented
+status: validated
 kind: behavioral
 charter-extension: true
 milestone: mvp
