@@ -22,12 +22,102 @@
   box-sizing: border-box;
 }
 
-body { margin: 0; font-family: system-ui, sans-serif; }
-header { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; border-bottom: 1px solid #ddd; }
-#error-banner { background: #fdecea; color: #611a15; padding: 0.5rem 1rem; }
-#error-banner[hidden] { display: none; }
-#board { display: flex; gap: 0.75rem; overflow-x: auto; padding: 1rem; align-items: flex-start; }
-.stage-column { flex: 0 0 220px; background: #f4f5f7; border-radius: 6px; padding: 0.5rem; }
-.stage-column h2 { font-size: 0.85rem; margin: 0 0 0.5rem; }
-.cards { display: flex; flex-direction: column; gap: 0.5rem; min-height: 40px; }
-.opportunity-card { background: #fff; border: 1px solid #ddd; border-radius: 4px; padding: 0.5rem; cursor: grab; }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, "Segoe UI", "Inter", system-ui, sans-serif;
+  color: var(--paper-text-on-rail);
+  background: var(--ink);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ink-line);
+}
+
+#error-banner,
+.form-error {
+  background: var(--paper);
+  color: var(--stamp-red);
+  border: 1px solid var(--stamp-red);
+  border-left: 4px solid var(--stamp-red);
+  border-radius: 2px;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+#error-banner[hidden] {
+  display: none;
+}
+
+#board {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 1rem;
+  align-items: flex-start;
+}
+
+.stage-column {
+  flex: 0 0 220px;
+  background: var(--rail);
+  border: 1px solid var(--ink-line);
+  border-radius: 3px;
+  padding: 0.5rem;
+}
+
+.stage-column h2 {
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+  color: var(--paper);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 40px;
+}
+
+.opportunity-card {
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  border: 1px solid var(--ink-line);
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: grab;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+  overflow-wrap: anywhere;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 2px;
+  border: 1px solid var(--ink-line);
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  background: var(--paper);
+  color: var(--ink-text-on-paper);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+button:hover {
+  background: var(--paper-dim);
+}
+
+input,
+select {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-text-on-paper);
+  background: var(--paper-dim);
+  border: 1px solid var(--ink-line);
+  border-radius: 2px;
+  padding: 0.4rem 0.5rem;
+}
