@@ -43,3 +43,14 @@
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:05:40.206Z"}
 {"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:05:40.290Z"}
 {"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t3","status":"done","notes":"integration-test gate wired to tests/docker; both review stages passed cycle 1","ts":"2026-09-07T04:05:40.366Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","status":"in_progress","notes":"null","ts":"2026-09-07T04:05:53.787Z"}
+{"event":"review_depth_resolved","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","pass":"final","depth":"quick","source":"predicate-grant","floor_applied":false,"floor_legs":[],"ts":"2026-09-07T04:08:10.090Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-07T04:29:46.462Z"}
+{"event":"lifecycle_step","step":"implement","status":"started","ts":"2026-09-07T04:52:01.549Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:52:43.850Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:52:43.931Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t4","status":"done","notes":"crm-api Dockerfile + .dockerignore added, bundles crm-ui static assets","ts":"2026-09-07T04:52:44.006Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","status":"in_progress","notes":null,"ts":"2026-09-07T04:53:44.397Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","stage":"spec-compliance","cycles":1,"ts":"2026-09-07T04:55:05.246Z"}
+{"event":"review_round","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","stage":"code-quality","cycles":1,"ts":"2026-09-07T04:55:05.328Z"}
+{"event":"plan_task","plan":".context-index/specs/cross-cutting/docker-packaging.plan.md","task_id":"t5","status":"done","notes":"mcp-server Dockerfile added; image builds, serves /health, no crash-loop on bad API_BASE_URL","ts":"2026-09-07T04:55:05.403Z"}
