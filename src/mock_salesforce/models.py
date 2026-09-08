@@ -7,6 +7,7 @@ AccountType = Literal["Customer", "Prospect", "Partner", "Other"]
 
 
 class AccountCreate(BaseModel):
+    external_id: Optional[str] = None
     name: str
     account_type: Optional[AccountType] = None
     industry: Optional[str] = None
@@ -26,6 +27,7 @@ class AccountOut(AccountCreate):
 
 
 class AccountUpdate(BaseModel):
+    external_id: Optional[str] = None
     name: Optional[str] = None
     account_type: Optional[AccountType] = None
     industry: Optional[str] = None

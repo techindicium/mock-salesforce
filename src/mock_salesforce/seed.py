@@ -1,4 +1,6 @@
 from datetime import datetime, timezone
+from pathlib import Path
+import json
 import sqlite3
 
 from pydantic import ValidationError
@@ -115,12 +117,13 @@ def _insert_account(conn: sqlite3.Connection, row: dict, now: str) -> int:
     cur = conn.execute(
         """
         INSERT INTO accounts (
-            name, account_type, industry, website, phone,
+            external_id, name, account_type, industry, website, phone,
             billing_street, billing_city, billing_state,
             billing_postal_code, billing_country, created_at, updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
+            payload.external_id,
             payload.name, payload.account_type, payload.industry, payload.website,
             payload.phone, payload.billing_street, payload.billing_city,
             payload.billing_state, payload.billing_postal_code, payload.billing_country,
@@ -181,6 +184,60 @@ def _insert_opportunity(conn: sqlite3.Connection, row: dict, account_id: int, no
     return cur.lastrowid
 
 
+_FIXTURE = Path(__file__).parent / "fixtures" / "seed.json"
+
+
+def _load_fixture() -> dict | None:
+    """The generated seed, when it has been written into this repo.
+
+    Written here at authoring time by the shared seed generator and committed, so nothing
+    outside this repository is opened at runtime. The fixture's own banner names the generator.
+    The literals above remain the fallback, which keeps this repo standing alone if the fixture
+    is ever absent.
+    """
+    if not _FIXTURE.exists():
+        return None
+    data = json.loads(_FIXTURE.read_text())
+    by_external = {a["external_id"]: a for a in data["accounts"]}
+
+    accounts = [
+        {
+            "external_id": a["external_id"],
+            "name": a["name"],
+            "account_type": a["account_type"],
+            "industry": a["industry"],
+            "billing_country": _COUNTRY_BY_REGION.get(a["region"]),
+        }
+        for a in data["accounts"]
+    ]
+    contacts = [
+        {
+            "account_name": by_external[c["account_external_id"]]["name"],
+            "first_name": c["first_name"],
+            "last_name": c["last_name"],
+            "email": c["email"],
+            "title": c["title"],
+        }
+        for c in data["contacts"]
+    ]
+    opportunities = [
+        {
+            "account_name": by_external[o["account_external_id"]]["name"],
+            "name": o["name"],
+            "stage_name": o["stage_name"],
+            "amount": o["amount"],
+            "close_date": o["close_date"],
+            "opportunity_type": o["opportunity_type"],
+        }
+        for o in data["opportunities"]
+    ]
+    return {"accounts": accounts, "contacts": contacts, "opportunities": opportunities}
+
+
+# The canon records a region; a CRM records a country. One per region is enough here.
+_COUNTRY_BY_REGION = {"EU": "Germany", "NA": "United States", "LATAM": "Brazil"}
+
+
 def seed_if_empty(
     conn: sqlite3.Connection,
     accounts: list[dict] | None = None,
@@ -190,6 +247,11 @@ def seed_if_empty(
     existing = conn.execute("SELECT COUNT(*) FROM accounts").fetchone()[0]
     if existing > 0:
         return
+    fixture = _load_fixture() if accounts is None else None
+    if fixture is not None:
+        accounts, contacts, opportunities = (
+            fixture["accounts"], fixture["contacts"], fixture["opportunities"],
+        )
     accounts = SEED_ACCOUNTS if accounts is None else accounts
     contacts = SEED_CONTACTS if contacts is None else contacts
     opportunities = SEED_OPPORTUNITIES if opportunities is None else opportunities

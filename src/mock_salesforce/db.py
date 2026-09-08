@@ -32,6 +32,10 @@ def init_db(conn: sqlite3.Connection) -> None:
         """
         CREATE TABLE IF NOT EXISTS accounts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            -- The account's identifier in the systems that own it. Salesforce keeps its own
+            -- integer primary key and carries the other system's key alongside, which is how
+            -- a real CRM is integrated.
+            external_id TEXT UNIQUE,
             name TEXT NOT NULL,
             account_type TEXT,
             industry TEXT,
