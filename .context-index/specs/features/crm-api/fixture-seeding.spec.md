@@ -63,14 +63,22 @@ drift_detected: true
   Chain") and `billing_country` derived from canon's Region column (`EU` → a real EU country,
   `NA` → `United States`, `LATAM` → a real LATAM country), all present and queryable immediately
   once startup completes — no placeholder or lorem-ipsum text in any field.
-- **BEH-2** — **When** the ten Accounts are seeded, **then** at least six of canon's twelve
+- **BEH-2** — **When** the ten named Accounts are seeded, **then** at least six of canon's twelve
   Named People (`course-shared/canon/company.md`'s Named People table) are seeded as Contacts,
   distributed across at least four different seeded Accounts, each with a plausible `title`
   derived from their canon Role — never an invented placeholder name.
-- **BEH-3** — **When** the ten Accounts are seeded, **then** at least one Opportunity is seeded
+- **BEH-3** — **When** the ten named Accounts are seeded, **then** at least one Opportunity is seeded
   under each Account, together spanning at least five of the ten fixed `stage_name` values
   (including at least one `Closed Won` and one `Closed Lost`), so a fresh pipeline board shows
   populated columns rather than one column with every card.
+
+**Why 412 and not ten.** The ten named Accounts carry the detail every other system keys on.
+The remaining 402 exist so that counting the CRM returns Portwell's real customer number. A
+document in the product repository claims "500+", and the exercise is to query the system of
+record rather than believe the document. With ten rows in the table there is nothing to find.
+The unelaborated Accounts carry no Contacts and no Opportunities, which is also true of most
+of a real book of business.
+
 - **BEH-4** — **When** the API starts against a database that already has at least one Account
   row, **then** it performs no seeding — existing data is left untouched, and restarting the
   process any number of times never creates a second copy.
@@ -81,7 +89,7 @@ drift_detected: true
 
 ### Postconditions
 
-- After a fresh-database startup, `GET /accounts` returns exactly ten Accounts,
+- After a fresh-database startup, `GET /accounts` returns exactly 412 Accounts, ten of them named in canon and the rest unelaborated,
   `GET /contacts` returns the seeded Contacts, and `GET /opportunities` returns the seeded
   Opportunities distributed across at least five distinct `stage_name` values.
 - Seeded Opportunity `next_step` text may narratively mention canon entities by their real ID
@@ -114,15 +122,15 @@ drift_detected: true
 
 | Task | Description | Estimated Complexity |
 |------|-------------|---------------------|
-| Write the seed fixture module | Hardcoded 10 Accounts, 6+ Contacts, 10+ Opportunities, values reconciled with canon at authoring time (this spec), committed only in this repo | medium |
+| Write the seed fixture module | 412 Accounts of which 10 are named, 6+ Contacts, 10+ Opportunities, values reconciled with canon at authoring time (this spec), committed only in this repo | medium |
 | Wire seed-on-empty-database startup check | Run the seed module once, only when no Account rows exist yet | small |
-| Idempotency test | Start twice against the same database file; assert exactly ten Accounts after both runs | small |
+| Idempotency test | Start twice against the same database file; assert exactly 412 Accounts after both runs | small |
 
 ## Acceptance Criteria
 
 - [x] Fresh-database startup seeds the ten canon-named Accounts, no placeholder text (BEH-1)
 - [x] At least six canon Named People are seeded as Contacts across 4+ Accounts (BEH-2)
-- [x] At least one Opportunity per Account, spanning 5+ stages incl. Closed Won/Lost (BEH-3)
+- [x] At least one Opportunity per named Account, spanning 5+ stages incl. Closed Won/Lost (BEH-3)
 - [x] Restarting against an already-seeded database creates no duplicate rows (BEH-4)
 - [x] No seeded id is ever formatted as a canon-reserved scheme (BEH-5)
 - [x] The seed module contains no runtime file read outside this repository

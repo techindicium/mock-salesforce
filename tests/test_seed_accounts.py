@@ -8,22 +8,24 @@ EXPECTED_NAMES = {
 }
 
 
-def test_seed_if_empty_seeds_ten_canonical_accounts(tmp_path, monkeypatch):
+def test_seed_if_empty_seeds_the_whole_book_including_the_ten_named(tmp_path, monkeypatch):
     monkeypatch.setenv("DB_PATH", str(tmp_path / "seed.db"))
     conn = get_connection()
     init_db(conn)
     seed_if_empty(conn)
     rows = conn.execute("SELECT * FROM accounts").fetchall()
     conn.close()
-    assert len(rows) == 10
-    assert {r["name"] for r in rows} == EXPECTED_NAMES
+    assert len(rows) == 412  # the whole book; ten of them are named in canon
+    assert EXPECTED_NAMES.issubset({r["name"] for r in rows})
     for row in rows:
         assert row["industry"] == "Logistics and Supply Chain"
         assert row["billing_country"]  # non-empty, no placeholder
         assert row["billing_country"] not in ("TBD", "Lorem", "")
 
 
-def test_seed_accounts_constant_has_ten_rows_with_valid_countries():
+def test_seed_accounts_fallback_constant_has_the_ten_named_with_valid_countries():
+    # SEED_ACCOUNTS is the in-module fallback used when the generated fixture is absent. It
+    # carries the ten named accounts only; the full book lives in the fixture.
     assert len(SEED_ACCOUNTS) == 10
     eu_countries = {"Germany", "Sweden", "Netherlands", "Denmark"}
     na_countries = {"United States"}
