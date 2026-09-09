@@ -26,8 +26,8 @@ Docker network.
 
 **Ports:**
 
-- `crm-api` is published at `http://localhost:8000`. Override the host port with `PORT=<port>`.
-- `mcp-server` is published at `http://localhost:8001`. Override the host port with
+- `crm-api` is published at `http://localhost:8020`. Override the host port with `PORT=<port>`.
+- `mcp-server` is published at `http://localhost:8021`. Override the host port with
   `MCP_PORT=<port>`.
 - Neither port is exposed beyond `localhost` by default.
 
@@ -42,7 +42,7 @@ PORT=9000 MCP_PORT=9001 docker compose up
 
 ```bash
 docker compose ps                        # check container health
-curl http://localhost:8000/health        # or probe crm-api directly
+curl http://localhost:8020/health        # or probe crm-api directly
 docker compose logs -f                   # combined, live logs from both services
 ```
 

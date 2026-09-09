@@ -42,7 +42,7 @@ materialized `governance/gates.yaml` (domain: software, source: project).
 - Check 1b (integration tier):
   - `integration-test` (`python3 -m pytest -q tests/docker`): PASS — 9 passed, 1 warning,
     61.55s. Run with `PORT=8100`/`MCP_PORT=8101` to avoid colliding with the already-running
-    mock-jira stack on 8000/8001 (tests read these as overridable env vars with 8000/8001
+    mock-jira stack on 8010/8011 (tests read these as overridable env vars with 8000/8001
     defaults). `docker ps`/`docker compose ps` confirmed no leftover containers after the run.
 - Check 1c (e2e tier): no gates configured, skipped.
 

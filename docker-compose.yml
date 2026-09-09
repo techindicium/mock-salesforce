@@ -4,9 +4,9 @@ services:
       context: .
       dockerfile: docker/crm-api/Dockerfile
     ports:
-      - "127.0.0.1:${PORT:-8000}:${PORT:-8000}"
+      - "127.0.0.1:${PORT:-8020}:${PORT:-8020}"
     environment:
-      PORT: ${PORT:-8000}
+      PORT: ${PORT:-8020}
       DB_PATH: /data/mock_salesforce.db
     volumes:
       - mock_salesforce_db:/data
@@ -16,13 +16,13 @@ services:
       context: .
       dockerfile: docker/mcp-server/Dockerfile
     ports:
-      - "127.0.0.1:${MCP_PORT:-8001}:${MCP_PORT:-8001}"
+      - "127.0.0.1:${MCP_PORT:-8021}:${MCP_PORT:-8021}"
     environment:
       # Same PORT convention as crm-api, but a separate host-level override
       # variable (MCP_PORT) so remapping one service's published port never
       # collides with the other's.
-      PORT: ${MCP_PORT:-8001}
-      API_BASE_URL: http://crm-api:${PORT:-8000}
+      PORT: ${MCP_PORT:-8021}
+      API_BASE_URL: http://crm-api:${PORT:-8020}
     depends_on:
       crm-api:
         condition: service_healthy

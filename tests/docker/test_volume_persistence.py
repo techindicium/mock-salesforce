@@ -11,8 +11,8 @@ pytestmark = pytest.mark.skipif(shutil.which("docker") is None, reason="docker C
 
 # Honors a PORT override the same way docker-compose.yml does, so this suite
 # never collides with another stack already bound to the default host port
-# 8000 in the environment running the tests.
-PORT = os.environ.get("PORT", "8000")
+# 8020 in the environment running the tests.
+PORT = os.environ.get("PORT", "8020")
 
 
 @pytest.fixture(autouse=True)

@@ -9,8 +9,8 @@ pytestmark = pytest.mark.skipif(shutil.which("docker") is None, reason="docker C
 
 # Honors PORT/MCP_PORT overrides the same way docker-compose.yml does, so this
 # suite never collides with another stack already bound to the default host
-# ports (8000/8001) in the environment running the tests.
-ENV = {**os.environ, "PORT": os.environ.get("PORT", "8000"), "MCP_PORT": os.environ.get("MCP_PORT", "8001")}
+# ports (8020/8021) in the environment running the tests.
+ENV = {**os.environ, "PORT": os.environ.get("PORT", "8020"), "MCP_PORT": os.environ.get("MCP_PORT", "8021")}
 
 
 @pytest.fixture(autouse=True)
