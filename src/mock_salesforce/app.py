@@ -7,6 +7,7 @@ from mock_salesforce.contacts import router as contacts_router
 from mock_salesforce.db import get_connection, init_db
 from mock_salesforce.errors import http_exception_handler, validation_exception_handler
 from mock_salesforce.health import router as health_router
+from mock_salesforce.leads import router as leads_router
 from mock_salesforce.opportunities import router as opportunities_router
 from mock_salesforce.seed import seed_if_empty
 from mock_salesforce.static import router as static_router
@@ -17,6 +18,7 @@ app.add_exception_handler(StarletteHTTPException, http_exception_handler)
 app.include_router(accounts_router)
 app.include_router(contacts_router)
 app.include_router(opportunities_router)
+app.include_router(leads_router)
 app.include_router(health_router)
 app.include_router(static_router)
 

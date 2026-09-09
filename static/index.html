@@ -2,15 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Pipeline Board</title>
+  <title>SalesStrength | Pipeline Board</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/board.css" />
 </head>
 <body>
+  <header class="global-header">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 40" aria-hidden="true">
+        <path d="M20 32c-6.6 0-12-5.4-12-12 0-6.1 4.6-11.1 10.5-11.9C20.7 4 25.9 1 32 1c8.2 0 15 6.1 15.9 14C53.4 16.1 58 21.1 58 27c0 6.6-5.4 12-12 12H20z" fill="#0176d3"/>
+      </svg>
+      <span class="brand-name">SalesStrength</span>
+    </div>
+    <input class="global-search" type="search" placeholder="Search..." aria-label="Search" disabled />
+    <div class="header-utilities">
+      <button id="help-btn" type="button" class="help-btn" aria-haspopup="true" aria-expanded="false" aria-label="Help for this page">?</button>
+      <span class="avatar" aria-hidden="true">SS</span>
+      <div id="help-panel" class="help-panel" hidden role="dialog" aria-label="Help">
+        <h2 id="help-panel-title"></h2>
+        <p id="help-panel-body"></p>
+        <hr />
+        <h3>Navigating SalesStrength</h3>
+        <ul id="help-nav-overview"></ul>
+        <a class="help-center-link" href="help.html">Visit the Help Center</a>
+      </div>
+    </div>
+  </header>
   <div class="app-shell">
     <nav class="sidebar" aria-label="Main navigation">
       <a class="nav-item active" href="index.html" aria-current="page">Opportunities</a>
       <a class="nav-item" href="accounts.html">Accounts</a>
       <a class="nav-item" href="contacts.html">Contacts</a>
+      <a class="nav-item" href="leads.html">Leads</a>
     </nav>
     <div class="app-main">
       <header>
@@ -48,5 +71,6 @@
     </div>
   </div>
   <script type="module" src="js/board.js"></script>
+  <script type="module" src="js/help.js"></script>
 </body>
 </html>

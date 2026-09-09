@@ -17,7 +17,7 @@ def test_seeded_ids_never_match_canon_reserved_schemes(tmp_path, monkeypatch):
     conn = get_connection()
     init_db(conn)
     seed_if_empty(conn)
-    for table in ("accounts", "contacts", "opportunities"):
+    for table in ("accounts", "contacts", "opportunities", "leads"):
         for row in conn.execute(f"SELECT id FROM {table}").fetchall():
             assert not RESERVED_ID_PATTERN.match(str(row["id"]))
     conn.close()

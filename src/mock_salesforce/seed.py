@@ -6,7 +6,7 @@ import sqlite3
 from pydantic import ValidationError
 
 from mock_salesforce.db import get_db_path
-from mock_salesforce.models import AccountCreate, ContactCreate, OpportunityCreate
+from mock_salesforce.models import AccountCreate, ContactCreate, LeadCreate, OpportunityCreate
 
 CLOSED_STAGES = {"Closed Won", "Closed Lost"}
 
@@ -104,6 +104,49 @@ SEED_OPPORTUNITIES: list[dict] = [
      "probability": 35, "opportunity_type": "New Business", "lead_source": "Other",
      "next_step": "Draft trial success criteria"},
 ]
+
+
+SEED_LEADS: list[dict] = [
+    {"first_name": "Marta", "last_name": "Oliveira", "company": "Cascata Analytics",
+     "title": "Ops Manager", "email": "marta.oliveira@cascataanalytics.com",
+     "lead_source": "Web", "status": "New", "rating": "Warm"},
+    {"first_name": "Dev", "last_name": "Reddy", "company": "Palisade Freightworks",
+     "title": "Director of Operations", "email": "dev.reddy@palisadefreightworks.com",
+     "lead_source": "Partner Referral", "status": "Contacted", "rating": "Hot"},
+    {"first_name": "Ines", "last_name": "Coelho", "company": "Marisol Storage Co",
+     "title": "Warehouse Lead", "email": "ines.coelho@marisolstorage.com",
+     "lead_source": "Phone Inquiry", "status": "New", "rating": "Cold"},
+    {"first_name": "Tomas", "last_name": "Berg", "company": "Nordvik Parcel",
+     "title": "VP Logistics", "email": "tomas.berg@nordvikparcel.com",
+     "lead_source": "Web", "status": "Qualified", "rating": "Hot"},
+    {"first_name": "Aline", "last_name": "Dubois", "company": "Fontaine Cold Storage",
+     "title": "Procurement Lead", "email": "aline.dubois@fontainecoldstorage.com",
+     "lead_source": "Other", "status": "Unqualified", "rating": "Cold"},
+]
+
+
+def _insert_lead(conn: sqlite3.Connection, row: dict, now: str) -> int:
+    try:
+        payload = LeadCreate(**row)
+    except ValidationError as exc:
+        raise SeedDataError(
+            "SEED_DATA_INVALID",
+            f"Lead row '{row.get('last_name', '<unknown>')}' failed validation: {exc}",
+        ) from exc
+    cur = conn.execute(
+        """
+        INSERT INTO leads (
+            first_name, last_name, company, title, email, phone,
+            lead_source, status, rating, created_at, updated_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            payload.first_name, payload.last_name, payload.company, payload.title,
+            payload.email, payload.phone, payload.lead_source, payload.status,
+            payload.rating, now, now,
+        ),
+    )
+    return cur.lastrowid
 
 
 def _insert_account(conn: sqlite3.Connection, row: dict, now: str) -> int:
@@ -243,6 +286,7 @@ def seed_if_empty(
     accounts: list[dict] | None = None,
     contacts: list[dict] | None = None,
     opportunities: list[dict] | None = None,
+    leads: list[dict] | None = None,
 ) -> None:
     existing = conn.execute("SELECT COUNT(*) FROM accounts").fetchone()[0]
     if existing > 0:
@@ -255,6 +299,7 @@ def seed_if_empty(
     accounts = SEED_ACCOUNTS if accounts is None else accounts
     contacts = SEED_CONTACTS if contacts is None else contacts
     opportunities = SEED_OPPORTUNITIES if opportunities is None else opportunities
+    leads = SEED_LEADS if leads is None else leads
     now = datetime.now(timezone.utc).isoformat()
     account_ids: dict[str, int] = {}
     try:
@@ -264,6 +309,8 @@ def seed_if_empty(
             _insert_contact(conn, row, account_ids[row["account_name"]], now)
         for row in opportunities:
             _insert_opportunity(conn, row, account_ids[row["account_name"]], now)
+        for row in leads:
+            _insert_lead(conn, row, now)
         conn.commit()
     except sqlite3.OperationalError as exc:
         raise SeedDataError(

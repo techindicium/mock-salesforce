@@ -97,3 +97,4 @@
 {"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"2 warnings: no CI config; lint runner unidentifiable for collection check. 0 errors.","ts":"2026-09-07T11:13:41.560Z"}
 {"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-07T11:13:45.645Z"}
 {"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-07T12:20:32.258Z"}
+{"event":"code_drift_detected","drift_source":"src/mock_salesforce/db.py","drift_at":"2026-09-09T11:09:58.717Z","ts":"2026-09-09T11:09:58.718Z"}

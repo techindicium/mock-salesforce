@@ -8,13 +8,16 @@ def test_openapi_lists_all_mounted_routes(client):
     assert "/health" in paths
     assert "get" in paths["/health"]
 
-    for path in ("/accounts", "/contacts", "/opportunities"):
+    for path in ("/accounts", "/contacts", "/opportunities", "/leads"):
         assert path in paths
         assert "get" in paths[path]
         assert "post" in paths[path]
 
-    for path in ("/accounts/{account_id}", "/contacts/{contact_id}", "/opportunities/{opportunity_id}"):
+    for path in ("/accounts/{account_id}", "/contacts/{contact_id}", "/opportunities/{opportunity_id}", "/leads/{lead_id}"):
         assert path in paths
+
+    assert "/leads/{lead_id}/convert" in paths
+    assert "post" in paths["/leads/{lead_id}/convert"]
 
     # the static-serving catch-all is infrastructure, not a documented API route
     assert "/{full_path}" not in paths

@@ -14,7 +14,7 @@ def test_contacts_html_has_sidebar_and_list_container(tmp_path, monkeypatch):
         response = client.get("/contacts.html")
         assert response.status_code == 200
         html = response.text
-        assert html.count('class="nav-item') == 3
+        assert html.count('class="nav-item') == 4
         assert html.count('class="nav-item active"') == 1
         assert 'id="contacts-page"' in html
         assert 'id="all-contacts-list"' in html

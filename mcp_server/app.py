@@ -5,7 +5,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse
 
 from mcp_server.client import CrmApiClient
-from mcp_server.tools import accounts, contacts, opportunities
+from mcp_server.tools import accounts, contacts, leads, opportunities
 
 mcp = FastMCP(
     "mock-salesforce-crm",
@@ -232,6 +232,107 @@ def update_opportunity(
 def delete_opportunity(id: int) -> dict:
     """Delete an Opportunity."""
     return opportunities.delete_opportunity(client, id)
+
+
+@mcp.tool()
+def list_leads(status: str | None = None, converted: bool | None = None) -> list[dict]:
+    """List Leads, optionally filtered by `status` and/or `converted`."""
+    return leads.list_leads(client, status, converted)
+
+
+@mcp.tool()
+def get_lead(id: int) -> dict:
+    """Fetch one Lead by id."""
+    return leads.get_lead(client, id)
+
+
+@mcp.tool()
+def create_lead(
+    last_name: str,
+    company: str,
+    first_name: str | None = None,
+    title: str | None = None,
+    email: str | None = None,
+    phone: str | None = None,
+    lead_source: str | None = None,
+    status: str | None = None,
+    rating: str | None = None,
+) -> dict:
+    """Create a Lead. `last_name` and `company` are required. `status` defaults to
+    New; `rating` is one of Hot/Warm/Cold when given."""
+    return leads.create_lead(
+        client,
+        last_name=last_name,
+        company=company,
+        first_name=first_name,
+        title=title,
+        email=email,
+        phone=phone,
+        lead_source=lead_source,
+        status=status,
+        rating=rating,
+    )
+
+
+@mcp.tool()
+def update_lead(
+    id: int,
+    first_name: str | None = None,
+    last_name: str | None = None,
+    company: str | None = None,
+    title: str | None = None,
+    email: str | None = None,
+    phone: str | None = None,
+    lead_source: str | None = None,
+    status: str | None = None,
+    rating: str | None = None,
+) -> dict:
+    """Update one or more mutable Lead fields — e.g. `status`/`rating` while
+    qualifying it. Rejected with 409 once the Lead is converted."""
+    return leads.update_lead(
+        client,
+        id,
+        first_name=first_name,
+        last_name=last_name,
+        company=company,
+        title=title,
+        email=email,
+        phone=phone,
+        lead_source=lead_source,
+        status=status,
+        rating=rating,
+    )
+
+
+@mcp.tool()
+def delete_lead(id: int) -> dict:
+    """Delete a Lead. Rejected with 409/LEAD_ALREADY_CONVERTED once converted."""
+    return leads.delete_lead(client, id)
+
+
+@mcp.tool()
+def convert_lead(
+    id: int,
+    account_id: int | None = None,
+    contact_id: int | None = None,
+    create_opportunity: bool = False,
+    opportunity_name: str | None = None,
+    opportunity_close_date: str | None = None,
+) -> dict:
+    """Convert a Lead into an Account + Contact, and optionally an Opportunity.
+    Without `account_id`/`contact_id`, creates a new Account/Contact from the
+    Lead's own fields; when given, attaches to the existing records instead
+    (`contact_id` must belong to `account_id`). Set `create_opportunity=True`
+    (with `opportunity_close_date`) to also create an Opportunity."""
+    return leads.convert_lead(
+        client,
+        id,
+        account_id=account_id,
+        contact_id=contact_id,
+        create_opportunity=create_opportunity,
+        opportunity_name=opportunity_name,
+        opportunity_close_date=opportunity_close_date,
+    )
 
 
 def main() -> None:

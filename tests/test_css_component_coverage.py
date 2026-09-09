@@ -141,3 +141,77 @@ def test_board_css_covers_contacts_page_elements(tmp_path, monkeypatch):
         "#all-contacts-list li must share the same list-row treatment as "
         "#contacts-list li / #accounts-list li, not render as a bare bullet list"
     )
+
+
+def test_board_css_covers_leads_page_elements(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    assert "#leads-page" in css
+    assert "#lead-form" in css
+
+    page_rule_start = css.index("#deal-detail,")
+    page_rule_end = css.index("}", page_rule_start)
+    page_rule = css[page_rule_start:page_rule_end]
+    assert "#leads-page" in page_rule, (
+        "#leads-page must share the page-container rule with "
+        "#deal-detail/#accounts-page/#contacts-page, not duplicate the rule body"
+    )
+
+    rule_start = css.index("#contacts-list li,")
+    rule_end = css.index("}", rule_start)
+    rule = css[rule_start:rule_end]
+    assert "#leads-list li" in rule, (
+        "#leads-list li must share the same list-row treatment as the other list views, "
+        "not render as a bare bullet list"
+    )
+
+
+def test_board_css_covers_help_button_and_panel(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    assert ".help-btn" in css
+    assert ".help-panel" in css
+
+    utilities_start = css.index(".header-utilities {")
+    utilities_end = css.index("}", utilities_start)
+    assert "position: relative" in css[utilities_start:utilities_end], (
+        ".header-utilities must be a positioning context for .help-panel to anchor under it"
+    )
+
+
+def test_board_css_covers_help_center_page(tmp_path, monkeypatch):
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(STATIC_DIR))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        css = client.get("/css/board.css").text
+
+    assert "#help-center-page" in css
+    assert ".help-center-link" in css
+    assert "#faq-search" in css
+    assert ".faq-category" in css
+
+    page_rule_start = css.index("#deal-detail,")
+    page_rule_end = css.index("}", page_rule_start)
+    page_rule = css[page_rule_start:page_rule_end]
+    assert "#help-center-page" in page_rule, (
+        "#help-center-page must share the page-container rule with the other pages, "
+        "not duplicate the rule body"
+    )

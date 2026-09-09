@@ -19,6 +19,25 @@ def test_serves_index_html_when_build_present(tmp_path, monkeypatch):
         assert "javascript" in asset.headers["content-type"]
 
 
+def test_static_assets_are_served_with_no_store_cache_control(tmp_path, monkeypatch):
+    # Regression guard: without this, browsers apply heuristic caching and can
+    # silently keep serving a stale HTML/JS file after a rebuild/restart, which
+    # looks indistinguishable from a real functional bug to whoever is testing it.
+    monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
+    static_dir = tmp_path / "static"
+    static_dir.mkdir()
+    (static_dir / "index.html").write_text("<html><body>crm-ui</body></html>")
+    (static_dir / "app.js").write_text("console.log('hi');")
+    monkeypatch.setenv("STATIC_ASSETS_PATH", str(static_dir))
+
+    from mock_salesforce.app import app
+    from fastapi.testclient import TestClient
+
+    with TestClient(app) as client:
+        assert client.get("/").headers["cache-control"] == "no-store"
+        assert client.get("/app.js").headers["cache-control"] == "no-store"
+
+
 def test_returns_404_when_build_absent(tmp_path, monkeypatch):
     monkeypatch.setenv("DB_PATH", str(tmp_path / "test.db"))
     monkeypatch.setenv("STATIC_ASSETS_PATH", str(tmp_path / "does-not-exist"))

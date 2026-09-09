@@ -139,3 +139,23 @@ export function updateContact(id, payload) {
 export function deleteContact(id) {
   return request(`/contacts/${id}`, { method: 'DELETE' }, 'delete contact');
 }
+
+export function fetchLeads() {
+  return request('/leads', undefined, 'load leads');
+}
+
+export function createLead(payload) {
+  return jsonRequest('/leads', 'POST', payload, 'create lead');
+}
+
+export function updateLead(id, payload) {
+  return jsonRequest(`/leads/${id}`, 'PATCH', payload, 'update lead');
+}
+
+export function deleteLead(id) {
+  return request(`/leads/${id}`, { method: 'DELETE' }, 'delete lead');
+}
+
+export function convertLead(id) {
+  return jsonRequest(`/leads/${id}/convert`, 'POST', {}, 'convert lead');
+}

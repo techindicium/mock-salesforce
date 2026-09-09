@@ -40,4 +40,9 @@ def serve_static(full_path: str):
             status_code=404,
             detail=error_body("STATIC_ASSET_NOT_FOUND", f"No static asset at {requested}"),
         )
-    return FileResponse(target)
+    # Without an explicit Cache-Control, browsers apply heuristic caching and can
+    # silently keep serving a stale HTML/JS file after this course-fixture app is
+    # rebuilt/restarted with new static assets — no-store forces every request to
+    # hit this handler fresh, which matters far more here than any caching benefit
+    # would (Quality Attributes: performance is not a concern at this scale).
+    return FileResponse(target, headers={"Cache-Control": "no-store"})

@@ -43,6 +43,7 @@ source-manifest:
     - tests/test_db_path_not_writable.py
     - tests/test_readme_docker_instructions.py
   computed-at: "2026-09-07T05:02:00.076Z"
+drift_detected: true
 ---
 
 # Live Spec: Docker packaging and run instructions

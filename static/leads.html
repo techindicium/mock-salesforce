@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SalesStrength | Leads</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/board.css" />
+</head>
+<body>
+  <header class="global-header">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 40" aria-hidden="true">
+        <path d="M20 32c-6.6 0-12-5.4-12-12 0-6.1 4.6-11.1 10.5-11.9C20.7 4 25.9 1 32 1c8.2 0 15 6.1 15.9 14C53.4 16.1 58 21.1 58 27c0 6.6-5.4 12-12 12H20z" fill="#0176d3"/>
+      </svg>
+      <span class="brand-name">SalesStrength</span>
+    </div>
+    <input class="global-search" type="search" placeholder="Search..." aria-label="Search" disabled />
+    <div class="header-utilities">
+      <button id="help-btn" type="button" class="help-btn" aria-haspopup="true" aria-expanded="false" aria-label="Help for this page">?</button>
+      <span class="avatar" aria-hidden="true">SS</span>
+      <div id="help-panel" class="help-panel" hidden role="dialog" aria-label="Help">
+        <h2 id="help-panel-title"></h2>
+        <p id="help-panel-body"></p>
+        <hr />
+        <h3>Navigating SalesStrength</h3>
+        <ul id="help-nav-overview"></ul>
+        <a class="help-center-link" href="help.html">Visit the Help Center</a>
+      </div>
+    </div>
+  </header>
+  <div class="app-shell">
+    <nav class="sidebar" aria-label="Main navigation">
+      <a class="nav-item" href="index.html">Opportunities</a>
+      <a class="nav-item" href="accounts.html">Accounts</a>
+      <a class="nav-item" href="contacts.html">Contacts</a>
+      <a class="nav-item active" href="leads.html" aria-current="page">Leads</a>
+    </nav>
+    <div class="app-main">
+      <div id="error-banner" role="alert" hidden></div>
+      <main id="leads-page">
+        <h1>Leads</h1>
+        <ul id="leads-list"></ul>
+        <p id="leads-empty-state" hidden>No leads yet.</p>
+        <button id="new-lead-btn" type="button">New lead</button>
+        <form id="lead-form" hidden>
+          <input type="hidden" id="lead-id-input" />
+          <div id="lead-form-error" class="form-error" role="alert"></div>
+          <label for="lead-first-name-input">First name</label>
+          <input id="lead-first-name-input" name="first_name" type="text" />
+          <label for="lead-last-name-input">Last name *</label>
+          <input id="lead-last-name-input" name="last_name" type="text" required />
+          <label for="lead-company-input">Company *</label>
+          <input id="lead-company-input" name="company" type="text" required />
+          <label for="lead-title-input">Title</label>
+          <input id="lead-title-input" name="title" type="text" />
+          <label for="lead-email-input">Email</label>
+          <input id="lead-email-input" name="email" type="email" />
+          <label for="lead-phone-input">Phone</label>
+          <input id="lead-phone-input" name="phone" type="text" />
+          <label for="lead-status-select">Status</label>
+          <select id="lead-status-select" name="status">
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Unqualified">Unqualified</option>
+          </select>
+          <label for="lead-rating-select">Rating</label>
+          <select id="lead-rating-select" name="rating">
+            <option value="">—</option>
+            <option value="Hot">Hot</option>
+            <option value="Warm">Warm</option>
+            <option value="Cold">Cold</option>
+          </select>
+          <button type="submit">Save lead</button>
+          <button type="button" id="cancel-lead-form-btn">Cancel</button>
+        </form>
+      </main>
+    </div>
+  </div>
+  <script type="module" src="js/leads.js"></script>
+  <script type="module" src="js/help.js"></script>
+</body>
+</html>

@@ -1,8 +1,8 @@
 ---
 status: approved
 kind: feature
-revision: 8
-updated: 2026-09-05
+revision: 10
+updated: 2026-09-09
 ---
 
 # Feature Charter: crm-api
@@ -29,7 +29,15 @@ and mcp-server modules are both clients of this API, never the other way around.
   Salesforce's standard ten-stage sales process (`Prospecting` through `Closed Won`/`Closed
   Lost`), mirroring the real Opportunity object's core fields (amount, close date, probability,
   type, lead source, next step).
-- Full CRUD HTTP endpoints for Account, Contact, and Opportunity.
+- Lead entity: an unqualified prospect captured before an Account/Contact/Opportunity exists —
+  Salesforce's standard lead-capture object, primarily useful here for practicing
+  marketing-automation-style workflows (capture → qualify/score → convert). This was explicitly
+  deferred to "v2" in earlier revisions of this charter; this revision brings it into scope.
+- Lead Conversion: `POST /leads/{id}/convert`, which creates a new Account and Contact (or
+  attaches to existing ones when `account_id`/`contact_id` are given explicitly) and optionally a
+  new Opportunity, then marks the source Lead `converted` and links it to whichever records
+  resulted — mirroring Salesforce's own "Convert Lead" action.
+- Full CRUD HTTP endpoints for Account, Contact, Opportunity, and Lead.
 - SQLite persistence, a single local file, created fresh on first run; the file path is read
   from an environment variable rather than hardcoded, so it can be bound to a volume in
   deployment.
@@ -45,8 +53,12 @@ and mcp-server modules are both clients of this API, never the other way around.
 
 - Authentication/authorization — there is no real user model; `owner`-style fields, if any, are
   free-text labels, not accounts with credentials.
-- Leads, Cases, Campaigns, Products/Price Books, Quotes, Forecasting, and every other Salesforce
-  standard object beyond Account/Contact/Opportunity.
+- Lead assignment rules, lead scoring automation, duplicate-lead matching, and web-to-lead capture
+  forms — this mock exposes the Lead object and conversion mechanics only; scoring/routing logic
+  is the consuming track's own marketing-automation exercise to build against this API, not
+  something this mock computes itself.
+- Cases, Campaigns, Products/Price Books, Quotes, Forecasting, and every other Salesforce
+  standard object beyond Account/Contact/Opportunity/Lead.
 - Custom/configurable sales processes or picklist values — the ten-stage default path is fixed.
 - Person Accounts (a Contact with no Account) — every Contact belongs to exactly one Account.
 - Multi-currency — `amount` is a plain decimal with no currency-conversion model.
@@ -67,6 +79,7 @@ and mcp-server modules are both clients of this API, never the other way around.
 | Account | A company or organization — the entity being sold to | `id`, `name`, `account_type` (`Customer`\|`Prospect`\|`Partner`\|`Other`), `industry`, `website`, `phone`, `billing_street`, `billing_city`, `billing_state`, `billing_postal_code`, `billing_country`, `created_at`, `updated_at` |
 | Contact | A person associated with exactly one Account | `id`, `account_id`, `first_name`, `last_name`, `email`, `phone`, `title`, `created_at`, `updated_at` |
 | Opportunity | A sales deal associated with exactly one Account | `id`, `account_id`, `name`, `stage_name` (one of the ten fixed stages), `amount`, `close_date`, `probability`, `opportunity_type` (`New Business`\|`Existing Business`), `lead_source` (`Web`\|`Phone Inquiry`\|`Partner Referral`\|`Other`), `next_step`, `is_closed` (derived), `is_won` (derived), `created_at`, `updated_at` |
+| Lead | An unqualified prospect not yet associated with an Account | `id`, `first_name`, `last_name`, `company`, `title`, `email`, `phone`, `lead_source` (same vocabulary as Opportunity.lead_source), `status` (`New`\|`Contacted`\|`Qualified`\|`Unqualified` — Salesforce's default Lead Status picklist), `rating` (`Hot`\|`Warm`\|`Cold`), `converted` (derived), `converted_at`, `converted_account_id`, `converted_contact_id`, `converted_opportunity_id`, `created_at`, `updated_at` |
 
 ### Relationships
 
@@ -75,6 +88,10 @@ and mcp-server modules are both clients of this API, never the other way around.
 - Every Opportunity belongs to exactly one Account (`Opportunity.account_id` → `Account.id`). An
   Account has zero or more Opportunities.
 - Contact and Opportunity are siblings under the same Account; neither references the other.
+- A Lead exists independently of Account/Contact/Opportunity until converted; conversion produces
+  exactly one Account and one Contact (new or attached-to-existing) and, optionally, one
+  Opportunity, recorded on the Lead via `converted_account_id`/`converted_contact_id`/
+  `converted_opportunity_id`.
 
 ### Invariants
 
@@ -90,6 +107,14 @@ and mcp-server modules are both clients of this API, never the other way around.
   Account deletion.
 - A Contact's and an Opportunity's `account_id` is immutable once created — reassigning either to
   a different Account is not supported this milestone (see Deferred Capabilities).
+- A Lead's `status` is always one of the four fixed values (`New`, `Contacted`, `Qualified`,
+  `Unqualified`); the API rejects any other value. `rating`, when set, is one of `Hot`/`Warm`/
+  `Cold`.
+- `converted` is true if and only if `converted_at` is non-null; both are server-derived and never
+  accepted as client input.
+- A converted Lead is frozen — no further `PATCH` or `DELETE` is accepted on a Lead once
+  `converted` is true, and `/convert` is rejected on an already-converted Lead — conversion is a
+  one-way operation, mirroring Salesforce's own read-only-after-conversion behavior.
 
 ## Capability Map
 
@@ -98,17 +123,20 @@ and mcp-server modules are both clients of this API, never the other way around.
 | Account CRUD | Create, list, get, update, delete Account | must-have | mvp | validated |
 | Contact CRUD | Create, list, get, update, delete Contact under an Account | must-have | mvp | validated |
 | Opportunity CRUD | Create, list, get, update, delete Opportunity under an Account, including stage transitions | must-have | mvp | validated |
-| Seed fixture data | Populate the database with realistic starting Accounts/Contacts/Opportunities on first run, reconciled with `course-shared/canon` identifiers | must-have | mvp | validated |
+| Seed fixture data | Populate the database with realistic starting Accounts/Contacts/Opportunities/Leads on first run, reconciled with `course-shared/canon` identifiers | must-have | mvp | validated |
 | OpenAPI contract | Auto-generated, browsable API documentation | should-have | mvp | validated |
 | Health route and static asset hosting | Basic liveness route for deployment healthchecks; serve `crm-ui`'s built static assets at the root path when present | must-have | mvp | validated |
+| Lead CRUD | Create, list, get, update, delete Lead | must-have | v2 | — |
+| Lead conversion | `POST /leads/{id}/convert` — convert a Lead into an Account + Contact + optional Opportunity | must-have | v2 | — |
 
 ## Deferred Capabilities
 
 | Capability | Reason | Target Milestone | Depends On |
 |-----------|--------|-------------|------------|
 | Reassign Contact/Opportunity to a different Account | Not needed by either consuming track yet | v2 | — |
-| Leads, Cases, Campaigns, and other standard objects | Out of scope for the initial mock surface | v2 | — |
+| Cases, Campaigns, and other standard objects | Out of scope for the initial mock surface | v2 | — |
 | Delete Account with existing Contacts/Opportunities (cascade or reassignment) | Deferred until a real cascade/conflict rule is needed — no consumer requires it yet | v2 | — |
+| Lead scoring/assignment automation, duplicate-lead matching, web-to-lead capture | Explicitly out of scope — this mock exposes the object and conversion mechanics; automation logic is the consuming track's own exercise | — | — |
 
 ## Interface Contracts
 
@@ -131,6 +159,12 @@ and mcp-server modules are both clients of this API, never the other way around.
 | `GET /opportunities/{id}` | REST endpoint | Fetch one Opportunity |
 | `PATCH /opportunities/{id}` | REST endpoint | Update one or more Opportunity fields, including `stage_name` (the kanban drag action) |
 | `DELETE /opportunities/{id}` | REST endpoint | Delete one Opportunity |
+| `GET /leads` | REST endpoint | List all Leads, optional `status`/`converted` query filters |
+| `POST /leads` | REST endpoint | Create a Lead |
+| `GET /leads/{id}` | REST endpoint | Fetch one Lead |
+| `PATCH /leads/{id}` | REST endpoint | Update one or more Lead fields (rejected once the Lead is converted) |
+| `DELETE /leads/{id}` | REST endpoint | Delete one Lead (rejected once converted) |
+| `POST /leads/{id}/convert` | REST endpoint | Convert a Lead into an Account + Contact + optional Opportunity |
 | `GET /openapi.json` | REST endpoint | Auto-generated OpenAPI contract document |
 | `GET /health` | REST endpoint | Basic liveness response; backs the deployment healthcheck |
 | `GET /` and static asset paths | REST endpoint (static) | Serves `crm-ui`'s built static assets when present, so the UI and API share one origin and one process |

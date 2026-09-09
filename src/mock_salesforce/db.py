@@ -86,6 +86,28 @@ def init_db(conn: sqlite3.Connection) -> None:
         )
         """
     )
+    conn.execute(
+        """
+        CREATE TABLE IF NOT EXISTS leads (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name TEXT,
+            last_name TEXT NOT NULL,
+            company TEXT NOT NULL,
+            title TEXT,
+            email TEXT,
+            phone TEXT,
+            lead_source TEXT,
+            status TEXT NOT NULL,
+            rating TEXT,
+            converted_at TEXT,
+            converted_account_id INTEGER REFERENCES accounts(id),
+            converted_contact_id INTEGER REFERENCES contacts(id),
+            converted_opportunity_id INTEGER REFERENCES opportunities(id),
+            created_at TEXT NOT NULL,
+            updated_at TEXT NOT NULL
+        )
+        """
+    )
     conn.commit()
 
 

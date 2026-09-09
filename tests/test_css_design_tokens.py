@@ -14,7 +14,7 @@ def test_board_css_defines_design_tokens(tmp_path, monkeypatch):
         css = client.get("/css/board.css").text
 
     assert ":root" in css
-    for token in ("--ink", "--rail", "--paper", "--stamp-red", "--stamp-gold", "--stamp-green", "--ink-line"):
+    for token in ("--brand", "--brand-dark", "--surface", "--surface-alt", "--border", "--error", "--success"):
         assert token in css
 
 

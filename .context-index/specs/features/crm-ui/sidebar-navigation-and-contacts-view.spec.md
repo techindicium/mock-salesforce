@@ -26,6 +26,7 @@ source-manifest:
     - tests/test_ui_contacts_page.py
     - tests/test_ui_deal_page.py
   computed-at: "2026-09-07T15:29:44.381Z"
+drift_detected: true
 ---
 
 # Live Spec: Sidebar navigation and standalone Contacts view

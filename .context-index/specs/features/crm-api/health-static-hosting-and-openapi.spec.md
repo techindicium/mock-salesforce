@@ -22,6 +22,7 @@ source-manifest:
     - tests/test_openapi.py
     - tests/test_static_hosting.py
   computed-at: "2026-09-06T21:19:35.872Z"
+drift_detected: true
 ---
 
 # Live Spec: Health route, static asset hosting, and OpenAPI contract

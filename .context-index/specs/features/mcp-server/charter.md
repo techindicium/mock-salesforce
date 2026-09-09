@@ -1,8 +1,8 @@
 ---
 status: approved
 kind: feature
-revision: 6
-updated: 2026-09-05
+revision: 8
+updated: 2026-09-09
 ---
 
 # Feature Charter: mcp-server
@@ -24,7 +24,10 @@ database directly.
 ### In Scope
 
 - MCP tool definitions mirroring every must-have capability of `crm-api`: full create/read/
-  update/delete for Account, Contact, and Opportunity, including Opportunity stage transitions.
+  update/delete for Account, Contact, Opportunity, and Lead, including Opportunity stage
+  transitions and Lead conversion — the Lead tools exist specifically so an external agent can
+  drive marketing-automation-style workflows (capture a lead, update its `status`/`rating`,
+  convert it) over MCP without hand-rolling HTTP calls.
 - A running MCP server process that translates each tool call into an HTTP call against
   `crm-api` and returns its result (or its error) back through the tool response.
 - Structured, JSON-schema tool input/output definitions so any MCP client can discover the tools
@@ -80,6 +83,8 @@ database directly.
 | get_account tool | Wraps `GET /accounts/{id}` | must-have | mvp | validated |
 | list_contacts / get_contact / create_contact / update_contact / delete_contact tools | Wrap the Contact CRUD endpoints, with `account_id` filtering on list | must-have | mvp | validated |
 | list_opportunities / get_opportunity / create_opportunity / update_opportunity / delete_opportunity tools | Wrap the Opportunity CRUD endpoints, including stage transitions, with `account_id`/`stage_name` filtering on list | must-have | mvp | validated |
+| list_leads / get_lead / create_lead / update_lead / delete_lead tools | Wrap the Lead CRUD endpoints, with `status`/`converted` filtering on list | must-have | v2 | — |
+| convert_lead tool | Wraps `POST /leads/{id}/convert` | must-have | v2 | — |
 
 ## Deferred Capabilities
 
@@ -108,6 +113,12 @@ database directly.
 | `create_opportunity` | MCP tool | Create an Opportunity under an Account |
 | `update_opportunity` | MCP tool | Update one or more Opportunity fields, including `stage_name` |
 | `delete_opportunity` | MCP tool | Delete one Opportunity |
+| `list_leads` | MCP tool | List Leads, optional `status`/`converted` filters |
+| `get_lead` | MCP tool | Fetch one Lead |
+| `create_lead` | MCP tool | Create a Lead |
+| `update_lead` | MCP tool | Update one or more Lead fields |
+| `delete_lead` | MCP tool | Delete one Lead |
+| `convert_lead` | MCP tool | Convert a Lead into an Account + Contact + optional Opportunity |
 | `GET /health` | REST endpoint | Basic liveness response over the Streamable HTTP transport's listen port; backs the deployment healthcheck |
 
 ### Consumed APIs
@@ -117,6 +128,7 @@ database directly.
 | `GET /accounts`, `GET /accounts/{id}`, `POST /accounts`, `PATCH /accounts/{id}`, `DELETE /accounts/{id}` | crm-api | Back the Account tools |
 | `GET /contacts`, `GET /contacts/{id}`, `POST /contacts`, `PATCH /contacts/{id}`, `DELETE /contacts/{id}` | crm-api | Back the Contact tools |
 | `GET /opportunities`, `GET /opportunities/{id}`, `POST /opportunities`, `PATCH /opportunities/{id}`, `DELETE /opportunities/{id}` | crm-api | Back the Opportunity tools |
+| `GET /leads`, `GET /leads/{id}`, `POST /leads`, `PATCH /leads/{id}`, `DELETE /leads/{id}`, `POST /leads/{id}/convert` | crm-api | Back the Lead tools |
 
 ## Quality Attributes
 

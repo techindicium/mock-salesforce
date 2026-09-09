@@ -1,8 +1,8 @@
 ---
 status: approved
 kind: feature
-revision: 13
-updated: 2026-09-07
+revision: 17
+updated: 2026-09-09
 ---
 
 # Feature Charter: crm-ui
@@ -35,6 +35,18 @@ with no separate server, no CORS configuration, and no runtime base-URL configur
 - Create/edit/delete forms for Account, Contact, and Opportunity.
 - An account switcher/list view listing all Accounts and filtering the board to the selected
   one's Opportunities (or showing all Accounts' Opportunities when none is selected).
+- A Leads list view (matching the Accounts/Contacts list pattern): create/edit/delete a Lead, and
+  a "Convert" action that calls `crm-api`'s `POST /leads/{id}/convert` and navigates to the
+  resulting Account (or Opportunity, when one was created) — this module's window into
+  `crm-api`'s Lead capability, added to support practicing marketing-automation-style workflows.
+- In-app contextual help: a "?" affordance in the global header (mirroring Salesforce Lightning
+  Experience's own header help icon) that opens a panel with guidance for the current page plus a
+  short overview of the app's four sections — entirely static content, client-side only, no new
+  `crm-api` endpoint or persisted data involved.
+- A Help Center page (`help.html`), linked from the header help panel: a searchable FAQ organized
+  by topic (General, Opportunities, Accounts, Contacts, Leads), mirroring how a real product's
+  help-desk/FAQ portal is organized — entirely static content, same client-side-only boundary as
+  the header help panel.
 
 ### Out of Scope
 
@@ -89,6 +101,9 @@ with no separate server, no CORS configuration, and no runtime base-URL configur
 | Account switcher | List Accounts, select one to filter the board and detail views | should-have | mvp | validated |
 | Persistent sidebar navigation | Cross-page sidebar (Opportunities/Accounts/Contacts) present on all crm-ui pages, current page marked active | should-have | mvp | validated |
 | Standalone Contacts view | List every Contact across all Accounts with owning-Account name, full CRUD | should-have | mvp | validated |
+| Leads view | List every Lead, full CRUD, and a Convert action calling `crm-api`'s conversion endpoint | should-have | v2 | — |
+| In-app contextual help | A "?" header affordance opening a panel with page-specific guidance and a navigation overview, mirroring Salesforce's own in-app Help panel | should-have | v2 | — |
+| Help Center FAQ page | A searchable, topic-grouped FAQ page (`help.html`) linked from the header help panel | should-have | v2 | — |
 
 ## Deferred Capabilities
 
@@ -124,6 +139,12 @@ other modules.
 | `GET /opportunities/{id}` | crm-api | Load full detail for the deal detail page |
 | `PATCH /opportunities/{id}` | crm-api | Save edits and stage-move changes |
 | `DELETE /opportunities/{id}` | crm-api | Delete-opportunity action |
+| `GET /leads` | crm-api | Populate the Leads view |
+| `POST /leads` | crm-api | Create-lead form |
+| `GET /leads/{id}` | crm-api | Load full detail for the edit form |
+| `PATCH /leads/{id}` | crm-api | Save lead edits |
+| `DELETE /leads/{id}` | crm-api | Delete-lead action |
+| `POST /leads/{id}/convert` | crm-api | Convert action — creates/attaches Account + Contact + optional Opportunity |
 
 ## Quality Attributes
 

@@ -43,3 +43,4 @@
 {"event":"validator_report","step":"validate","validator":"validate.check-14-gate-executability","severity":"warning","verdict":"PASS_WITH_NOTES","notes":"4 warnings, 0 errors: integration-test gate has no command (dropped from merged set), no CI config found, lint runner unrecognized for collection check.","ts":"2026-09-06T21:23:44.568Z"}
 {"event":"step_completed","step":"implement","verdict":"PASS","ts":"2026-09-06T21:25:57.877Z"}
 {"event":"step_completed","step":"validate","verdict":"PASS_WITH_NOTES","ts":"2026-09-06T21:26:36.222Z"}
+{"event":"code_drift_detected","drift_source":"src/mock_salesforce/app.py","drift_at":"2026-09-09T11:10:31.598Z","ts":"2026-09-09T11:10:31.598Z"}

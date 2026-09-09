@@ -108,3 +108,50 @@ class OpportunityUpdate(BaseModel):
     opportunity_type: Optional[OpportunityType] = None
     lead_source: Optional[LeadSource] = None
     next_step: Optional[str] = None
+
+
+LeadStatus = Literal["New", "Contacted", "Qualified", "Unqualified"]
+LeadRating = Literal["Hot", "Warm", "Cold"]
+
+
+class LeadCreate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: str
+    company: str
+    title: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    lead_source: Optional[LeadSource] = None
+    status: LeadStatus = "New"
+    rating: Optional[LeadRating] = None
+
+
+class LeadOut(LeadCreate):
+    id: int
+    converted: bool
+    converted_at: Optional[datetime] = None
+    converted_account_id: Optional[int] = None
+    converted_contact_id: Optional[int] = None
+    converted_opportunity_id: Optional[int] = None
+    created_at: datetime
+    updated_at: datetime
+
+
+class LeadUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    company: Optional[str] = None
+    title: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    lead_source: Optional[LeadSource] = None
+    status: Optional[LeadStatus] = None
+    rating: Optional[LeadRating] = None
+
+
+class LeadConvert(BaseModel):
+    account_id: Optional[int] = None
+    contact_id: Optional[int] = None
+    create_opportunity: bool = False
+    opportunity_name: Optional[str] = None
+    opportunity_close_date: Optional[date] = None

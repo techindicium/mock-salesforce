@@ -74,13 +74,14 @@ def test_every_tool_surfaces_a_clear_connection_error(monkeypatch):
             call()
 
 
-def test_all_fifteen_tools_registered():
+def test_all_twenty_one_tools_registered():
     tool_names = {t.name for t in app_module.mcp._tool_manager.list_tools()}
     expected = {
         "list_accounts", "get_account", "create_account", "update_account", "delete_account",
         "list_contacts", "get_contact", "create_contact", "update_contact", "delete_contact",
         "list_opportunities", "get_opportunity", "create_opportunity", "update_opportunity",
         "delete_opportunity",
+        "list_leads", "get_lead", "create_lead", "update_lead", "delete_lead", "convert_lead",
     }
     assert tool_names == expected
     # NOTE: if `mcp._tool_manager.list_tools()` doesn't match the installed
