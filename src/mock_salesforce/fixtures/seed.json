@@ -105,17 +105,17 @@
   "contacts": [
     {
       "account_external_id": "ACCOUNT-1001",
-      "first_name": "Annika",
-      "last_name": "Sørensen",
-      "title": "Head of Warehouse Operations",
-      "email": "annika.sørensen@marchetticonstruction.example"
+      "first_name": "Nuno",
+      "last_name": "Marchetti",
+      "title": "Owner",
+      "email": "nuno.marchetti@marchetticonstruction.example"
     },
     {
       "account_external_id": "ACCOUNT-1001",
-      "first_name": "Tobias",
-      "last_name": "Lind",
-      "title": "IT Manager",
-      "email": "tobias.lind@marchetticonstruction.example"
+      "first_name": "Sara",
+      "last_name": "Lopes",
+      "title": "Bookkeeper",
+      "email": "sara.lopes@marchetticonstruction.example"
     },
     {
       "account_external_id": "ACCOUNT-1002",
@@ -126,37 +126,37 @@
     },
     {
       "account_external_id": "ACCOUNT-1003",
-      "first_name": "Elin",
-      "last_name": "Karlsson",
-      "title": "Cold Chain Supervisor",
-      "email": "elin.karlsson@hollisveterinarygroup.example"
+      "first_name": "Megan",
+      "last_name": "Hollis",
+      "title": "Practice Manager",
+      "email": "megan.hollis@hollisveterinarygroup.example"
     },
     {
       "account_external_id": "ACCOUNT-1004",
       "first_name": "Marcus",
       "last_name": "Webb",
-      "title": "Distribution Manager",
+      "title": "Office Manager",
       "email": "marcus.webb@atlanticmarinesupplies.example"
     },
     {
       "account_external_id": "ACCOUNT-1006",
-      "first_name": "Dana",
-      "last_name": "Whitfield",
-      "title": "Parts Operations Lead",
-      "email": "dana.whitfield@vazefilhostransportes.example"
+      "first_name": "Rafael",
+      "last_name": "Vaz",
+      "title": "Owner",
+      "email": "rafael.vaz@vazefilhostransportes.example"
     },
     {
       "account_external_id": "ACCOUNT-1008",
       "first_name": "Grace",
       "last_name": "Okonkwo",
-      "title": "VP Supply Chain",
+      "title": "Founder",
       "email": "grace.okonkwo@brightpathtutoring.example"
     },
     {
       "account_external_id": "ACCOUNT-1008",
       "first_name": "Peter",
       "last_name": "Hallam",
-      "title": "Systems Analyst",
+      "title": "Bookkeeper",
       "email": "peter.hallam@brightpathtutoring.example"
     }
   ],
@@ -237,7 +237,7 @@
       "account_external_id": "ACCOUNT-1009",
       "name": "Studio Lumen renewal 2026",
       "stage_name": "Closed Won",
-      "amount": 228,
+      "amount": 0,
       "close_date": "2026-09-28",
       "opportunity_type": "Existing Business",
       "owner": "Marta Oliveira"
@@ -246,7 +246,7 @@
       "account_external_id": "ACCOUNT-1010",
       "name": "Oliveira Serralharia renewal 2026",
       "stage_name": "Closed Lost",
-      "amount": 228,
+      "amount": 0,
       "close_date": "2026-10-28",
       "opportunity_type": "Existing Business",
       "owner": "Marta Oliveira"
